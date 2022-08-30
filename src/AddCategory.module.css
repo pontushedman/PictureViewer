@@ -1,0 +1,14 @@
+.AddCategory {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.Plus {
+    width: 0.8rem;
+}
+
+.Text {
+    font-size: 0.6rem;
+    margin-left: 0.4rem;
+}
