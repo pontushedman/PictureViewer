@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Category category="album" title="Albums"/>
-      <Category category="image" title="Image"/>
-      <Category category="favorites" title="Favorites"/>
+      <Category noAdd={true} category="album" title="Albums"/>
+      <Category noAdd={true} category="image" title="Image"/>
+      <Category noAdd={false} category="favorites" title="Favorites"/>
 
 
     </div>

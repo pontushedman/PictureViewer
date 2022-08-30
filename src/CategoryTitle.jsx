@@ -7,7 +7,7 @@ function CategoryTitle(props) {
         <div className={styles.CategoryTitle}>
             <img className={styles.categoryImage} src={props.image}/>
             <p className={styles.Title}>{props.title}</p>
-            <AddCategory category={props.title}/>
+            <AddCategory noAdd={props.noAdd} category={props.title}/>
         </div>
     )
 }

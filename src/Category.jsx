@@ -7,7 +7,7 @@ function Category(props) {
 
     return (
         <div>
-            <CategoryTitle category="album" title={title} image={image}/>
+            <CategoryTitle noAdd={props.noAdd} category="album" title={title} image={image}/>
         </div>
     )
 }
