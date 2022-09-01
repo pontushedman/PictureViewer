@@ -8,6 +8,10 @@ function AddCategory(props) {
             return <div/>
         }
     })
+
+/*     const ny = (() => {
+        return "apa"
+    }); */
     
     return (
         content()
