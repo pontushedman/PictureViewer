@@ -15,3 +15,5 @@ function AddCategory(props) {
 }
 
 export default AddCategory
+
+// hej
