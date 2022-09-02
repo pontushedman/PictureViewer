@@ -1,35 +1,66 @@
 .CategoryContainer {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .CategoryTitle {
     display: flex;
     align-items: center;
-    font-weight: bold;}
+    font-weight: bold;
+}
 
 .categoryImage {
-    width: 4%;
-    height: 4%;
+    width: 4rem;
+    height: 4rem;
 }
+
 
 .Title {
     margin-left: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .Albums {
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
 }
 
 .Album {
     font-size: bold;
-    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.AlbumHeader {
-    width: 5rem;
+.Album+.Album {
+    margin-left: 1rem;
+}
+
+.AlbumHeaderImage {
+    background-size: cover;
+    width: 10rem;
+    min-width: 10rem;
+    min-height: 10rem;
     border-radius: 1rem;
 }
 
+.AlbumTitle {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.ViewAll {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ViewAll p {
+    width: auto;
+    font-weight: bold;
+    color: #2196F3;
+}

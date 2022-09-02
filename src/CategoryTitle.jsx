@@ -26,16 +26,19 @@ function CategoryTitle(props) {
                 <img className={styles.categoryImage} src={props.image}/>
                 <p className={styles.Title}>{props.title}</p>
                 <AddCategory noAdd={props.noAdd} category={props.title}/>
-                <ContentAmount/>
+                <ContentAmount className={styles.Count}/>
             </div>
             <div className={styles.Albums}>
                 {loading.map(x => 
                     <div className={styles.Album}>
-                        <p>{x.title}</p>
-                        <img className={styles.AlbumHeader} src={"./src/assets/" + x.headerImage}/>
+                        <img className={styles.AlbumHeaderImage} src={"./src/assets/" + x.headerImage}/>
+                        <p className={styles.AlbumTitle}>{x.title}</p>
                     </div>)}
                 {console.log(loading)}
             </div>    
+            <div className={styles.ViewAll}>
+                <p>View all {props.title}</p>
+            </div>
         </div>
     )
 }
