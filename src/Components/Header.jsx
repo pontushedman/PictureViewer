@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import styles from './Header.module.css'
+import styles from './Styles/Header.module.css'
 
 
 function Header() {

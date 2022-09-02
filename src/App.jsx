@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Header from './Header'
-import Category from './Category'
+import Header from './Components/Header'
+import Category from './Components/Category'
 
 
 function App() {

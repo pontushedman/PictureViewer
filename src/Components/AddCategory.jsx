@@ -1,4 +1,4 @@
-import styles from './AddCategory.module.css'
+import styles from './Styles/AddCategory.module.css'
 
 function AddCategory(props) {
     const content = (() => {

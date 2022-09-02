@@ -1,4 +1,4 @@
-import styles from './ContentAmount.module.css'
+import styles from './Styles/ContentAmount.module.css'
 
 function ContentAmount() {
     const count = <div className={styles.count}><p>199</p></div>;

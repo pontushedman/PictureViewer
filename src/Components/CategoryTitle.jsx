@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from 'react'
 import AddCategory from './AddCategory'
-import styles from './CategoryTitle.module.css'
+import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
 
 
