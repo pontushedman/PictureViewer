@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header/>
       <Category noAdd={true} category="album" title="Albums"/>
-      <Category noAdd={true} category="image" title="Image"/>
+      <Category noAdd={true} category="images" title="Images"/>
       <Category noAdd={false} category="favorites" title="Favorites"/>
 
 
