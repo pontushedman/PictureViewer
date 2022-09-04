@@ -10,7 +10,13 @@
     font-weight: bold;
 }
 
-.categoryImage {
+
+.categoryImageSmall {
+    width: 3rem;
+    height: 3rem;
+}
+
+.categoryImageLarge {
     width: 4rem;
     height: 4rem;
 }
@@ -25,7 +31,9 @@
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
+
 
 .Album {
     font-size: bold;
@@ -53,6 +61,7 @@
 }
 
 .ViewAll {
+    margin-top: 1.5rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -64,3 +73,30 @@
     font-weight: bold;
     color: #2196F3;
 }
+
+.PictureImage {
+    width: 5rem;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+
+}
+
+.Images {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(6rem, 1fr) );
+}
+
+.Image {
+    font-size: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.7rem;
+}
+
+.Image+.Image {
+    margin-left: 1rem;
+}
+
+

@@ -1,5 +1,9 @@
 body {
-    padding: 4rem;
     background-color: #F5F5F5;
     color: #2B2B2B;
+}
+
+.App {
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
