@@ -4,15 +4,21 @@ import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
 
 function CategoryTitle(props) {
-    const image = "./src/assets/" + props.image + ".png"
-    console.log(props.title + " has a size of " + props.small)
-    let categoryImage = props.small ? styles.categoryImageSmall : styles.categoryImageLarge
-
     const [loading, setLoading] = useState();
-    const category = props.category
-    console.log(category)
+
+    //Load librarystructure from JSONs
+    useEffect(() => {
+        fetch("./src/assets/picture-library.json")
+            .then((resp) => {
+                return resp.json()
+            }).then((res) => {
+                setLoading(res.albums)
+            })
+        }, [])
 
     const availableCategories = ["albums", "images", "favorites"]
+
+    const category = props.category
 
     let categoryCheck = false
 
@@ -27,15 +33,8 @@ function CategoryTitle(props) {
         return (<div/>)
     }
 
-    useEffect(() => {
-        fetch("./src/assets/picture-library.json")
-            .then((resp) => {
-                return resp.json()
-            }).then((res) => {
-                setLoading(res.albums)
-                return res
-            })
-        }, [])
+    const image = "./src/assets/" + props.image + ".png"
+    let categoryImage = props.small ? styles.categoryImageSmall : styles.categoryImageLarge
 
     function Bottom() {
         return  (
