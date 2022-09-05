@@ -5,6 +5,8 @@ import ContentAmount from './ContentAmount'
 
 function CategoryTitle(props) {
     const [loading, setLoading] = useState();
+    const [albumCount, setAlbumCount] = useState("asf");
+    const [imageCount, setImageCount] = useState("fawf");
 
     //Load librarystructure from JSONs
     useEffect(() => {
@@ -13,6 +15,13 @@ function CategoryTitle(props) {
                 return resp.json()
             }).then((res) => {
                 setLoading(res.albums)
+                setAlbumCount(res.albums.length)
+                let ic = 0
+                res.albums.map((x) => {
+                    ic = ic + x.pictures.length
+                })
+                
+                setImageCount(ic)
             })
         }, [])
 
@@ -44,14 +53,23 @@ function CategoryTitle(props) {
         )
     }
 
+    const ContentCount = (() => {
+        if(category === "albums")
+            return albumCount
+        
+        if(category === "images")
+            return imageCount
+
+        return ""
+    })
+
     function Top() {
         return (
-            <div className={styles.CategoryTitle}>
-                
+            <div className={styles.CategoryTitle}>             
                 <img className={categoryImage} src={image}/>
                 <p className={styles.Title}>{props.title}</p>
                 <AddCategory noAdd={props.noAdd} category={props.title}/>
-                <ContentAmount className={styles.Count}/>
+                <ContentAmount suffix={category} count={ContentCount()} className={styles.Count}/>
             </div>
         )
     }
@@ -60,15 +78,15 @@ function CategoryTitle(props) {
         if(loading === undefined) {
             return "Loading";
         }
-
         return (
             <div className={styles.Albums}>
                 {loading.map(x => 
                     <div className={styles.Album}>
                         <img className={styles.AlbumHeaderImage} src={"./src/assets/" + x.headerImage}/>
                         <p className={styles.AlbumTitle}>{x.title}</p>
+                        <p className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
                     </div>)}
-                {console.log(loading)}
+                {console.log(albumCount)}
             </div>
         )
     }
@@ -77,7 +95,6 @@ function CategoryTitle(props) {
         if(loading === undefined) {
             return "Loading";
         }
-        
         return (
             <div className={styles.Images}>
                 {
@@ -85,7 +102,7 @@ function CategoryTitle(props) {
                         x.pictures.map(y => 
                             <div className={styles.Image}>
                                 <img className={styles.PictureImage} src={"./src/assets/" + x.path + "/"  + y.imgLoRes}/>
-                            </div>
+                            </div>  
                         )
                     )
                 }
