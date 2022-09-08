@@ -5,7 +5,7 @@ import CategoryTitle from "./Components/CategoryTitle";
 import AddModal from "./Components/AddModal";
 
 function App() {
-  const [openModal, setOpenModal] = useState(false) 
+  const [openModal, setOpenModal] = useState() 
   return (
     <div className="App">
       {openModal ? <AddModal show={setOpenModal}/>: <div />}
