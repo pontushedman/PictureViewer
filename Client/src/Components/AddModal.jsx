@@ -2,8 +2,7 @@ import React from "react";
 import style from './Styles/AddModal.module.css';
 
 
-function AddModal(){
-    
+function AddModal(props){
     return (<div className={style.modalBackground}>
         <div className={style.modalContainer}>
             <button> X </button>
@@ -14,7 +13,7 @@ function AddModal(){
                 <p>The next page is awsome! You shlod move forward</p>
             </div>
             <div className={style.fotter}>
-                <button> Cancel </button>
+                <button onClick={() => props.showModal(false)}> Cancel </button>
                 <button> Contiune </button>
             </div>
         </div>

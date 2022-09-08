@@ -5,10 +5,13 @@ import CategoryTitle from "./Components/CategoryTitle";
 import AddModal from "./Components/AddModal";
 
 function App() {
-  const [openModal, setOpenModal] = useState() 
+  const [openModal, setOpenModal] = useState()
+
+  console.log("STATE IS " + openModal)
+  
   return (
     <div className="App">
-      {openModal ? <AddModal show={setOpenModal}/>: <div />}
+      {openModal ? <AddModal showModal={setOpenModal} />: <div />}
       
       <div>
         <Header />
@@ -19,6 +22,7 @@ function App() {
           category="albums"
           title="Albums"
           image="albums"
+          showModal={setOpenModal}
         />
         <CategoryTitle
           noAdd={true}
@@ -26,6 +30,7 @@ function App() {
           category="images"
           title="Images"
           image="images"
+          showModal={setOpenModal}
         />
         <CategoryTitle
           noAdd={false}
