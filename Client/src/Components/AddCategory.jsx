@@ -8,7 +8,7 @@ function AddCategory(props) {
       return (
         <div className={styles.AddCategory}>
           <img className={styles.Plus} src="./src/assets/plus.png" />
-          <button className={styles.Text} onClick = {() => {props.show(true)}}>Add {props.category}</button>          
+          <button className={styles.Text} onClick = {() => {props.showModal(true)}}>Add {props.category}</button>          
         </div>
       );
     } else {
