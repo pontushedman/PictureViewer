@@ -1,6 +1,7 @@
 import React from "react";
 import AddPicture from "./AddPicture";
 import style from "./Styles/Modal.module.css";
+import ViewPicture from "./ViewPicture";
 
 function Modal(props) {
   props.show;
