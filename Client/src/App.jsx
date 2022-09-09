@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import CategoryTitle from "./Components/CategoryTitle";
-import AddModal from "./Components/AddModal";
+import Modal from "./Components/Modal";
 
 function App() {
-  const [openModal, setOpenModal] = useState()
+  const [openModal, setOpenModal] = useState(false)
 
   console.log("STATE IS " + openModal)
   
   return (
     <div className="App">
-      {openModal ? <AddModal show={openModal} showModal={setOpenModal} /> : <div></div>}
+      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div></div>}
       
       <div>
         <Header />

@@ -2,7 +2,9 @@ import React from "react";
 import style from './Styles/AddModal.module.css';
 
 
-function AddModal(props){
+function Modal(props){
+    props.show
+
     return (<div className={style.modalBackground}>
         <div className={style.modalContainer}>
             <button> X </button>
@@ -21,4 +23,4 @@ function AddModal(props){
    
 }
  
-export default AddModal;
+export default Modal;
