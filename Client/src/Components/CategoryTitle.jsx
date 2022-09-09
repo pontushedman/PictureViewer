@@ -111,6 +111,20 @@ function CategoryTitle(props) {
         )
     }
 
+   /* class MyComponent extends React.Component {      
+  
+        render () {
+           const imageClick = () => {
+             console.log('Click');
+           } 
+           return (
+              <div>
+                 <img src={require('/myfolder/myimage.png')} onClick={() => imageClick()} />
+              </div>
+           );
+        }
+     }*/  //Skulle försöka så att man kan klicka på bilderna 
+
     let cat = (() => {
         if(category === "albums")  {
             return <Albums/>
