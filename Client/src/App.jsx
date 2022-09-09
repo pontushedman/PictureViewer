@@ -11,7 +11,7 @@ function App() {
   
   return (
     <div className="App">
-      {openModal ? <AddModal showModal={setOpenModal} />: <div />}
+      {openModal ? <AddModal show={openModal} showModal={setOpenModal} /> : <div></div>}
       
       <div>
         <Header />

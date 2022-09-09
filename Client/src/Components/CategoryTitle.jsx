@@ -68,7 +68,7 @@ function CategoryTitle(props) {
             <div className={styles.CategoryTitle}>             
                 <img className={categoryImage} src={image}/>
                 <p className={styles.Title}>{props.title}</p>
-                <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.title}/>
+                <AddCategory show={props.show}showModal={props.showModal} noAdd={props.noAdd} category={props.title}/>
                 <ContentAmount suffix={category} count={ContentCount()} className={styles.Count}/>
             </div>
         )
