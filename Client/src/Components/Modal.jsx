@@ -1,5 +1,6 @@
 import React from "react";
 import style from './Styles/Modal.module.css';
+import ViewPicture from "./ViewPicture";
 
 
 function Modal(props){
@@ -7,13 +8,7 @@ function Modal(props){
 
     return (<div className={style.modalBackground}>
         <div className={style.modalContainer}>
-            <button> X </button>
-            <div className={style.title}>
-                <h1>Are you sure want to continue</h1>
-            </div>
-            <div className={style.body}>
-                <p>The next page is awsome! You shlod move forward</p>
-            </div>
+            <ViewPicture/>
             <div className={style.fotter}>
                 <button onClick={() => props.showModal(false)}> Cancel </button>
                 <button> Contiune </button>

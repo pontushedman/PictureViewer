@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import CategoryTitle from "./Components/CategoryTitle";
 import Modal from "./Components/Modal";
+import ViewPicture from "./Components/ViewPicture";
 
 function App() {
   const [openModal, setOpenModal] = useState(false)
@@ -12,7 +13,8 @@ function App() {
   return (
     <div className="App">
       {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div></div>}
-      
+      <ViewPicture/>
+
       <div>
         <Header />
 
