@@ -1,5 +1,5 @@
 import React from "react";
-import style from './Styles/AddModal.module.css';
+import style from './Styles/Modal.module.css';
 
 
 function Modal(props){
