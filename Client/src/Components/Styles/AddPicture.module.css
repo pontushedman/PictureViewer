@@ -1,27 +1,63 @@
 .container{
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 300px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5);
 }
-
-.imgContainer{
-  margin: auto;
-  width: 300px;
-  height: 300px;
-  border: 3px black dotted;
-  border-radius: 5px;
-  margin-top: 1rem;
+  
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .formx {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.chosenPictureContainer {
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+    height: 4rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice {
+    padding: 0.1rem;
+    width: 110%;
+    font-weight: bold;
+}
+
+.choice + .choice {
+    margin: 0.5rem;
+}
+    
+
+.chosenPicture {
+    width: 80px;
+    border-radius: 0.5rem;
+}
+
+.chosenPictureBoundary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    margin-bottom: 2rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .chooseFile{
@@ -46,17 +82,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("./src/assets/plus.png");
+    background-size: cover;
+    border: none;
+    background-color: #2196F3;
+    border-radius: 2rem;
  }
 
  .chooseDiv {
     position: relative;
-    width: 150px;
-    height: 150px;
-    background-color: purple;
+    width: 2rem;
+    height: 2rem;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
  }
 
  .collection {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20rem;
  }
 
 .closebtn{
@@ -68,9 +115,41 @@
 }
 
 .choosebtn{
-    width: 85px;
-    height: 25px;
+    width: 200px;
+    height: 50px;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: #2196F3;
+    padding: 2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.largeAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: auto;
+}
+
+.smalladd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-weight: bold;
 }
 
 .title{
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: auto;
+    margin-left: 2rem;
 }

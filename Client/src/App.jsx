@@ -14,9 +14,9 @@ function App() {
   
   return (
     <div className="App">
+      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div/>}
       <Header />
 
-      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div/>}
       <div className="mainContainer">
         <CategoryTitle
           noAdd={true}

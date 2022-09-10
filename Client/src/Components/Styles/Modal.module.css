@@ -11,7 +11,7 @@
 }
 
 .modalContainer {
-  width: 500px;
+  min-width: 800px;
   height: auto;
   border-radius: 12px;
   background-color: white;
@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   padding: 25px;
-  transition: 4s;
+  transition: 0.5s;
 }
 
 .fotter {
@@ -28,6 +28,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.fotter button {
+  background-color: rgb(157, 4, 4);
+  font-weight: bold;
+  padding: 0.3rem;
+  color: white;
+  border-radius: 0.3rem;
+  border: none;
+  box-shadow: none;
 }
 
 
