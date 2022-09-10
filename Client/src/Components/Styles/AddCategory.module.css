@@ -2,6 +2,23 @@
     display: flex;
     align-items: center;
     margin-left: 2rem;
+    cursor:pointer;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    transition: ease-in-out 0.15s;
+
+
+}
+
+.AddCategory:hover {
+    background-color: #2196F3;
+    transition: ease-in-out 0.15s;
+}
+
+.AddCategory:hover * {
+    color: #F5F5F5;
+    transition: ease-in-out 0.06s;
+
 }
 
 .Plus {
@@ -12,5 +29,4 @@
     font-size: 0.9rem;
     margin-left: 0.4rem;
     color: #5C5C5C;
-    cursor: pointer;
 }

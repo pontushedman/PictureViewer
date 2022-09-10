@@ -1,0 +1,19 @@
+.footerContainer {
+    margin-top: 3rem;
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    background-color: rgb(55, 55, 55);
+    color: rgb(242, 242, 242);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.logo {
+}
+
+.desc {
+
+}

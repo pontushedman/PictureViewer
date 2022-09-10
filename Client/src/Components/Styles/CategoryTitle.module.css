@@ -79,7 +79,17 @@
     width: auto;
     font-weight: bold;
     color: #2196F3;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    cursor: pointer;
 }
+
+.ViewAll p:hover {
+    background-color: #2196F3;
+    color: white;
+    transition: ease-in-out 0.15s;
+}
+
 
 .PictureImage {
     width: 5rem;

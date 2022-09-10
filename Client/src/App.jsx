@@ -5,6 +5,7 @@ import CategoryTitle from "./Components/CategoryTitle";
 import Modal from "./Components/Modal";
 import ViewPicture from "./Components/ViewPicture";
 import AddPicture from "./Components/AddPicture";
+import Footer from "./Components/Footer"
 
 function App() {
   const [openModal, setOpenModal] = useState(false)
@@ -13,13 +14,10 @@ function App() {
   
   return (
     <div className="App">
+      <Header />
 
-      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div></div>}
-      <ViewPicture/>
-
-      <div>
-        <Header />
-
+      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div/>}
+      <div className="mainContainer">
         <CategoryTitle
           noAdd={true}
           small={false}
@@ -44,6 +42,7 @@ function App() {
           image="favorites"
         />
       </div>
+      <Footer/>
     </div>
   );
 }
