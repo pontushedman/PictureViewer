@@ -8,7 +8,7 @@ const app = express();
 const port = 3000;
 
 // Paths
-const libraryJsonPath = 'app-data/library/picture-library.json';
+const libraryJsonPath = '/app-data/library/picture-library.json';
 
 app.use(cors());
 
@@ -18,7 +18,10 @@ app.get('/albums/' + /.+/ + '.jpg', (req, ses) => {
     res.sendFile(path);
 })
 
-app.get('/api/libraryjson.json')
+app.get('/api/libraryjson', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.sendFile(__dirname + libraryJsonPath);
+})
 
 app.post('/api/upload/album', (req, res) => {
   const form = new formidable.IncomingForm();
@@ -32,7 +35,6 @@ app.post('/api/upload/album', (req, res) => {
       //mimetype
       let fileExtention = checkMimeType(files.myFile.mimetype);
       
-
       // Check mimetype before continuing
       if(!fileExtention){
         res.status(415).send('File extension not supported');
@@ -81,7 +83,6 @@ app.post('/api/upload/album', (req, res) => {
         libraryJson.albums.push(albumObj);
         console.log(libraryJson.albums);
         
-       
         fs.writeFile(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
           // Todo: remove album header picture and directory in case of an error
           
@@ -89,7 +90,6 @@ app.post('/api/upload/album', (req, res) => {
           return;
         });
         
-
     res.status(200).send('Successfully created an album');
   });
 });

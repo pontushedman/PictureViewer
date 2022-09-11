@@ -10,7 +10,7 @@ function CategoryTitle(props) {
 
     //Load librarystructure from JSONs
     useEffect(() => {
-        fetch("./src/assets/picture-library.json")
+        fetch("http://localhost:3000/api/libraryjson")
             .then((resp) => {
                 return resp.json()
             }).then((res) => {
