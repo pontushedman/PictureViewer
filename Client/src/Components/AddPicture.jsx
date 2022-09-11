@@ -24,12 +24,6 @@ function AddPicture() {
     }
   }), []
   
-  
-  function add() {
-    const arr = [...chosenImages, chosenImages.push(<ChosenPicture/>)]
-    setChosenImages(arr.reverse())
-  }
-
   function FormAdd() {
     return (
       <div className={style.largeAdd}>

@@ -2,13 +2,15 @@ const fs = require('fs');
 const express = require('express');
 const formidable = require('formidable');
 const cors = require('cors');
+const path = require('path');
 const { response } = require('express');
 
 const app = express();
 const port = 3000;
 
+app.use(express.static(__dirname + '/public'));
 // Paths
-const libraryJsonPath = '/app-data/library/picture-library.json';
+const libraryJsonPath = '/public/app-data/library/picture-library.json';
 
 app.use(cors());
 
