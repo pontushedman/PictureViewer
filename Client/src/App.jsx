@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Modal from "./Components/Modal";
 import Footer from "./Components/Footer"
-import FrontPage from "./Components/Frontpage";
+import FrontPage from "./Pages/FrontPage";
 
 function App() {
   const [openModal, setOpenModal] = useState(false)

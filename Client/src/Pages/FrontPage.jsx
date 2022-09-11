@@ -1,7 +1,7 @@
-import Header from "./Header";
-import CategoryTitle from "./CategoryTitle";
-import Modal from "./Modal";
-import Footer from "./Footer"
+import Header from "../Components/Header";
+import CategoryTitle from "../Components/CategoryTitle";
+import Modal from "../Components/Modal";
+import Footer from "../Components/Footer"
 
 function FrontPage(props) {
     return (
