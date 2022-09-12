@@ -17,7 +17,7 @@ function setToLocalStorage(key, value) {
 function AddPicture() {
   //State used to rerender component
   const [selectedFiles, setSelectedFiles] = useState([])
-  
+
 
   //Component that shows the "Add Picture" area and handles all the adding
   function FormAdd() {
@@ -34,40 +34,40 @@ function AddPicture() {
           //We read that image in the filereader and converts it to a dataURL(file in textformat???).
           //We store the file in a canvas that we resize, we then access the data in the canvas and converts it to a dataURL
           //That is how we save two pictures in two different sizes.*/}
-          <input 
+          <input
             onChange={(image) => {
-              const file = image.target.files[0]   
+              const file = image.target.files[0]
               var reader = new FileReader()
-                reader.readAsDataURL(file)
-                reader.addEventListener("load", () => {
-                 
-                  //Create Image
-                  const img = document.createElement("img")
-                  //Convert image
-                  img.onload = (() => {
-                     const canvas = document.createElement("canvas")
-                     const ctx = canvas.getContext("2d")
-                    
-                     const convertedHeight = img.height * 0.5
-                     const convertedWidth = img.width * 0.5
-                     
-                     canvas.width = convertedWidth
-                     canvas.height = convertedHeight
-                     
-                     ctx.drawImage(img, 0, 0, convertedWidth , convertedHeight)
-                     const resizedImage = canvas.toDataURL(file.type);
+              reader.readAsDataURL(file)
+              reader.addEventListener("load", () => {
 
-                     //Store images and empty properties in Localstorage.
-                     setToLocalStorage(file.size, JSON.stringify({hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: []}))
-                     //Rerender component to reflect changes in Localstorage.
-                     setSelectedFiles(localStorage.length)
-                    })
+                //Create Image
+                const img = document.createElement("img")
+                //Convert image
+                img.onload = (() => {
+                  const canvas = document.createElement("canvas")
+                  const ctx = canvas.getContext("2d")
 
-                  //Populate image element with original image.
-                  //This is to trigger the img.onload function.  
-                  img.src=reader.result
-              })           
-            }}  
+                  const convertedHeight = img.height * 0.5
+                  const convertedWidth = img.width * 0.5
+
+                  canvas.width = convertedWidth
+                  canvas.height = convertedHeight
+
+                  ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
+                  const resizedImage = canvas.toDataURL(file.type);
+
+                  //Store images and empty properties in Localstorage.
+                  setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
+                  //Rerender component to reflect changes in Localstorage.
+                  setSelectedFiles(localStorage.length)
+                })
+
+                //Populate image element with original image.
+                //This is to trigger the img.onload function.  
+                img.src = reader.result
+              })
+            }}
             className={style.chooseFile} type="file" name="picture"
           />
         </div>
@@ -82,13 +82,13 @@ function AddPicture() {
       let key = localStorage.key(index)
       let value = JSON.parse(localStorage.getItem(key))
 
-      pictureContainer.push (
+      pictureContainer.push(
         <div className={style.chosenPictureContainer}>
           <div className={style.chosenPictureBoundary}>
             <img className={style.chosenPicture} src={value.hires_image} />
           </div>
-          <input className={style.choice} name={key + "_Title"} type="text" placeholder="Title"/>
-          <input className={style.choice} name={key + "_Comment"} type="text" placeholder="Comment"/>
+          <input className={style.choice} name={key + "_Title"} type="text" placeholder="Title" />
+          <input className={style.choice} name={key + "_Comment"} type="text" placeholder="Comment" />
           <select name={key + "_Album"} className={style.choice}>
             <option>Album 1</option>
             <option>Album 2</option>
@@ -107,13 +107,13 @@ function AddPicture() {
       let value = JSON.parse(localStorage.getItem(key))
       images.push(value)
     }
-    const storageObjects = {...images}
+    const storageObjects = { ...images }
     console.log(storageObjects)
   }
 
   //Prevent submitting a form for now and log the objects in localstorage
   //We have to use useEffect here to access the submit button after render.
-  
+
   //**When code is inside the useEffect hook, it only executes after component is rendered**
   useEffect(() => {
     const button = document.getElementById("submit")
@@ -122,19 +122,19 @@ function AddPicture() {
       logLocalStorage()
     }))
   }, [])
-  
+
 
   return (
     <div className={style.container}>
       <div className={style.formcontainer}>
-      <div className={style.top}>
-        <p className={style.title}>Add Pictures</p>
-        <FormAdd/>
-      </div>
+        <div className={style.top}>
+          <p className={style.title}>Add Pictures</p>
+          <FormAdd />
+        </div>
 
         <form method="post" className={style.formx}>
           <div className={style.collection}>
-            <ChosenPictures/>
+            <ChosenPictures />
           </div>
           <button type="submit" id="submit" className={style.choosebtn}>Upload</button>
         </form>

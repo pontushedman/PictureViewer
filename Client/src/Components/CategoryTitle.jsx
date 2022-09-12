@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import AddCategory from './AddCategory'
 import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
@@ -20,10 +20,10 @@ function CategoryTitle(props) {
                 res.albums.map((x) => {
                     ic = ic + x.pictures.length
                 })
-                
+
                 setImageCount(ic)
             })
-        }, [])
+    }, [])
 
     const availableCategories = ["albums", "images", "favorites"]
 
@@ -32,21 +32,21 @@ function CategoryTitle(props) {
     let categoryCheck = false
 
     availableCategories.map(x => {
-        if(x === category) {
+        if (x === category) {
             categoryCheck = true
         }
     })
 
-    if(categoryCheck === false) {
+    if (categoryCheck === false) {
         console.debug("Invalid category input")
-        return (<div/>)
+        return (<div />)
     }
 
     const image = "./src/assets/" + props.image + ".png"
     let categoryImage = props.small ? styles.categoryImageSmall : styles.categoryImageLarge
 
     function Bottom() {
-        return  (
+        return (
             <div className={styles.ViewAll}>
                 <p>View all {props.title}</p>
             </div>
@@ -54,10 +54,10 @@ function CategoryTitle(props) {
     }
 
     const ContentCount = (() => {
-        if(category === "albums")
+        if (category === "albums")
             return albumCount
-        
-        if(category === "images")
+
+        if (category === "images")
             return imageCount
 
         return ""
@@ -65,25 +65,25 @@ function CategoryTitle(props) {
 
     function Top() {
         return (
-            <div className={styles.CategoryTitle}>             
-                <img className={categoryImage} src={image}/>
+            <div className={styles.CategoryTitle}>
+                <img className={categoryImage} src={image} />
                 <p className={styles.Title}>{props.title}</p>
-                <AddCategory show={props.show}showModal={props.showModal} noAdd={props.noAdd} category={props.title}/>
-                <ContentAmount suffix={category} count={ContentCount()} className={styles.Count}/>
+                <AddCategory show={props.show} showModal={props.showModal} noAdd={props.noAdd} category={props.title} />
+                <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} />
             </div>
         )
     }
 
     function Albums() {
-        if(loading === undefined) {
+        if (loading === undefined) {
             return "Loading";
         }
         return (
             <div className={styles.Albums}>
-                {loading.map(x => 
+                {loading.map(x =>
                     <div className={styles.Album}>
                         {console.log(x.headerImage)}
-                        <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage}/>
+                        <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage} />
                         <p className={styles.AlbumTitle}>{x.title}</p>
                         <p className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
                     </div>)}
@@ -93,17 +93,17 @@ function CategoryTitle(props) {
     }
 
     function Images() {
-        if(loading === undefined) {
+        if (loading === undefined) {
             return "Loading";
         }
         return (
             <div className={styles.Images}>
                 {
-                    loading.map(x => 
-                        x.pictures.map(y => 
+                    loading.map(x =>
+                        x.pictures.map(y =>
                             <div className={styles.Image}>
-                                <img className={styles.PictureImage} src={"http://localhost:3000/" + x.path + "/"  + y.imgLoRes}/>
-                            </div>  
+                                <img className={styles.PictureImage} src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes} />
+                            </div>
                         )
                     )
                 }
@@ -112,35 +112,21 @@ function CategoryTitle(props) {
         )
     }
 
-   /* class MyComponent extends React.Component {      
-  
-        render () {
-           const imageClick = () => {
-             console.log('Click');
-           } 
-           return (
-              <div>
-                 <img src={require('/myfolder/myimage.png')} onClick={() => imageClick()} />
-              </div>
-           );
-        }
-     }*/  //Skulle försöka så att man kan klicka på bilderna 
-
     let cat = (() => {
-        if(category === "albums")  {
-            return <Albums/>
-        } else if(category === "images") {
-            return <Images/>
-        } else if(category === "favorites") {
-            return <div/>
+        if (category === "albums") {
+            return <Albums />
+        } else if (category === "images") {
+            return <Images />
+        } else if (category === "favorites") {
+            return <div />
         }
     })
 
     return (
         <div className={styles.CategoryContainer}>
-            <Top/>
+            <Top />
             {cat()}
-            <Bottom/>
+            <Bottom />
         </div>
     )
 }

@@ -6,7 +6,7 @@ import styles from './Styles/Header.module.css'
 function Header() {
     return (
         <div className={styles.Header}>
-           <p>pix</p>
+            <p>pix</p>
         </div>
     )
 }

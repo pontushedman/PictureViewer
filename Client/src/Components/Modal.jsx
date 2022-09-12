@@ -7,7 +7,7 @@ function Modal(props) {
   return (
     <div className={style.modalBackground}>
       <div className={style.modalContainer}>
-      <AddPicture/>
+        <AddPicture />
         <div className={style.fotter}>
           <button onClick={() => props.showModal(false)}> Cancel </button>
         </div>

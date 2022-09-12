@@ -22,16 +22,16 @@ function App() {
   console.log("STATE IS " + openModal)
 
   return (
-      <div className="App">
-        {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div/>}
-        <Header />
-          <Routes>
-            <Route path="/" element={<FrontPage setOpenModal={setOpenModal} />} />
-            <Route path="/Albums" element={<AlbumsPage/>} />
-            <Route path="/Pictures" element={<PicturesPage/>} />
-          </Routes>
-        <Footer />
-      </div>
+    <div className="App">
+      {openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div />}
+      <Header />
+      <Routes>
+        <Route path="/" element={<FrontPage setOpenModal={setOpenModal} />} />
+        <Route path="/Albums" element={<AlbumsPage />} />
+        <Route path="/Pictures" element={<PicturesPage />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
