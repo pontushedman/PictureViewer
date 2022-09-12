@@ -121,7 +121,7 @@
     cursor: pointer;
     border-style: inset;
     border: #2196F3 solid 3px;
-    
+
     transform: scale(1.05);
     transition: ease-in-out 0.05s;
 }
@@ -129,7 +129,7 @@
 .Images {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(6rem, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
     height: 10rem;
 }
 
@@ -145,5 +145,3 @@
 .Image+.Image {
     margin-left: 1rem;
 }
-
-
