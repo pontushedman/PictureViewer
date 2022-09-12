@@ -13,6 +13,24 @@ function setToLocalStorage(key, value) {
   }
 }
 
+function updateLocalStorage(inputKey, inputField, inputValue) {
+  const storageItem = JSON.parse(localStorage.getItem(inputKey))
+  let storageItemKeys = [...Object.entries(storageItem)]
+
+  for (let index = 0; index < storageItemKeys.length; index++) {
+    let key = storageItemKeys[index][0]
+    let value = storageItemKeys[index][1]
+
+    if(key === inputField) {
+      storageItemKeys[index][1] = inputValue
+    }
+  }
+
+  const newObj = JSON.stringify(Object.fromEntries(storageItemKeys))
+
+  setToLocalStorage(inputKey, newObj)
+}
+
 //This component is being used to fill the modal when modalstate === addPicturess
 function AddPicture() {
   //State used to rerender component
@@ -87,9 +105,9 @@ function AddPicture() {
           <div className={style.chosenPictureBoundary}>
             <img className={style.chosenPicture} src={value.hires_image} />
           </div>
-          <input className={style.choice} name={key + "_Title"} type="text" placeholder="Title" />
-          <input className={style.choice} name={key + "_Comment"} type="text" placeholder="Comment" />
-          <select name={key + "_Album"} className={style.choice}>
+          <input id="choiceTitle" className={style.choice} data-key={key} data-field="title" name={key + "_Title"} placeholder={value.title} type="text" />
+          <input id="choiceComment" className={style.choice} data-key={key} data-field="comment" name={key + "_Comment"} placeholder={value.comment} type="text" />
+          <select data-key={key} data-field="album" name={key + "_Album"} className={style.choice}>
             <option>Album 1</option>
             <option>Album 2</option>
           </select>
@@ -110,8 +128,6 @@ function AddPicture() {
     const storageObjects = { ...images }
     console.log(storageObjects)
   }
-
-  //Prevent submitting a form for now and log the objects in localstorage
   //We have to use useEffect here to access the submit button after render.
 
   //**When code is inside the useEffect hook, it only executes after component is rendered**
@@ -121,6 +137,18 @@ function AddPicture() {
       event.preventDefault()
       logLocalStorage()
     }))
+
+    const inputs = document.getElementsByClassName(style.choice);
+    for (let index = 0; index < inputs.length; index++) {
+      const element = inputs[index];
+      element.addEventListener("change", (e) => {
+        const value = e.target.value
+        const key = element.getAttribute('data-key')
+        const field = element.getAttribute('data-field')
+        updateLocalStorage(key, field, value)
+      })
+    }
+
   }, [])
 
 
@@ -136,7 +164,7 @@ function AddPicture() {
           <div className={style.collection}>
             <ChosenPictures />
           </div>
-          <button type="submit" id="submit" className={style.choosebtn}>Upload</button>
+          <div id="submit" className={style.choosebtn}>Upload</div>
         </form>
 
       </div>
