@@ -5,8 +5,8 @@ import ContentAmount from './ContentAmount'
 
 function CategoryTitle(props) {
     const [loading, setLoading] = useState();
-    const [albumCount, setAlbumCount] = useState("asf");
-    const [imageCount, setImageCount] = useState("fawf");
+    const [albumCount, setAlbumCount] = useState();
+    const [imageCount, setImageCount] = useState();
 
     //Load librarystructure from JSONs
     useEffect(() => {
@@ -20,7 +20,6 @@ function CategoryTitle(props) {
                 res.albums.map((x) => {
                     ic = ic + x.pictures.length
                 })
-
                 setImageCount(ic)
             })
     }, [])

@@ -2,39 +2,60 @@ import style from "./Styles/AddPicture.module.css";
 import React from "react";
 import { useState, useEffect } from "react";
 
-
-//Function to populate Localstorage
-function setToLocalStorage(key, value) {
-  try {
-    localStorage.setItem(key, value);
-    console.log("Saved item to storage")
-  } catch (error) {
-    console.log("Couldnt save item to storage")
-  }
-}
-
-function updateLocalStorage(inputKey, inputField, inputValue) {
-  const storageItem = JSON.parse(localStorage.getItem(inputKey))
-  let storageItemKeys = [...Object.entries(storageItem)]
-
-  for (let index = 0; index < storageItemKeys.length; index++) {
-    let key = storageItemKeys[index][0]
-    let value = storageItemKeys[index][1]
-
-    if(key === inputField) {
-      storageItemKeys[index][1] = inputValue
-    }
-  }
-
-  const newObj = JSON.stringify(Object.fromEntries(storageItemKeys))
-
-  setToLocalStorage(inputKey, newObj)
-}
-
 //This component is being used to fill the modal when modalstate === addPicturess
 function AddPicture() {
+
   //State used to rerender component
-  const [selectedFiles, setSelectedFiles] = useState([])
+  const [selectedFiles, setSelectedFiles] = useState()
+
+  //We have to use useEffect here to access the submit button after render.
+
+  //**When code is inside the useEffect hook, it only executes after component is rendered**
+  useEffect(() => {
+    const button = document.getElementById("submit")
+    button.addEventListener("click", ((event) => {
+      event.preventDefault()
+      logLocalStorage()
+    }))
+
+    const inputs = document.getElementsByClassName(style.choice);
+    for (let index = 0; index < inputs.length; index++) {
+      const element = inputs[index];
+      element.addEventListener("change", (e) => {
+        const value = e.target.value
+        const key = element.getAttribute('data-key')
+        const field = element.getAttribute('data-field')
+        updateLocalStorage(key, field, value)
+      })
+    }
+  }, [selectedFiles])
+
+  //Function to populate Localstorage
+  function setToLocalStorage(key, value) {
+    try {
+      localStorage.setItem(key, value);
+      console.log("Saved item to storage")
+    } catch (error) {
+      console.log("Couldnt save item to storage")
+    }
+    setSelectedFiles(localStorage.length)
+  }
+
+  function updateLocalStorage(inputKey, inputField, inputValue) {
+    const storageItem = JSON.parse(localStorage.getItem(inputKey))
+    let storageItemKeys = [...Object.entries(storageItem)]
+
+    for (let index = 0; index < storageItemKeys.length; index++) {
+      let key = storageItemKeys[index][0]
+
+      if(key === inputField) {
+        storageItemKeys[index][1] = inputValue
+      }
+    }
+
+    const newObj = JSON.stringify(Object.fromEntries(storageItemKeys))
+    setToLocalStorage(inputKey, newObj)
+  }
 
 
   //Component that shows the "Add Picture" area and handles all the adding
@@ -57,8 +78,8 @@ function AddPicture() {
               const file = image.target.files[0]
               var reader = new FileReader()
               reader.readAsDataURL(file)
+              let resizedImage
               reader.addEventListener("load", () => {
-
                 //Create Image
                 const img = document.createElement("img")
                 //Convert image
@@ -73,13 +94,13 @@ function AddPicture() {
                   canvas.height = convertedHeight
 
                   ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
-                  const resizedImage = canvas.toDataURL(file.type);
-
-                  //Store images and empty properties in Localstorage.
-                  setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
-                  //Rerender component to reflect changes in Localstorage.
-                  setSelectedFiles(localStorage.length)
+                  resizedImage = canvas.toDataURL(file.type);
                 })
+                
+                //Store images and empty properties in Localstorage.
+                setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
+                //Rerender component to reflect changes in Localstorage.
+                setSelectedFiles(localStorage.length)
 
                 //Populate image element with original image.
                 //This is to trigger the img.onload function.  
@@ -128,29 +149,6 @@ function AddPicture() {
     const storageObjects = { ...images }
     console.log(storageObjects)
   }
-  //We have to use useEffect here to access the submit button after render.
-
-  //**When code is inside the useEffect hook, it only executes after component is rendered**
-  useEffect(() => {
-    const button = document.getElementById("submit")
-    button.addEventListener("click", ((event) => {
-      event.preventDefault()
-      logLocalStorage()
-    }))
-
-    const inputs = document.getElementsByClassName(style.choice);
-    for (let index = 0; index < inputs.length; index++) {
-      const element = inputs[index];
-      element.addEventListener("change", (e) => {
-        const value = e.target.value
-        const key = element.getAttribute('data-key')
-        const field = element.getAttribute('data-field')
-        updateLocalStorage(key, field, value)
-      })
-    }
-
-  }, [])
-
 
   return (
     <div className={style.container}>
