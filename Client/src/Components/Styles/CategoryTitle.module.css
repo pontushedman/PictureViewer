@@ -28,7 +28,7 @@
 }
 
 .Albums {
-    height: 15rem;
+    min-height: 16rem;
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
@@ -43,6 +43,7 @@
     flex-direction: column;
     align-items: center;
     transition: ease-in-out 0.15s;
+    text-decoration: none;
 }
 
 .Album:hover {
@@ -52,8 +53,7 @@
 }
 
 .Album:hover .AlbumHeaderImage {
-    border: solid 5px;
-    border-color: #2196F3;
+    border: #2196F3 solid 5px;
     transition: ease-in-out 0.15s;
 }
 
@@ -66,6 +66,7 @@
     width: 100%;
     height: 11rem;
     border-radius: 2rem;
+    border: rgb(172, 172, 172) solid 1px;
 }
 
 .AlbumTitle {
@@ -89,7 +90,7 @@
     flex-direction: column;
 }
 
-.ViewAll p {
+.categoryLink {
     width: auto;
     font-weight: bold;
     font-size: 0.8rem;
@@ -100,10 +101,10 @@
     border-radius: 1rem;
     cursor: pointer;
     transition: ease-in-out 0.15s;
-
+    text-decoration: none;
 }
 
-.ViewAll p:hover {
+.categoryLink:hover {
     background-color: #2196F3;
     color: white;
     transition: ease-in-out 0.15s;
@@ -114,14 +115,12 @@
     width: 5rem;
     height: 3.5rem;
     border-radius: 0.8rem;
-    transition: ease-in-out 0.05s
+    transition: ease-in-out 0.05s;
+    border: rgb(172, 172, 172) solid 1px;
 }
 
 .PictureImage:hover {
     cursor: pointer;
-    border-style: inset;
-    border: #2196F3 solid 3px;
-
     transform: scale(1.05);
     transition: ease-in-out 0.05s;
 }
@@ -130,7 +129,7 @@
     margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-    height: 10rem;
+    min-height: 10rem;
 }
 
 .Image {

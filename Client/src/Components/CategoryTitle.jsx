@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import AddCategory from './AddCategory'
 import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
+import { Link } from 'react-router-dom'
+
 
 function CategoryTitle(props) {
     const [loading, setLoading] = useState();
@@ -44,14 +46,6 @@ function CategoryTitle(props) {
     const image = "./src/assets/" + props.image + ".png"
     let categoryImage = props.small ? styles.categoryImageSmall : styles.categoryImageLarge
 
-    function Bottom() {
-        return (
-            <div className={styles.ViewAll}>
-                <p>View all {props.title}</p>
-            </div>
-        )
-    }
-
     const ContentCount = (() => {
         if (category === "albums")
             return albumCount
@@ -69,6 +63,14 @@ function CategoryTitle(props) {
                 <p className={styles.Title}>{props.title}</p>
                 <AddCategory show={props.show} showModal={props.showModal} noAdd={props.noAdd} category={props.title} />
                 <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} />
+            </div>
+        )
+    }
+
+    function Bottom() {
+        return (
+            <div className={styles.ViewAll}>
+                <Link className={styles.categoryLink} to={"./" + props.title} >View all {props.title}</Link>
             </div>
         )
     }
