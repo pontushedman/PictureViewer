@@ -1,0 +1,49 @@
+.showImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;    
+}
+
+.imageTitle {
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+.commentImageFW {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: black;
+}
+
+.commentImageContainer {
+    align-self: center;
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    align-self: center;
+}
+
+.commentContainer {
+    width: 100%;
+    align-self: center;
+    background-color: black;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.comment {
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: rgb(230, 230, 230);
+}

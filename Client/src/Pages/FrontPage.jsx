@@ -12,7 +12,7 @@ function FrontPage(props) {
                 category="albums"
                 title="Albums"
                 image="albums"
-                showModal={props.setOpenModal}
+                showModal={props.showModal}
             />
             <CategoryTitle
                 noAdd={true}
