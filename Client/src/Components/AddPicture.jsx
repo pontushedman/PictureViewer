@@ -48,7 +48,7 @@ function AddPicture() {
     for (let index = 0; index < storageItemKeys.length; index++) {
       let key = storageItemKeys[index][0]
 
-      if(key === inputField) {
+      if (key === inputField) {
         storageItemKeys[index][1] = inputValue
       }
     }
@@ -78,7 +78,6 @@ function AddPicture() {
               const file = image.target.files[0]
               var reader = new FileReader()
               reader.readAsDataURL(file)
-              let resizedImage
               reader.addEventListener("load", () => {
                 //Create Image
                 const img = document.createElement("img")
@@ -94,14 +93,12 @@ function AddPicture() {
                   canvas.height = convertedHeight
 
                   ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
-                  resizedImage = canvas.toDataURL(file.type);
+                  const resizedImage = canvas.toDataURL(file.type);
+                  //Store images and empty properties in Localstorage.
+                  setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
+                  //Rerender component to reflect changes in Localstorage.
+                  setSelectedFiles(localStorage.length)
                 })
-                
-                //Store images and empty properties in Localstorage.
-                setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
-                //Rerender component to reflect changes in Localstorage.
-                setSelectedFiles(localStorage.length)
-
                 //Populate image element with original image.
                 //This is to trigger the img.onload function.  
                 img.src = reader.result
