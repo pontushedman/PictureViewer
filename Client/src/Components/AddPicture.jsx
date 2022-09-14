@@ -1,10 +1,11 @@
 import style from "./Styles/AddPicture.module.css";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ImgContext from "../store/img";
 
 //This component is being used to fill the modal when modalstate === addPicturess
 function AddPicture() {
-
+  const imgCtx = useContext(ImgContext);
   //State used to rerender component
   const [selectedFiles, setSelectedFiles] = useState()
 
@@ -126,8 +127,9 @@ function AddPicture() {
           <input id="choiceTitle" className={style.choice} data-key={key} data-field="title" name={key + "_Title"} placeholder={value.title} type="text" />
           <input id="choiceComment" className={style.choice} data-key={key} data-field="comment" name={key + "_Comment"} placeholder={value.comment} type="text" />
           <select data-key={key} data-field="album" name={key + "_Album"} className={style.choice}>
-            <option>Album 1</option>
-            <option>Album 2</option>
+            {imgCtx.AlbumsList.map(album => { 
+              return (<option>{album.title}</option>)
+            })}
           </select>
         </div>
       )
