@@ -22,7 +22,7 @@ function App() {
 	return (
 		<div className="App">
 			{openModal ? <Modal show={openModal} showModal={setOpenModal} /> : <div />}
-			<Header apa={LibraryContext.value} />
+			<Header />
 			<Routes>
 				<Route path="/" element={<FrontPage setOpenModal={setOpenModal} />} />
 				<Route path="/Albums" element={<AlbumsPage />} />
