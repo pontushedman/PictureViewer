@@ -8,7 +8,6 @@ function ContentAmount(props) {
 
     const cat = props.suffix
     const suff = capitalizeFirstLetter(cat);
-    
 
     const count = <div className={styles.count}><p>{props.count + " " + suff}</p></div>;
     return count;

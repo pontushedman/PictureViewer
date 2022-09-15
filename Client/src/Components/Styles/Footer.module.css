@@ -3,7 +3,7 @@
     height: 5rem;
     width: 100%;
     display: flex;
-    background-color: rgb(55, 55, 55);
+    background-color: #2196F3;
     color: rgb(242, 242, 242);
     flex-direction: row;
     align-items: center;
@@ -12,8 +12,15 @@
 }
 
 .logo {
+    margin-right: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 3rem;
 }
 
 .desc {
-
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-right: 3rem;
 }

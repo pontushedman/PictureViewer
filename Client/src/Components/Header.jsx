@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client'
 import styles from './Styles/Header.module.css'
 
 
-function Header() {
+function Header(props) {
+    console.log(props.apa)
     return (
         <div className={styles.Header}>
-           <p>pix</p>
+            <p>pix</p>
         </div>
     )
 }
