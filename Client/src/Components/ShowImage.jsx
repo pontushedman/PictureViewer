@@ -34,12 +34,23 @@ function ShowImage(props) {
                 <p className={styles.comment}>{image.img.comment}</p>
                 </div>
             </div>
+            </div>
+            
+            <div class="Album">
+            <label for="Albums"></label>
+            <select id="Albums"name="Albums">
+            <option value="Delete"></option>
+            <option value="Edit"></option>
+            </select>
         </div>
         <div>
             <div></div>
         </div>
         </div>
+        
     )
+
+    
 }
 
 export default ShowImage
