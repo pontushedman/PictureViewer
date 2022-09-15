@@ -1,0 +1,31 @@
+
+.Images {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    min-height: 10rem;
+}
+.Image {
+    font-size: bold;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.7rem;
+}
+
+.PictureImage {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 0.8rem;
+    transition: ease-in-out 0.05s;
+    border: rgb(172, 172, 172) solid 1px;
+    background-size: cover;
+    background-position: center;
+}
+
+.PictureImage:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: ease-in-out 0.05s;
+}

@@ -1,6 +1,6 @@
 import ImgContext from "../store/img";
 import { useContext } from "react";
-import styles from "../Components/Styles/CategoryTitle.module.css";
+import styles from "./Styles/PicturesPage.module.css";
 
 function PicturesPage() {
   const imgCtx = useContext(ImgContext);
@@ -13,10 +13,11 @@ function PicturesPage() {
     <div className={styles.Images}>
       {loading.map((x) =>
         x.pictures.map((y) => (
-          <div className={styles.Image}>
-            <img
+          <div className={styles.Image}> {console.log(y.imgLoRes.replace(" ", "%20"))}
+            <div 
               className={styles.PictureImage}
-              src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes}
+              //src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes}
+              style={{backgroundImage: "url(http://localhost:3000/" + x.path + "/" + y.imgLoRes.replace(/ /g,'%20' ) + ")"}}
             />
           </div>
         ))
