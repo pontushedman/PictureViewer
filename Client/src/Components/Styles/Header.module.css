@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-n.Header {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-=======
 .Header {
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
->>>>>>> 40f7c0bb74230e24ad63a18dcef40350179ac0ef
     display: flex;
     align-items: center;
     background-color: white;
