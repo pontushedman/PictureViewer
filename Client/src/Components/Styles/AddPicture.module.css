@@ -1,0 +1,172 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+  
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F5F5;
+
+}
+
+.chosenPictureContainer {
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+    height: 4rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice {
+    padding: 0.3rem;
+    width: 110%;
+    font-weight: bold;
+    border: solid 1px;
+    border-color: rgb(232, 232, 232);
+    border-radius: 0.3rem;
+}
+
+.choice + .choice {
+    margin: 0.5rem;
+}
+    
+
+.chosenPicture {
+    width: 80px;
+    max-height: 100px;
+    border-radius: 0.5rem;
+}
+
+.chosenPictureBoundary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    margin-bottom: 2rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F5F5;
+
+}
+
+.chooseFile{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 2;
+ }
+
+ .uploadButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./src/assets/plus.png");
+    background-size: cover;
+    border: none;
+    background-color: #2196F3;
+    border-radius: 2rem;
+ }
+
+
+ .uploadButton:hover{
+    cursor: pointer;
+ }
+
+ .chooseDiv {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .collection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 17rem;
+ }
+
+.choosebtn{
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: #2196F3;
+    padding: 2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.largeAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: auto;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+}
+
+.largeAdd:hover {
+    background-color: #2196F3;
+    color: white;
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+.chooseDiv *:hover {
+    cursor: pointer;
+}
+
+.smalladd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: auto;
+    margin-left: 0.5rem;
+}

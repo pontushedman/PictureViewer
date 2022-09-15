@@ -6,3 +6,9 @@ body {
 .App {
     
 }
+
+.mainContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 2rem;
+}

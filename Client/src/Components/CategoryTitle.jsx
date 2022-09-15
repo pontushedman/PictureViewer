@@ -10,7 +10,7 @@ function CategoryTitle(props) {
 
     //Load librarystructure from JSONs
     useEffect(() => {
-        fetch("./src/assets/picture-library.json")
+        fetch("http://localhost:3000/api/libraryjson")
             .then((resp) => {
                 return resp.json()
             }).then((res) => {
@@ -82,7 +82,8 @@ function CategoryTitle(props) {
             <div className={styles.Albums}>
                 {loading.map(x => 
                     <div className={styles.Album}>
-                        <img className={styles.AlbumHeaderImage} src={"./src/assets/" + x.headerImage}/>
+                        {console.log(x.headerImage)}
+                        <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage}/>
                         <p className={styles.AlbumTitle}>{x.title}</p>
                         <p className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
                     </div>)}
@@ -101,7 +102,7 @@ function CategoryTitle(props) {
                     loading.map(x => 
                         x.pictures.map(y => 
                             <div className={styles.Image}>
-                                <img className={styles.PictureImage} src={"./src/assets/" + x.path + "/"  + y.imgLoRes}/>
+                                <img className={styles.PictureImage} src={"http://localhost:3000/" + x.path + "/"  + y.imgLoRes}/>
                             </div>  
                         )
                     )
@@ -131,7 +132,7 @@ function CategoryTitle(props) {
         } else if(category === "images") {
             return <Images/>
         } else if(category === "favorites") {
-            return <Images/>
+            return <div/>
         }
     })
 
