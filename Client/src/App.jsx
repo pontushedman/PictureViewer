@@ -28,7 +28,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<FrontPage showModal={setOpenModal} />} />
 				<Route path="/Albums" element={<AlbumsPage />} />
-				<Route path="/Images" element={<PicturesPage />} />
+				<Route path="/Images" element={<PicturesPage showModal={setOpenModal} />} />
 			</Routes>
 			<Footer />
 		</div>

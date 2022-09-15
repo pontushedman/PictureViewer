@@ -26,10 +26,8 @@ function CategoryTitle(props) {
             const image = images[index]
             image.addEventListener("click", (e) => {
                 const imageId = image.dataset.id
-                props.showModal({show: true, mode: "image", data: {image: {id: imageId}}})
-                
+                props.showModal({show: true, mode: "image", data: {image: {id: imageId}}})        
             })
-
         }
     })
 

@@ -6,7 +6,7 @@ import ShowImage from "./ShowImage";
 function Modal(props) {
   const p = {...props}
   return (
-    <div className={style.modalBackground}>
+    <div className={style.modalBackground} onClick={() => props.showModal(false)}>
       <div className={style.modalContainer}>
        {p.mode === "addimages" ? <AddPicture/> : null}
        {p.mode === "image" ? <ShowImage id={props.data.image.id}/> : null}

@@ -1,8 +1,30 @@
+.PicturesPage {
+
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2rem;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 1rem;
+
+}
+
+.titleImage {
+    width: 4rem;
+}
+
 
 .Images {
-    margin-top: 1rem;
+    margin: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     min-height: 10rem;
 }
 .Image {
@@ -11,13 +33,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0.7rem;
+    margin: 0.3rem;
 }
 
 .PictureImage {
-    width: 20rem;
-    height: 20rem;
-    border-radius: 0.8rem;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
     transition: ease-in-out 0.05s;
     border: rgb(172, 172, 172) solid 1px;
     background-size: cover;
@@ -27,5 +49,6 @@
 .PictureImage:hover {
     cursor: pointer;
     transform: scale(1.05);
-    transition: ease-in-out 0.05s;
+    transition: ease-in-out 0.05s
+    
 }
