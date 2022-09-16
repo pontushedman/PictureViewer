@@ -35,22 +35,22 @@ function ShowImage(props) {
                 </div>
             </div>
             </div>
+            <div>
             
-            <div class="Album">
-            <label for="Albums"></label>
-            <select id="Albums"name="Albums">
-            <option value="Delete"></option>
-            <option value="Edit"></option>
+            <select id="Albums">
+            <option value="Delete">Delete</option>
+            <option value="Edit">Edit</option>
+            <option value="Rating">Rating</option>
             </select>
+            
+            </div>
         </div>
-        <div>
-            <div></div>
-        </div>
-        </div>
-        
+
+
+       
     )
 
-    
+
 }
 
 export default ShowImage
