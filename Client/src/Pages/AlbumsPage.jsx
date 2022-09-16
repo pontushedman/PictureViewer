@@ -6,6 +6,7 @@ import styles from './Styles/AlbumsPage.module.css'
 function AlbumsPage() {
 
     const imgCtx = useContext(ImgContext)
+    console.log("Albumspage rendered")
     return (
         (
             <div className={styles.AlbumsPage}>
@@ -16,12 +17,10 @@ function AlbumsPage() {
                 <div className={styles.Albums}>
                     {imgCtx.AlbumsList.map(x =>
                         <div className={styles.Album}>
-                            {console.log(x.headerImage)}
                             <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage} />
                             <p className={styles.AlbumTitle}>{x.title}</p>
                             <p className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
                         </div>)}
-                    {console.log(imgCtx.totalImages)}
                 </div>
             </div>
         )

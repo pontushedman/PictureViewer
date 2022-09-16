@@ -2,13 +2,13 @@ import React from "react";
 import AddPicture from "./AddPicture";
 import style from "./Styles/Modal.module.css";
 import ShowImage from "./ShowImage";
+import ShowAlbum from "./ShowAlbum";
 import { useEffect } from "react";
 
 function Modal(props) {
-
   useEffect(() => {
     const background = document.getElementById("back")
-    background.addEventListener("click", (e) => {
+    background.addEventListener("mousedown", (e) => {
       const b = e.target.getAttribute("id")
       if(b === "back") {
         props.showModal(false)
@@ -18,12 +18,13 @@ function Modal(props) {
     })
   })
 
-  const p = {...props}
   return (
     <div className={style.modalBackground} id="back">
       <div className={style.modalContainer}>
-       {p.mode === "addimages" ? <AddPicture/> : null}
-       {p.mode === "image" ? <ShowImage id={props.data.image.id}/> : null}
+       {props.mode === "addimages" ? <AddPicture/> : null}
+       {props.mode === "image" ? <ShowImage id={props.id}/> : null}
+       {props.mode === "album" ? <ShowAlbum id={props.id}/> : null}
+
         <div className={style.fotter}>
           <button onClick={() => props.showModal(false)}> Cancel </button>
         </div>

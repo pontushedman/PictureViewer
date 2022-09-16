@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useEffect} from "react";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -17,17 +17,17 @@ import PicturesPage from "./Pages/PicturesPage";
 import {ImgContexProvider} from "./store/img";
 
 function App() {
-	const [openModal, setOpenModal] = useState({show: false, mode: null, data: {}})
-	console.log("STATE IS " + openModal)
+	const [openModal, setOpenModal] = useState({show: false, mode: null, id: null})
+	console.log("App rendered")
 
 	return (
 		<ImgContexProvider>
 		<div className="App">
-			{openModal.show ? <Modal show={openModal.show} mode={openModal.mode} data={openModal.data} showModal={setOpenModal}/> : <div />}
+			{openModal.show ? <Modal show={openModal.show} mode={openModal.mode} id={openModal.id} showModal={setOpenModal}/> : <div />}
 			<Header />
 			<Routes>
 				<Route path="/" element={<FrontPage showModal={setOpenModal} />} />
-				<Route path="/Albums" element={<AlbumsPage />} />
+				<Route path="/Albums" element={<AlbumsPage showModal={setOpenModal} />} />
 				<Route path="/Images" element={<PicturesPage showModal={setOpenModal} />} />
 			</Routes>
 			<Footer />

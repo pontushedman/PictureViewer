@@ -1,0 +1,122 @@
+.showAlbumContainer {
+    width: 60rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    align-self: flex-start;
+    height: auto;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: auto;
+}
+
+.comment {
+    margin-left: 1rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-top: auto;
+    margin-bottom: 0.3rem;
+    color: rgb(122, 122, 122);
+}
+
+.slideshow {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(18, 18, 18);
+    width: 100%;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.image {
+    border-radius: 1rem;
+    width: 25rem;
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+    background-size: 100%;
+}
+
+.imageTitle {
+    width: 100%;
+    background-color: rgb(18, 18, 18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.imageTitle p {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.albumImages {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(18, 18, 18);
+    width: 100%;
+    padding-bottom: 1rem;
+
+}
+
+.albumImage {
+    width: 5rem;
+    height: 5rem;
+    background-image: cover;
+    background-position: center;
+    background-size: 130%;
+    background-repeat: no-repeat;
+    border-radius: 0.8rem;
+    border: rgb(87, 87, 87) solid 1px;
+}
+
+.albumImage + .albumImage {
+    margin-left: 1rem;
+}
+
+.imageComment {
+    color: white;
+    font-weight: bold;
+    font-size: 0.6rem;
+    margin-top: 1rem;
+    width: 25rem;
+}
+
+.button {
+    width: 3rem;
+    height: 3rem;
+    background-color: #2196F3;
+    margin: 1rem;
+    border-radius: 0.5rem;
+}

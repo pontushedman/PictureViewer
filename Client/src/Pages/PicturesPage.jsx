@@ -34,7 +34,6 @@ function PicturesPage(props) {
             <div className={styles.Image}> {console.log(y.imgLoRes.replace(" ", "%20"))}
               <div 
                 className={styles.PictureImage}
-                //src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes}
                 style={{backgroundImage: "url(http://localhost:3000/" + x.path + "/" + y.imgLoRes.replace(/ /g,'%20' ) + ")"}}
               />
             </div>

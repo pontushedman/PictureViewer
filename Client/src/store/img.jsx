@@ -7,38 +7,32 @@ const ImgContext = createContext({
     totalAlbums:0,
 });
 
-
-
 export function ImgContexProvider(props){
-
     const [albumsList, setAlbumsList] = useState([]);
 
     //Load librarystructure from JSONs
+
+    async function get() {
+        const response = await fetch("http://localhost:3000/api/libraryjson")
+        const albums = await response.json()
+        setAlbumsList(albums.albums)
+    }
     useEffect(() => {
-        fetch("http://localhost:3000/api/libraryjson")
+        /* fetch("http://localhost:3000/api/libraryjson")
             .then((resp) => {
                 return resp.json()
             }).then((res) => {
                 setAlbumsList(res.albums)
-
-               /* 
-                let ic = 0
-                res.albums.map((x) => {
-                    ic = ic + x.pictures.length
-                })
-                imgCount = ic
-                */
-            })
+            }) */
+            get()
+       
     }, [])
-
-    
-
     
     const context = {
         AlbumsList: albumsList,
         totalImages: albumsList.length,
         totalAlbums: albumsList.length,
-    };
+    }
 
     return <ImgContext.Provider value={context}>
         {props.children}

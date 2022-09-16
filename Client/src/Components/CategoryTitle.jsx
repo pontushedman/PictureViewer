@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import AddCategory from './AddCategory'
 import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
@@ -9,6 +9,31 @@ import ImgContext from '../store/img'
 function CategoryTitle(props) {
     const JSONContext = useContext(ImgContext)
     const albums = JSONContext.AlbumsList
+
+    useEffect(() => {
+        console.log("CategoryTitle rendered")
+
+        const images = document.getElementsByClassName(styles.PictureImage)
+        for (let index = 0; index < images.length; index++) {
+            const image = images[index]
+            image.addEventListener("click", (e) => {
+                const imageId = image.dataset.id
+                const obj = {show: true, mode: "image", id: imageId}
+                props.showModal(obj)        
+            })
+        }
+
+        const albums = document.getElementsByClassName(styles.AlbumHeaderImage)
+        for (let index = 0; index < albums.length; index++) {
+            const album = albums[index]
+            album.addEventListener("click", (e) => {
+                const albumId = album.dataset.id
+                const obj = {show: true, mode: "album", id: albumId}
+                props.showModal(obj)
+            })
+        }
+    })
+    
     const albumCount = albums.length
     const imageCount = (() => {
         let count = 0
@@ -16,19 +41,6 @@ function CategoryTitle(props) {
             count += album.pictures.length
         })
         return count
-    })
-    
-    console.log(albums)
-
-    useEffect(() => {
-        const images = document.getElementsByClassName(styles.PictureImage)
-        for (let index = 0; index < images.length; index++) {
-            const image = images[index]
-            image.addEventListener("click", (e) => {
-                const imageId = image.dataset.id
-                props.showModal({show: true, mode: "image", data: {image: {id: imageId}}})        
-            })
-        }
     })
 
     const availableCategories = ["albums", "images", "favorites"]
@@ -85,13 +97,11 @@ function CategoryTitle(props) {
         return (
             <div className={styles.Albums}>
                 {albums.map(x =>
-                    <div className={styles.Album}>
-                        {console.log(x.headerImage)}
-                        <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage} />
-                        <p className={styles.AlbumTitle}>{x.title}</p>
-                        <p className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
+                    <div key={x.id+1} className={styles.Album}>
+                        <img key={x.id+2} className={styles.AlbumHeaderImage} data-id={x.id} src={"http://localhost:3000/" + x.headerImage} />
+                        <p key={x.id+3} className={styles.AlbumTitle}>{x.title}</p>
+                        <p key={x.id+4} className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
                     </div>)}
-                {console.log(albumCount)}
             </div>
         )
     }
@@ -105,8 +115,8 @@ function CategoryTitle(props) {
                 {
                     albums.map(x =>
                         x.pictures.map(y =>
-                            <div className={styles.Image}>
-                                <img className={styles.PictureImage} data-id={y.id} src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes} />
+                            <div key={y.id} className={styles.Image}>
+                                <img key={y.id+1} className={styles.PictureImage} data-id={y.id} src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes} />
                             </div>
                         )
                     )
