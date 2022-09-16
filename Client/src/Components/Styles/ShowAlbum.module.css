@@ -36,7 +36,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(11, 11, 11);
     width: 100%;
 }
 
@@ -68,7 +68,7 @@
 
 .imageTitle {
     width: 100%;
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(11, 11, 11);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,7 +86,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(11, 11, 11);
     width: 100%;
     padding-bottom: 1rem;
 
@@ -108,12 +108,12 @@
 }
 
 .imageComment {
-    color: white;
     font-weight: bold;
-    font-size: 0.6rem;
     margin-top: 1rem;
     width: 25rem;
     min-height: 3rem;
+    font-size: 0.8rem;
+    color: rgb(230, 230, 230);
 }
 
 .button {

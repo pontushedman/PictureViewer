@@ -13,4 +13,13 @@
 .Header p {
     font-size: 3rem;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.Logo {
+    text-decoration: none;
+}
+
+.Logo p {
+    color: #2B2B2B;
 }
