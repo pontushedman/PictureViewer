@@ -61,7 +61,7 @@ function ShowAlbum(props) {
             </div>
             <div className={styles.slideshow}>
                 <div className={styles.left}>
-                    <div data-action="decrease" onClick={switchImageDec} id="minus" className={styles.button}></div>
+                    <img src="./src/assets/arrow-circle-left.svg" data-action="decrease" onClick={switchImageDec} id="minus" className={styles.button}/>
                 </div>
                 <div className={styles.middle}>
                     <div className={styles.imageContainer}>
@@ -73,7 +73,7 @@ function ShowAlbum(props) {
                     <p className={styles.imageComment}>{chosenImage.image.comment}</p>
                 </div>
                 <div className={styles.right}>
-                    <div data-action="increase" onClick={switchImageInc} id="plus" className={styles.button}></div>
+                <img src="./src/assets/arrow-circle-right.svg" data-action="increase" onClick={switchImageInc} id="plus" className={styles.button}/>
                 </div>
             </div>
             <div className={styles.albumImages}>

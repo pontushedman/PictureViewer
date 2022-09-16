@@ -62,6 +62,8 @@
     background-size: cover;
     background-position: center;
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: black;
 }
 
 .imageTitle {
@@ -111,12 +113,19 @@
     font-size: 0.6rem;
     margin-top: 1rem;
     width: 25rem;
+    min-height: 3rem;
 }
 
 .button {
-    width: 3rem;
-    height: 3rem;
-    background-color: #2196F3;
+    width: 2rem;
+    height: 2rem;
     margin: 1rem;
     border-radius: 0.5rem;
+    filter: invert(39%) sepia(75%) saturate(1519%) hue-rotate(189deg) brightness(104%) contrast(91%);
+    transition: ease-in-out 0.1s;
+}
+
+.button:hover {
+    transition: ease-in-out 0.1s;
+    transform: scale(1.1);
 }
