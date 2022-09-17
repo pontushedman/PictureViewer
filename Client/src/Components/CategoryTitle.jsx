@@ -48,9 +48,7 @@ function CategoryTitle(props) {
     let categoryCheck = false
 
     availableCategories.map(x => {
-        if (x === category) {
-            categoryCheck = true
-        }
+        x === category ? categoryCheck = true : null
     })
 
     if (categoryCheck === false) {
@@ -76,7 +74,7 @@ function CategoryTitle(props) {
             <div className={styles.CategoryTitle}>
                 <img className={categoryImage} src={image} />
                 <p className={styles.Title}>{props.title}</p>
-                <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.title} />
+                <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.category} />
                 <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} />
             </div>
         )
