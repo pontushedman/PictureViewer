@@ -1,150 +1,166 @@
 .CategoryContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .CategoryTitle {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 }
 
 
 .categoryImageSmall {
-    width: 3rem;
-    height: 3rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .categoryImageLarge {
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 
 .Title {
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
+  margin-left: 0.5rem;
+  font-size: 1.8rem;
 }
 
 .Albums {
-    min-height: 16rem;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  min-height: 16rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 
 .Album {
-    width: 11rem;
-    font-size: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: ease-in-out 0.15s;
-    text-decoration: none;
+  width: 11rem;
+  font-size: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: ease-in-out 0.15s;
+  text-decoration: none;
+  background-color: rgb(250, 250, 250);
+  padding: 1rem;
+  border-radius: 1.3rem;
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
+  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
 }
 
 .Album:hover {
-    cursor: pointer;
-    transform: scale(1.01);
-    transition: ease-in-out 0.15s;
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: ease-in-out 0.15s;
 }
 
 .Album:hover .AlbumHeaderImage {
-    border: #2196F3 solid 5px;
-    transition: ease-in-out 0.15s;
+  border: #2196F3 solid 5px;
+  transition: ease-in-out 0.15s;
 }
 
 .Album+.Album {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .AlbumHeaderImage {
-    background-size: cover;
-    width: 100%;
-    height: 11rem;
-    border-radius: 2rem;
-    border: rgb(172, 172, 172) solid 1px;
+  background-size: cover;
+  width: 100%;
+  height: 11rem;
+  border-radius: 1rem;
+  border: rgb(172, 172, 172) solid 1px;
 }
 
 .AlbumTitle {
-    margin-top: 1rem;
-    font-weight: bold;
-    font-size: 1.3rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 
 .AlbumImageCount {
-    color: rgb(158, 158, 158);
-    font-weight: bold;
-    font-size: 0.9rem;
+  color: rgb(158, 158, 158);
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .ViewAll {
-    margin-top: 1.5rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .categoryLink {
-    width: auto;
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: #2196F3;
-    padding: 0.5rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: ease-in-out 0.15s;
-    text-decoration: none;
+  width: auto;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #2196F3;
+  padding: 0.5rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 0.15s;
+  text-decoration: none;
+  background-color: rgb(250, 250, 250);
+  border-radius: 0.7rem;
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(138, 144, 156, 0.3);
+  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
+
 }
 
 .categoryLink:hover {
-    background-color: #2196F3;
-    color: white;
-    transition: ease-in-out 0.15s;
+  background-color: #2196F3;
+  color: white;
+  transition: ease-in-out 0.15s;
 }
 
 
 .PictureImage {
-    width: 5rem;
-    height: 3.5rem;
-    border-radius: 0.8rem;
-    transition: ease-in-out 0.05s;
-    border: rgb(172, 172, 172) solid 1px;
-    object-fit: cover;
-    object-position: center;
+  width: 5rem;
+  height: 3.5rem;
+  border-radius: 0.8rem;
+  transition: ease-in-out 0.05s;
+  border: rgb(172, 172, 172) solid 1px;
+  object-fit: cover;
+  object-position: center;
+  background-color: white;
 }
 
 .PictureImage:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: ease-in-out 0.05s;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: ease-in-out 0.05s;
 }
 
 .Images {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-    min-height: 10rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  min-height: 10rem;
 }
 
 .Image {
-    font-size: bold;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0.7rem;
-    object-fit: cover;
-    object-position: center;
+  font-size: bold;
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.7rem;
+  object-fit: cover;
+  object-position: center;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: rgb(250, 250, 250);
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.6);
+  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.6);
 }
 
 .Image+.Image {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }

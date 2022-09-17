@@ -1,76 +1,70 @@
-.PicturesPage {
-
-}
-
 .top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2rem;
 }
 
 .title {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-left: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-left: 1rem;
 }
 
 .titleImage {
-    width: 4rem;
+  width: 4rem;
 }
 
 .Albums {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    min-height: 16rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  min-height: 16rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-
 .Album {
-    width: 11rem;
-    font-size: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: ease-in-out 0.15s;
-    text-decoration: none;
+  width: 11rem;
+  font-size: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: ease-in-out 0.15s;
+  text-decoration: none;
 }
 
 .Album:hover {
-    cursor: pointer;
-    transform: scale(1.01);
-    transition: ease-in-out 0.15s;
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: ease-in-out 0.15s;
 }
 
 .Album:hover .AlbumHeaderImage {
-    border: #2196F3 solid 5px;
-    transition: ease-in-out 0.15s;
+  border: #2196F3 solid 5px;
+  transition: ease-in-out 0.15s;
 }
 
 .Album+.Album {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .AlbumHeaderImage {
-    background-size: cover;
-    width: 100%;
-    height: 11rem;
-    border-radius: 2rem;
-    border: rgb(172, 172, 172) solid 1px;
+  background-size: cover;
+  width: 100%;
+  height: 11rem;
+  border-radius: 2rem;
+  border: rgb(172, 172, 172) solid 1px;
 }
 
 .AlbumTitle {
-    margin-top: 1rem;
-    font-weight: bold;
-    font-size: 1.3rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
-
 .AlbumImageCount {
-    color: rgb(158, 158, 158);
-    font-weight: bold;
-    font-size: 0.9rem;
+  color: rgb(158, 158, 158);
+  font-weight: bold;
+  font-size: 0.9rem;
 }

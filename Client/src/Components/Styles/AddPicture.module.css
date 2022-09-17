@@ -1,100 +1,100 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .formContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .formx {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F5F5F5;
 
 }
 
 .chosenPictureContainer {
-    display: flex;
-    flex-direction: column;
-    width: 8rem;
-    height: 4rem;
-    padding: 1rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 8rem;
+  height: 4rem;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .choice {
-    padding: 0.3rem;
-    width: 110%;
-    font-weight: bold;
-    border: solid 1px;
-    border-color: rgb(232, 232, 232);
-    border-radius: 0.3rem;
+  padding: 0.3rem;
+  width: 110%;
+  font-weight: bold;
+  border: solid 1px;
+  border-color: rgb(232, 232, 232);
+  border-radius: 0.3rem;
 }
 
 .choice+.choice {
-    margin: 0.5rem;
+  margin: 0.5rem;
 }
 
 
 .chosenPicture {
-    width: 80px;
-    max-height: 100px;
-    border-radius: 0.5rem;
+  width: 80px;
+  max-height: 100px;
+  border-radius: 0.5rem;
 }
 
 .chosenPictureBoundary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 70px;
-    margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  margin-bottom: 2rem;
 }
 
 .top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #F5F5F5;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F5F5;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .collection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 17rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17rem;
 }
 
 .choosebtn {
-    width: 200px;
-    height: 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    color: white;
-    background-color: #2196F3;
-    padding: 2rem;
-    font-weight: bold;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 200px;
+  height: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: #2196F3;
+  padding: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-right: auto;
-    margin-left: 0.5rem;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-right: auto;
+  margin-left: 0.5rem;
 }

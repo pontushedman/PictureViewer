@@ -1,17 +1,5 @@
-@font-face {
-  font-family: 'freesansbold';
-  src: url('freesansbold-webfont.woff2') format('woff2'),
-       url('freesansbold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 * {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   margin: 0;
   padding: 0;
-}
-
-#root {
 }

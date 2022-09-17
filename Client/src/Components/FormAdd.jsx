@@ -2,54 +2,54 @@ import style from "./Styles/FormAdd.module.css"
 
 //Component that shows the "Add Picture" area and handles all the adding
 function FormAdd() {
-    return (
-      <div className={style.largeAdd}>
-        <div className={style.smalladd}>
-          <p>Add</p>
-        </div>
-        <div className={style.chooseDiv}>
-          <button className={style.uploadButton}></button>
+  return (
+    <div className={style.largeAdd}>
+      <div className={style.smalladd}>
+        <p>Add</p>
+      </div>
+      <div className={style.chooseDiv}>
+        <button className={style.uploadButton}></button>
 
-          {/*This inputs onChange triggers when you have chosen an image, 
+        {/*This inputs onChange triggers when you have chosen an image, 
           //That image is being used as input in the callback function, (image) in this case
           //We read that image in the filereader and converts it to a dataURL(file in textformat???).
           //We store the file in a canvas that we resize, we then access the data in the canvas and converts it to a dataURL
           //That is how we save two pictures in two different sizes.*/}
-          <input
-            onChange={(image) => {
-              const file = image.target.files[0]
-              var reader = new FileReader()
-              reader.readAsDataURL(file)
-              reader.addEventListener("load", () => {
-                //Create Image
-                const img = document.createElement("img")
-                //Convert image
-                img.onload = (() => {
-                  const canvas = document.createElement("canvas")
-                  const ctx = canvas.getContext("2d")
+        <input
+          onChange={(image) => {
+            const file = image.target.files[0]
+            var reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.addEventListener("load", () => {
+              //Create Image
+              const img = document.createElement("img")
+              //Convert image
+              img.onload = (() => {
+                const canvas = document.createElement("canvas")
+                const ctx = canvas.getContext("2d")
 
-                  const convertedHeight = img.height * 0.5
-                  const convertedWidth = img.width * 0.5
+                const convertedHeight = img.height * 0.5
+                const convertedWidth = img.width * 0.5
 
-                  canvas.width = convertedWidth
-                  canvas.height = convertedHeight
+                canvas.width = convertedWidth
+                canvas.height = convertedHeight
 
-                  ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
-                  const resizedImage = canvas.toDataURL(file.type);
-                  //Store images and empty properties in Localstorage.
-                  setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
-                  //Rerender component to reflect changes in Localstorage.
-                  setSelectedFiles(localStorage.length)
-                })
-                //Populate image element with original image.
-                //This is to trigger the img.onload function.  
-                img.src = reader.result
+                ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
+                const resizedImage = canvas.toDataURL(file.type);
+                //Store images and empty properties in Localstorage.
+                setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
+                //Rerender component to reflect changes in Localstorage.
+                setSelectedFiles(localStorage.length)
               })
-            }}
-            className={style.chooseFile} type="file" name="picture"
-          />
-        </div>
-      </div>)
-  }
+              //Populate image element with original image.
+              //This is to trigger the img.onload function.  
+              img.src = reader.result
+            })
+          }}
+          className={style.chooseFile} type="file" name="picture"
+        />
+      </div>
+    </div>)
+}
 
-  export default FormAdd
+export default FormAdd

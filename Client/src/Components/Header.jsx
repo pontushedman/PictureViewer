@@ -4,11 +4,11 @@ import styles from './Styles/Header.module.css'
 
 
 function Header() {
-    return (
-        <div className={styles.Header}>
-            <Link className={styles.Logo} to="/"><p>pix</p></Link>
-        </div>
-    )
+  return (
+    <div className={styles.Header}>
+      <Link className={styles.Logo} to="/"><p>pix</p></Link>
+    </div>
+  )
 }
 
 export default Header

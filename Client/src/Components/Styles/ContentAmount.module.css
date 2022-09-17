@@ -1,9 +1,9 @@
 .count {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .count p {
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: rgb(158, 158, 158);
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: rgb(158, 158, 158);
 }

@@ -75,7 +75,7 @@ function AddPicture() {
           <input id="choiceTitle" className={style.choice} data-key={key} data-field="title" name={key + "_Title"} placeholder={value.title} type="text" />
           <input id="choiceComment" className={style.choice} data-key={key} data-field="comment" name={key + "_Comment"} placeholder={value.comment} type="text" />
           <select data-key={key} data-field="album" name={key + "_Album"} className={style.choice}>
-            {imgCtx.AlbumsList.map(album => { 
+            {imgCtx.AlbumsList.map(album => {
               return (<option>{album.title}</option>)
             })}
           </select>

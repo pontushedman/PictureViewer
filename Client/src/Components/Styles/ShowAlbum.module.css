@@ -1,131 +1,131 @@
 .showAlbumContainer {
-    width: 60rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  width: 60rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .top {
-    display: flex;
-    flex-direction: row;
-    margin: 2rem;
-    align-self: flex-start;
-    height: auto;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  align-self: flex-start;
+  height: auto;
 }
 
 .title {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-top: auto;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: auto;
 }
 
 .comment {
-    margin-left: 1rem;
-    font-weight: bold;
-    font-size: 0.8rem;
-    margin-top: auto;
-    margin-bottom: 0.3rem;
-    color: rgb(122, 122, 122);
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-top: auto;
+  margin-bottom: 0.3rem;
+  color: rgb(122, 122, 122);
 }
 
 .slideshow {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(11, 11, 11);
-    width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(11, 11, 11);
+  width: 100%;
 }
 
 .middle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .imageContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .image {
-    border-radius: 1rem;
-    width: 25rem;
-    height: 20rem;
-    background-size: cover;
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: black;
+  border-radius: 1rem;
+  width: 25rem;
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 .imageTitle {
-    width: 100%;
-    background-color: rgb(11, 11, 11);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 2rem;
+  width: 100%;
+  background-color: rgb(11, 11, 11);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
 .imageTitle p {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
 }
 
 .albumImages {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(11, 11, 11);
-    width: 100%;
-    padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(11, 11, 11);
+  width: 100%;
+  padding-bottom: 1rem;
 
 }
 
 .albumImage {
-    width: 5rem;
-    height: 5rem;
-    background-image: cover;
-    background-position: center;
-    background-size: 130%;
-    background-repeat: no-repeat;
-    border-radius: 0.8rem;
-    border: rgb(87, 87, 87) solid 1px;
+  width: 5rem;
+  height: 5rem;
+  background-image: cover;
+  background-position: center;
+  background-size: 130%;
+  background-repeat: no-repeat;
+  border-radius: 0.8rem;
+  border: rgb(87, 87, 87) solid 1px;
 }
 
-.albumImage + .albumImage {
-    margin-left: 1rem;
+.albumImage+.albumImage {
+  margin-left: 1rem;
 }
 
 .imageComment {
-    font-weight: bold;
-    margin-top: 1rem;
-    width: 30rem;
-    min-height: 3rem;
-    font-size: 0.8rem;
-    color: rgb(230, 230, 230);
+  font-weight: bold;
+  margin-top: 1rem;
+  width: 30rem;
+  min-height: 3rem;
+  font-size: 0.8rem;
+  color: rgb(230, 230, 230);
 }
 
 .button {
-    width: 2rem;
-    height: 2rem;
-    margin: 1rem;
-    border-radius: 0.5rem;
-    filter: invert(39%) sepia(75%) saturate(1519%) hue-rotate(189deg) brightness(104%) contrast(91%);
-    transition: ease-in-out 0.1s;
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  filter: invert(39%) sepia(75%) saturate(1519%) hue-rotate(189deg) brightness(104%) contrast(91%);
+  transition: ease-in-out 0.1s;
 }
 
 .button:hover {
-    transition: ease-in-out 0.1s;
-    transform: scale(1.1);
+  transition: ease-in-out 0.1s;
+  transform: scale(1.1);
 }

@@ -1,32 +1,32 @@
 .AddCategory {
-    display: flex;
-    align-items: center;
-    margin-left: 2rem;
-    cursor: pointer;
-    padding: 0.4rem;
-    border-radius: 1rem;
-    transition: ease-in-out 0.15s;
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  transition: ease-in-out 0.15s;
 
 
 }
 
 .AddCategory:hover {
-    background-color: #2196F3;
-    transition: ease-in-out 0.15s;
+  background-color: #2196F3;
+  transition: ease-in-out 0.15s;
 }
 
 .AddCategory:hover * {
-    color: #F5F5F5;
-    transition: ease-in-out 0.06s;
+  color: #F5F5F5;
+  transition: ease-in-out 0.06s;
 
 }
 
 .Plus {
-    width: 1.8rem;
+  width: 1.8rem;
 }
 
 .Text {
-    font-size: 0.9rem;
-    margin-left: 0.4rem;
-    color: #5C5C5C;
+  font-size: 0.9rem;
+  margin-left: 0.4rem;
+  color: #5C5C5C;
 }

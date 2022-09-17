@@ -11,7 +11,7 @@ function Modal(props) {
     const background = document.getElementById("back")
     background.addEventListener("mousedown", (e) => {
       const b = e.target.getAttribute("id")
-      if(b === "back") {
+      if (b === "back") {
         props.showModal(false)
       } else {
         console.log("apa")
@@ -22,10 +22,10 @@ function Modal(props) {
   return (
     <div className={style.modalBackground} id="back">
       <div className={style.modalContainer}>
-       {props.mode === "addimages" ? <AddPicture/> : null}
-       {props.mode === "addalbum" ? <AddAlbum/> : null}
-       {props.mode === "image" ? <ShowImage id={props.id}/> : null}
-       {props.mode === "album" ? <ShowAlbum id={props.id}/> : null}
+        {props.mode === "addimages" ? <AddPicture /> : null}
+        {props.mode === "addalbum" ? <AddAlbum /> : null}
+        {props.mode === "image" ? <ShowImage id={props.id} /> : null}
+        {props.mode === "album" ? <ShowAlbum id={props.id} /> : null}
 
         <div className={style.fotter}>
           <button onClick={() => props.showModal(false)}> Cancel </button>
