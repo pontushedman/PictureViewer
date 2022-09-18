@@ -20,7 +20,7 @@ function AddAlbum() {
           >
           </div>
           <div className={styles.formAdd}>
-            <FormAdd className={styles.formAdd} />
+            <FormAdd/>
           </div>
         </div>
         <div className={styles.right}>

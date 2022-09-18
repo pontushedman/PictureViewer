@@ -28,7 +28,7 @@
 }
 
 .Albums {
-  min-height: 16rem;
+  min-height: 18rem;
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
@@ -38,6 +38,7 @@
 
 .Album {
   width: 11rem;
+  height: 15rem;
   font-size: bold;
   display: flex;
   flex-direction: column;
@@ -47,19 +48,16 @@
   background-color: rgb(250, 250, 250);
   padding: 1rem;
   border-radius: 1.3rem;
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
-  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
 }
 
 .Album:hover {
   cursor: pointer;
-  transform: scale(1.01);
-  transition: ease-in-out 0.15s;
-}
-
-.Album:hover .AlbumHeaderImage {
-  border: #2196F3 solid 5px;
-  transition: ease-in-out 0.15s;
+  transform: scale(1.015);
+  transition: ease-in-out 0.09s;
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.5);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
 }
 
 .Album+.Album {
@@ -109,8 +107,8 @@
   text-decoration: none;
   background-color: rgb(250, 250, 250);
   border-radius: 0.7rem;
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(138, 144, 156, 0.3);
-  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.3);
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
 
 }
 
@@ -132,11 +130,6 @@
   background-color: white;
 }
 
-.PictureImage:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  transition: ease-in-out 0.05s;
-}
 
 .Images {
   margin-top: 1rem;
@@ -157,8 +150,16 @@
   padding: 0.5rem;
   border-radius: 1rem;
   background-color: rgb(250, 250, 250);
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.6);
-  box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.6);
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
+}
+
+.Image:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: ease-in-out 0.05s;
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.5);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
 }
 
 .Image+.Image {

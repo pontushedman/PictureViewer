@@ -18,7 +18,7 @@
 .Images {
   margin: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   min-height: 10rem;
 }
 
@@ -32,8 +32,8 @@
 }
 
 .PictureImage {
-  width: 12rem;
-  height: 12rem;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 1rem;
   transition: ease-in-out 0.05s;
   border: rgb(172, 172, 172) solid 1px;

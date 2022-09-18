@@ -1,6 +1,7 @@
 import styles from "./Styles/ShowAlbum.module.css"
 import { useContext, useEffect, useState, useMemo } from "react"
 import ImgContext from "../store/img"
+import FormAdd from "./FormAdd"
 
 function ShowAlbum(props) {
   const JSONContext = useContext(ImgContext)
@@ -11,33 +12,31 @@ function ShowAlbum(props) {
   const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
 
   const album = getAlbumFromId(albums, props.id)
-  const albumPictures = album.pictures
 
   function switchImageInc() {
     const plus = chosenImage.index + 1
     if (plus > album.pictures.length - 1) {
-      setChosenImage({ index: chosenImage.index, image: albumPictures[chosenImage.index] })
+      setChosenImage({ index: chosenImage.index, image: album.pictures[chosenImage.index] })
     } else {
-      setChosenImage({ index: plus, image: albumPictures[plus] })
+      setChosenImage({ index: plus, image: album.pictures[plus] })
     }
   }
 
   function switchImageDec() {
     let minus = chosenImage.index - 1
     minus < 0 ? minus = 0 :
-      setChosenImage({ index: minus, image: albumPictures[minus] })
+      setChosenImage({ index: minus, image: album.pictures[minus] })
   }
 
-  function getImageIndex(image) {
-    let imageIndex
-    for (let index = 0; index < albumPictures.length; index++) {
-      const element = array[index];
-      if (element.id === image.id) {
-        imageIndex = index
-        return imageIndex
-      }
+  function switchImageFromId(e) {
+    console.log(e.target)
+    const imageId = e.target.dataset.id
+    for (let index = 0; index < album.pictures.length; index++) {
+      const img = album.pictures[index];
+      if (img.id === imageId) {
+        setChosenImage({index: index, image:img});
+      } 
     }
-    return undefined
   }
 
   function getAlbumFromId(list, value) {
@@ -55,6 +54,9 @@ function ShowAlbum(props) {
       <div className={styles.top}>
         <p className={styles.title}>{album.title}</p>
         <p className={styles.comment}>{album.comment}</p>
+        <div className={styles.formAdd}>
+           <FormAdd/>
+        </div>
       </div>
       <div className={styles.imageTitle}>
         <p>{chosenImage.image.title}</p>
@@ -68,9 +70,12 @@ function ShowAlbum(props) {
             <div
               className={styles.image}
               style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + chosenImage.image.imgLoRes.replace(/ /g, '%20') + ")" }}
-            />
+            >
+              <div className={styles.imageCommentContainer}>
+                <p className={styles.imageComment}>{chosenImage.image.comment}</p>
+              </div>
+            </div>
           </div>
-          <p className={styles.imageComment}>{chosenImage.image.comment}</p>
         </div>
         <div className={styles.right}>
           <img src="./src/assets/arrow-circle-right.svg" data-action="increase" onClick={switchImageInc} id="plus" className={styles.button} />
@@ -78,14 +83,30 @@ function ShowAlbum(props) {
       </div>
       <div className={styles.albumImages}>
         {
-          albumPictures.map(image => {
+          album.pictures.map(image => {
             return (
               <div className={styles.albumImage}
                 style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
+                data-id={image.id}
+                onClick={((e) => {switchImageFromId(e)})}
               />
             )
           })
         }
+      </div>
+      <div className={styles.actions}>
+        <div className={styles.albumDelete + " " +  styles.albumAction}>
+          <img src="src/assets/trash.svg"/>
+          <p>Delete</p>
+        </div>
+        <div className={styles.albumDownload + " " +  styles.albumAction}>
+          <img src="src/assets/download.svg"/>
+          <p>Download</p>
+        </div>
+        <div className={styles.albumEdit + " " +  styles.albumAction} >
+          <img src="src/assets/pencil.svg"/>
+          <p>Edit</p>
+        </div>
       </div>
     </div>
   )

@@ -12,34 +12,32 @@ function CategoryTitle(props) {
 
   useEffect(() => {
     console.log("CategoryTitle rendered")
-
-    const images = document.getElementsByClassName(styles.PictureImage)
-    for (let index = 0; index < images.length; index++) {
-      const image = images[index]
-      image.addEventListener("click", (e) => {
-        const imageId = image.dataset.id
-        const obj = { show: true, mode: "image", id: imageId }
-        props.showModal(obj)
-      })
-    }
-
-    const albums = document.getElementsByClassName(styles.AlbumHeaderImage)
-    for (let index = 0; index < albums.length; index++) {
-      const album = albums[index]
-      album.addEventListener("click", (e) => {
-        const albumId = album.dataset.id
-        const obj = { show: true, mode: "album", id: albumId }
-        props.showModal(obj)
-      })
-    }
   })
+
+  function getAlbumFromId(id) {
+    let album
+    albums.map(a => {
+      a.id === id ? album = a : null
+    })
+    return album
+  }
+
+  function openImage(e) {
+    const imageId = e.target.dataset.id
+    const obj = { show: true, mode: "image", id: imageId }
+        props.showModal(obj)
+  }
+
+  function openAlbum(e) {
+    const albumId = e.target.dataset.id
+    const obj = { show: true, mode: "album", id: albumId }
+    props.showModal(obj)
+  }
 
   const albumCount = albums.length
   const imageCount = (() => {
     let count = 0
-    albums.map(album => {
-      count += album.pictures.length
-    })
+    albums.map(album => { count += album.pictures.length})
     return count
   })
 
@@ -47,9 +45,7 @@ function CategoryTitle(props) {
   const category = props.category
   let categoryCheck = false
 
-  availableCategories.map(x => {
-    x === category ? categoryCheck = true : null
-  })
+  availableCategories.map(x => { x === category ? categoryCheck = true : null })
 
   if (categoryCheck === false) {
     console.debug("Invalid category input")
@@ -60,12 +56,8 @@ function CategoryTitle(props) {
   let categoryImage = props.small ? styles.categoryImageSmall : styles.categoryImageLarge
 
   const ContentCount = (() => {
-    if (category === "albums")
-      return albumCount
-
-    if (category === "images")
-      return imageCount()
-
+    if (category === "albums") return albumCount
+    if (category === "images") return imageCount()
     return ""
   })
 
@@ -95,7 +87,15 @@ function CategoryTitle(props) {
     return (
       <div className={styles.Albums}>
         {albums.map(x =>
-          <div key={x.id + 1} className={styles.Album}>
+          <div 
+            onClick={(e => {
+              openAlbum(e)
+            })}
+            key={x.id + 1} 
+            className={styles.Album}
+            data-id={x.id}
+            >
+            
             <img key={x.id + 2}
               className={styles.AlbumHeaderImage}
               data-id={x.id}
@@ -117,7 +117,12 @@ function CategoryTitle(props) {
         {
           albums.map(x =>
             x.pictures.map(y =>
-              <div key={y.id} className={styles.Image}>
+              <div 
+                key={y.id} 
+                className={styles.Image}
+                data-id={y.id}
+                onClick={(e => {openImage(e)})}
+              >
                 <img key={y.id + 1}
                   className={styles.PictureImage}
                   data-id={y.id}
