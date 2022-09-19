@@ -1,13 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 
 
-const ImgContext = createContext({
+const JSONContext = createContext({
   AlbumsList: [],
   totalImages: 0,
   totalAlbums: 0,
 });
 
-export function ImgContexProvider(props) {
+export function JSONContextProvider(props) {
   const [albumsList, setAlbumsList] = useState([]);
 
   //Load librarystructure from JSONs
@@ -27,9 +27,9 @@ export function ImgContexProvider(props) {
     totalAlbums: albumsList.length,
   }
 
-  return <ImgContext.Provider value={context}>
+  return <JSONContext.Provider value={context}>
     {props.children}
-  </ImgContext.Provider>
+  </JSONContext.Provider>
 }
 
-export default ImgContext;
+export default JSONContext;

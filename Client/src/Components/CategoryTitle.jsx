@@ -3,12 +3,12 @@ import AddCategory from './AddCategory'
 import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
 import { Link } from 'react-router-dom'
-import ImgContext from '../store/img'
+import JSONContext from '../Store/JSONContext'
 
 
 function CategoryTitle(props) {
-  const JSONContext = useContext(ImgContext)
-  const albums = JSONContext.AlbumsList
+  const JSONCtx = useContext(JSONContext)
+  const albums = JSONCtx.AlbumsList
 
   useEffect(() => {
     console.log("CategoryTitle rendered")

@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { useContext } from "react"
-import ImgContext from "../store/img"
+import JSONContext from "../Store/JSONContext"
 import styles from "./Styles/ShowImage.module.css"
 
 function getImageFromId(list, value) {
@@ -16,8 +15,8 @@ function getImageFromId(list, value) {
 }
 
 function ShowImage(props) {
-  const JSONContext = useContext(ImgContext)
-  const albums = JSONContext.AlbumsList
+  const JSONCtx = useContext(JSONContext)
+  const albums = JSONCtx.AlbumsList
 
   const image = getImageFromId(albums, props.id)
   console.log(image)

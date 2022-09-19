@@ -1,11 +1,10 @@
-import { ImgContexProvider } from '../store/img'
-import ImgContext from '../store/img'
+import JSONContext from '../Store/JSONContext'
 import { useContext, } from 'react'
 import styles from './Styles/AlbumsPage.module.css'
 
 function AlbumsPage() {
 
-  const imgCtx = useContext(ImgContext)
+  const JSONCtx = useContext(JSONContext)
   console.log("Albumspage rendered")
   return (
     (
@@ -15,7 +14,7 @@ function AlbumsPage() {
           <p className={styles.title}>All Albums</p>
         </div>
         <div className={styles.Albums}>
-          {imgCtx.AlbumsList.map(x =>
+          {JSONCtx.AlbumsList.map(x =>
             <div className={styles.Album}>
               <img className={styles.AlbumHeaderImage} src={"http://localhost:3000/" + x.headerImage} />
               <p className={styles.AlbumTitle}>{x.title}</p>

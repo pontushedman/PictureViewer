@@ -1,21 +1,10 @@
-import ImgContext from "../store/img";
-import { useContext, useEffect } from "react";
+import JSONContext from "../Store/JSONContext";
+import { useContext } from "react";
 import styles from "./Styles/PicturesPage.module.css";
 
 function PicturesPage(props) {
-  const imgCtx = useContext(ImgContext);
-  const loading = imgCtx.AlbumsList;
-
-  /*  useEffect(() => {
-     const images = document.getElementsByClassName(styles.PictureImage)
-     for (let index = 0; index < images.length; index++) {
-         const image = images[index]
-         image.addEventListener("click", (e) => {
-             const imageId = image.dataset.id
-             props.showModal({show: true, mode: "image", id: imageId})     
-         })
-     }
-   }) */
+  const JSONCtx = useContext(JSONContext);
+  const loading = JSONCtx.AlbumsList;
 
   function showImage(image) {
     const imageId = image.target.dataset.id

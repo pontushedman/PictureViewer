@@ -34,8 +34,8 @@
 }
 
 .chosenImage {
-  width: 20rem;
-  height: 20rem;
+  width: 18rem;
+  height: 18rem;
   background-position: center;
   background-size: cover;
   border-radius: 1rem;
@@ -57,6 +57,7 @@
   align-items: flex-start;
   flex-direction: column;
   margin-right: 2rem;
+  margin-left: 2rem;
 }
 
 .inputTitle {

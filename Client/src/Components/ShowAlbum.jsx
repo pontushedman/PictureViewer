@@ -1,11 +1,11 @@
 import styles from "./Styles/ShowAlbum.module.css"
-import { useContext, useEffect, useState, useMemo } from "react"
-import ImgContext from "../store/img"
+import { useContext, useState} from "react"
+import JSONContext from "../Store/JSONContext"
 import FormAdd from "./FormAdd"
 
 function ShowAlbum(props) {
-  const JSONContext = useContext(ImgContext)
-  const albums = JSONContext.AlbumsList
+  const JSONCtx = useContext(JSONContext)
+  const albums = JSONCtx.AlbumsList
 
   console.log("Showalbum rendered")
 

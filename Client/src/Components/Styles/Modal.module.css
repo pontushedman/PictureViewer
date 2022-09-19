@@ -21,6 +21,7 @@
   transition: 0.5s;
   padding-bottom: 1rem;
   z-index: 20;
+  min-width: 40rem;
 }
 
 .fotter {

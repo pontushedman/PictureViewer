@@ -1,7 +1,11 @@
+import { useContext } from "react"
+import StorageContext from "../Store/StorageContext"
 import style from "./Styles/FormAdd.module.css"
 
 //Component that shows the "Add Picture" area and handles all the adding
 function FormAdd() {
+  const storageCtx = useContext(StorageContext)
+
   return (
     <div className={style.largeAdd}>
       <div className={style.smalladd}>
@@ -36,10 +40,21 @@ function FormAdd() {
 
                 ctx.drawImage(img, 0, 0, convertedWidth, convertedHeight)
                 const resizedImage = canvas.toDataURL(file.type);
-                //Store images and empty properties in Localstorage.
-                setToLocalStorage(file.size, JSON.stringify({ hires_image: reader.result, lowres_image: resizedImage, title: "", comment: "", albums: [] }))
-                //Rerender component to reflect changes in Localstorage.
-                setSelectedFiles(localStorage.length)
+
+                const random = Math.floor(Math.random()*10000)
+
+                const imageObject = { 
+                  id: random,
+                  hires_image: reader.result, 
+                  lowres_image: resizedImage, 
+                  title: "", 
+                  comment: "", 
+                  album: "",
+                }
+                
+               //Store images and empty properties in Localstorage.
+                storageCtx.SetToLocalStorage(imageObject, "images")
+                storageCtx.SetSelectedFiles(localStorage.length)
               })
               //Populate image element with original image.
               //This is to trigger the img.onload function.  
