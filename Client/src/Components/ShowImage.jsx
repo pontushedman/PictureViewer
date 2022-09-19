@@ -35,7 +35,7 @@ function ShowImage(props) {
           </div>
         </div>
       </div>
-      <Actions/>
+      <Actions rating ={image.img.rating}/>
     </div>
 
 

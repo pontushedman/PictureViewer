@@ -1,6 +1,6 @@
 import FormAdd from "./FormAdd"
 import styles from "./Styles/AddAlbum.module.css"
-import StorageContext from "../Store/StorageContext"
+import StorageContext, { StorageContextProvider } from "../Store/StorageContext"
 import { useContext, useEffect, useState } from "react"
 
 function AddAlbum() {
@@ -49,7 +49,7 @@ function AddAlbum() {
           />
         </div>
       </div>
-      <button className={styles.createAlbum}>Create</button>
+      <button className={styles.createAlbum} onClick={() => console.log(storageCtx.GetAlbum())}>Create</button>
 
     </div>
   )
