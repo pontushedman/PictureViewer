@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import JSONContext from "../Store/JSONContext"
+import Actions from "./Actions"
 import styles from "./Styles/ShowImage.module.css"
 
 function getImageFromId(list, value) {
@@ -34,15 +35,7 @@ function ShowImage(props) {
           </div>
         </div>
       </div>
-      <div>
-
-        <select id="Albums">
-          <option value="Delete">Delete</option>
-          <option value="Edit">Edit</option>
-          <option value="Rating">Rating</option>
-        </select>
-
-      </div>
+      <Actions/>
     </div>
 
 

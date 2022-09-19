@@ -42,7 +42,7 @@
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: rgb(244, 244, 244);
-
+  border: rgb(237, 237, 237) solid 1px;
 }
 
 .formAdd {

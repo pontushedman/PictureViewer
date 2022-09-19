@@ -150,62 +150,6 @@
   margin-left: 1rem;
 }
 
-.actions {
-  margin-top: 1rem;
-  height: 2rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: flex-start;
-  margin-left: 2rem;
-}
-
-.albumDelete {
-}
-
-.albumDownload {
-}
-
-.albumEdit {
-}
-
-.albumAction {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
-  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
-  transition: ease-in-out 0.15s;
-}
-
-.albumAction:hover {
-  cursor: pointer;
-  background-color: #2196F3;
-  color: white;
-  transition: ease-in-out 0.15s;
-}
-
-.albumAction:hover img {
-  filter: invert(96%) sepia(1%) saturate(57%) hue-rotate(225deg) brightness(112%) contrast(87%);
-  transition: ease-in-out 0.1s;
-}
-
-.albumAction p {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-left: 0.5rem;
-}
-
-.albumAction img{
-  width: 1rem;
-}
-
-.albumAction + .albumAction{
-  margin-left: 2rem;
-}
-
 .button {
   width: 2rem;
   height: 2rem;

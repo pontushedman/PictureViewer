@@ -2,6 +2,7 @@ import styles from "./Styles/ShowAlbum.module.css"
 import { useContext, useState} from "react"
 import JSONContext from "../Store/JSONContext"
 import FormAdd from "./FormAdd"
+import Actions from "./Actions"
 
 function ShowAlbum(props) {
   const JSONCtx = useContext(JSONContext)
@@ -94,20 +95,7 @@ function ShowAlbum(props) {
           })
         }
       </div>
-      <div className={styles.actions}>
-        <div className={styles.albumDelete + " " +  styles.albumAction}>
-          <img src="src/assets/trash.svg"/>
-          <p>Delete</p>
-        </div>
-        <div className={styles.albumDownload + " " +  styles.albumAction}>
-          <img src="src/assets/download.svg"/>
-          <p>Download</p>
-        </div>
-        <div className={styles.albumEdit + " " +  styles.albumAction} >
-          <img src="src/assets/pencil.svg"/>
-          <p>Edit</p>
-        </div>
-      </div>
+      <Actions/>
     </div>
   )
 }
