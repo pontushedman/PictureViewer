@@ -3,7 +3,7 @@ import StorageContext from "../Store/StorageContext"
 import style from "./Styles/FormAdd.module.css"
 
 //Component that shows the "Add Picture" area and handles all the adding
-function FormAdd() {
+function FormAdd(props) {
   const storageCtx = useContext(StorageContext)
 
   return (
@@ -43,18 +43,23 @@ function FormAdd() {
 
                 const random = Math.floor(Math.random()*10000)
 
-                const imageObject = { 
-                  id: random,
-                  hires_image: reader.result, 
-                  lowres_image: resizedImage, 
-                  title: "", 
-                  comment: "", 
-                  album: "",
+                if(props.mode === "images") {
+                  const imageObject = { 
+                    id: random,
+                    hires_image: reader.result, 
+                    lowres_image: resizedImage, 
+                    title: "", 
+                    comment: "", 
+                    album: "",
+                  }
+                  //Store images and empty properties in Localstorage.
+                  storageCtx.SetToLocalStorage(imageObject, "images")
+                  storageCtx.SetSelectedFiles(localStorage.length)
                 }
-                
-               //Store images and empty properties in Localstorage.
-                storageCtx.SetToLocalStorage(imageObject, "images")
-                storageCtx.SetSelectedFiles(localStorage.length)
+
+                if(props.mode === "album") {
+                  storageCtx.UpdateAlbum("image", resizedImage)
+                }
               })
               //Populate image element with original image.
               //This is to trigger the img.onload function.  

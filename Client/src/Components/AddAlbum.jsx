@@ -1,10 +1,18 @@
 import FormAdd from "./FormAdd"
 import styles from "./Styles/AddAlbum.module.css"
+import StorageContext from "../Store/StorageContext"
+import { useContext, useEffect, useState } from "react"
 
 function AddAlbum() {
+  const storageCtx = useContext(StorageContext)
+
+  const album = storageCtx.GetAlbum()  
+  const albumTitle = album.title
+  const albumComment = album.comment
+  const albumImage = album.image
+  
   const headerImageUrl = "http://localhost:3000/app-data/library/pictures/album-header/A Galactic Spectacle_4862916839_o~small.jpg"
   const headerImage = headerImageUrl.replace(/ /g, '%20')
-  console.log("apaaaa" + headerImage)
 
   return (
     <div className={styles.addAlbumContainer}>
@@ -16,18 +24,29 @@ function AddAlbum() {
           <p className={styles.inputTitle}>Album Cover</p>
           <div
             className={styles.chosenImage}
-            style={{ backgroundImage: "url(" + headerImage + ")" }}
+            style={{ backgroundImage: "url(" + albumImage + ")" }}
           >
           </div>
           <div className={styles.formAdd}>
-            <FormAdd/>
+            <FormAdd mode="album"/>
           </div>
         </div>
         <div className={styles.right}>
           <p className={styles.inputTitle}>Title</p>
-          <input className={styles.titleInput} type="text" />
+          <input 
+            onChange={((e) => {storageCtx.UpdateAlbum(e.target.dataset.field, e.target.value)})}
+            className={styles.titleInput} 
+            type="text"
+            data-field="title"
+            placeholder={albumTitle}
+          />
           <p className={styles.inputComment}>Comment</p>
-          <textarea className={styles.commentInput} />
+          <textarea 
+            onChange={((e) => {storageCtx.UpdateAlbum(e.target.dataset.field, e.target.value)})}
+            className={styles.commentInput} 
+            placeholder={albumComment}
+            data-field="comment"
+          />
         </div>
       </div>
       <button className={styles.createAlbum}>Create</button>

@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const StorageContext = createContext({
   ImageStorage: null,
@@ -10,8 +9,11 @@ const StorageContext = createContext({
   UpdateLocalStorage: null,
   LogLocalStorage: null,
   SetSelectedFiles: null,
-  SelectedFiles: null
-});
+  SelectedFiles: null,
+  GetAlbum: null,
+  SetAlbum: null,
+  UpdateAlbum: null,
+})
 
 export function StorageContextProvider(props) {
   const [imageStorage, setImageStorage] = useState()
@@ -22,11 +24,31 @@ export function StorageContextProvider(props) {
     setImageStorage({ key: "", images: JSON.stringify({ images: [{}] }) })
   }, [])
 
+  function setAlbum(album) {
+      localStorage.setItem("album", JSON.stringify(album))
+      setAlbumStorage(album)
+      console.log("apa")
+  }
+
+  function getAlbum() {
+    const storageAlbum = JSON.parse(localStorage.getItem("album"))
+    if (storageAlbum !== null) {
+      return storageAlbum
+    }
+    return {title: "", comment: "", image: ""}
+  }
+
+  function updateAlbum(field, value) {
+    let album = {...getAlbum()}
+    field === "title" ? album.title = value : album.title
+    field === "comment" ? album.comment = value : album.comment
+    field === "image" ? album.image = value : album.image
+    setAlbum(album)
+  }
+
   function getImagesFromStorage(category) {
     let obj = null
     category === "images" ? obj = JSON.parse(localStorage.getItem("images")) : null
-    category === "album" ? obj = JSON.parse(localStorage.getItem("album")) : null
-    console.log(obj)
     return obj
   }
 
@@ -51,7 +73,7 @@ export function StorageContextProvider(props) {
 
   function updateLocalStorage(inputKey, inputField, inputValue) {
     let imagesList = JSON.parse(localStorage.getItem("images"))
-    
+
     let count = 0
     imagesList.images.map(image => {
       if (image.id == inputKey) {
@@ -64,16 +86,11 @@ export function StorageContextProvider(props) {
         //Only set value to input value of the field that is equal to inputfield
         for (let index = 0; index < storageItemKeys.length; index++) {
           let key = storageItemKeys[index][0]
-          
           if (key === inputField) {
             storageItemKeys[index][1] = inputValue
           }
           newObj = Object.fromEntries(storageItemKeys)
-          //const inTo = JSON.stringify(images)
-          //setToLocalStorage(inTo, "images")
-          //return
         }
-        
         imagesList.images[count] = newObj
       }
       const editedObject = imagesList.images
@@ -85,18 +102,6 @@ export function StorageContextProvider(props) {
 
   }
 
-  //Push the objects in localstorage to a singleobjects that's supposed to be sent in a POST request
-  function logLocalStorage() {
-    let images = []
-    for (let index = 0; index < localStorage.length; index++) {
-      let key = localStorage.key(index)
-      let value = JSON.parse(localStorage.getItem(key))
-      images.push(value)
-    }
-    const storageObjects = { ...images }
-    console.log(storageObjects)
-  }
-
   const context = {
     ImageStorage: imageStorage,
     albumStorage: albumStorage,
@@ -104,14 +109,14 @@ export function StorageContextProvider(props) {
     SetAlbumStorage: setAlbumStorage,
     SetToLocalStorage: setToLocalStorage,
     UpdateLocalStorage: updateLocalStorage,
-    LogLocalStorage: logLocalStorage,
     SetSelectedFiles: setSelectedFiles,
     SelectedFiles: selectedFiles,
+    GetAlbum: getAlbum,
+    SetAlbum: setAlbum,
+    UpdateAlbum: updateAlbum,
   }
 
-  return <StorageContext.Provider value={context}>
-    {props.children}
-  </StorageContext.Provider>
+  return <StorageContext.Provider value={context}>{props.children}</StorageContext.Provider>
 }
 
-export default StorageContext;
+export default StorageContext

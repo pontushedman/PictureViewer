@@ -83,7 +83,7 @@ function AddPicture() {
       <div className={style.formcontainer}>
         <div className={style.top}>
           <p className={style.title}>Add Pictures</p>
-          <FormAdd />
+          <FormAdd mode="images"/>
         </div>
 
         <form method="post" className={style.formx}>
