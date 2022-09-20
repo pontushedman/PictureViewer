@@ -49,7 +49,26 @@ function AddAlbum() {
           />
         </div>
       </div>
-      <button className={styles.createAlbum} onClick={() => console.log(storageCtx.GetAlbum())}>Create</button>
+      <button 
+        className={styles.createAlbum} 
+        onClick={(() => {
+          console.log(storageCtx.GetAlbum())
+          //Fetch
+          fetch('http://localhost:3000/api/album', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(storageCtx.GetAlbum()),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        })}>Create</button>
     </div>
   )
 }
