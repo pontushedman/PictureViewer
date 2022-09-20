@@ -86,7 +86,7 @@ function AddPicture() {
           <FormAdd mode="images"/>
         </div>
 
-        <form method="post" className={style.formx}>
+        <div className={style.formx}>
           <div className={style.collection}>
           <StorageContext.Consumer>
             {value => {
@@ -96,12 +96,22 @@ function AddPicture() {
             }}
             </StorageContext.Consumer>
           </div>
-          <div id="submit" className={style.choosebtn}>Upload</div>
-        </form>
+          <div 
+            id="submit" 
+            onClick={(e => 
+              {
+                console.log(storageCtx.GetImagesFromStorage())
+              })
+            } 
+            className={style.choosebtn}
+            >
+            Upload
+          </div>
+        </div>
 
       </div>
     </div>
-  );
+  )
 }
 
 export default AddPicture;

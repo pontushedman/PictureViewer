@@ -5,17 +5,17 @@ import ShowImage from "./ShowImage";
 import ShowAlbum from "./ShowAlbum";
 import AddAlbum from "./AddAlbum";
 
-function Modal(props) {  
+function Modal(props) {
   function closeModal(e) {
     const b = e.target.getAttribute("id")
     b === "back" ? props.showModal(false) : null
   }
 
   return (
-    <div 
-      className={style.modalBackground} 
-      id="back" 
-      onClick={(e => {closeModal(e)})}
+    <div
+      className={style.modalBackground}
+      id="back"
+      onClick={(e => { closeModal(e) })}
     >
       <div className={style.modalContainer}>
         {props.mode === "addimages" ? <AddPicture /> : null}
@@ -28,7 +28,7 @@ function Modal(props) {
         </div>
       </div>
     </div>
-  );
+  )
 
 }
 

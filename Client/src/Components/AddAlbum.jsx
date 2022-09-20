@@ -50,7 +50,6 @@ function AddAlbum() {
         </div>
       </div>
       <button className={styles.createAlbum} onClick={() => console.log(storageCtx.GetAlbum())}>Create</button>
-
     </div>
   )
 }

@@ -13,6 +13,7 @@ const StorageContext = createContext({
   GetAlbum: null,
   SetAlbum: null,
   UpdateAlbum: null,
+  GetImagesFromStorage: null
 })
 
 export function StorageContextProvider(props) {
@@ -46,15 +47,15 @@ export function StorageContextProvider(props) {
     setAlbum(album)
   }
 
-  function getImagesFromStorage(category) {
+  function getImagesFromStorage() {
     let obj = null
-    category === "images" ? obj = JSON.parse(localStorage.getItem("images")) : null
+    obj = JSON.parse(localStorage.getItem("images"))
     return obj
   }
 
   //Function to populate Localstorage
   function setToLocalStorage(value, category) {
-    const objectFromStorage = getImagesFromStorage(category)
+    const objectFromStorage = getImagesFromStorage()
 
     const obj = JSON.stringify({ "images": [value] })
 
@@ -114,6 +115,7 @@ export function StorageContextProvider(props) {
     GetAlbum: getAlbum,
     SetAlbum: setAlbum,
     UpdateAlbum: updateAlbum,
+    GetImagesFromStorage: getImagesFromStorage
   }
 
   return <StorageContext.Provider value={context}>{props.children}</StorageContext.Provider>

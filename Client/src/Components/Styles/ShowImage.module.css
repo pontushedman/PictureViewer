@@ -26,20 +26,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .image {
   align-self: center;
-  max-height: 30rem;
+  height: 40rem;
+  width: 60rem;
+  object-position: center;
+  object-fit: cover;
 
 }
 
 .commentContainer {
-  width: 100%;
+  position: absolute;
+  width: 60rem;
   align-self: center;
-  background-color: black;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.319);
+  bottom: 0;
 }
 
 .comment {

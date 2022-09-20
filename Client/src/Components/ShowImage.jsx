@@ -29,7 +29,7 @@ function ShowImage(props) {
       <p className={styles.imageTitle}>{image.img.title}</p>
       <div className={styles.commentImageFW}>
         <div className={styles.commentImageContainer}>
-          <img className={styles.image} src={"http://localhost:3000/" + image.path + "/" + image.img.imgLoRes} />
+          <img className={styles.image} src={"http://localhost:3000/" + image.path + "/" + image.img.imgHiRes} />
           <div className={styles.commentContainer}>
             <p className={styles.comment}>{image.img.comment}</p>
           </div>

@@ -70,7 +70,7 @@ function ShowAlbum(props) {
           <div className={styles.imageContainer}>
             <div
               className={styles.image}
-              style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + chosenImage.image.imgLoRes.replace(/ /g, '%20') + ")" }}
+              style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + chosenImage.image.imgHiRes.replace(/ /g, '%20') + ")" }}
             >
               <div className={styles.imageCommentContainer}>
                 <p className={styles.imageComment}>{chosenImage.image.comment}</p>
