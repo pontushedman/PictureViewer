@@ -64,7 +64,7 @@
   height: 40rem;
   width: 60rem;
   object-position: center;
-  object-fit: cover;
+  object-fit: contain;
 
 }
 

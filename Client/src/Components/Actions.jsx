@@ -9,7 +9,24 @@ const [rating, setRating] = useState(props.image.rating)
 function SetRating() {
     const maxLength = 5;
     const stars = [];
-    
+    const updateRating = (imgObj) => {
+      //Fetch
+      fetch('http://localhost:3000/api/picture', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: imgObj.id, rating: imgObj.rating}),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.message);
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
+
     for (let index = 1; index <= maxLength; index++) {
       if (index <= rating)
         stars.push(
@@ -18,8 +35,8 @@ function SetRating() {
               {
                 let newImg = props.image
                 newImg.rating = e.target.dataset.rating
-                console.log(newImg)
                 setRating(e.target.dataset.rating)
+                updateRating(newImg);
               }
             )} 
             className={styles.star} 
@@ -38,6 +55,7 @@ function SetRating() {
                 newImg.rating = e.target.dataset.rating
                 console.log(newImg)
                 setRating(e.target.dataset.rating)
+                updateRating(newImg);
               }
             )} 
             className={styles.star} src="./src/assets/star.svg" 

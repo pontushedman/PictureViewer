@@ -1,10 +1,12 @@
 import { useContext } from "react"
 import StorageContext from "../Store/StorageContext"
+import JSONContext from "../Store/JSONContext"
 import style from "./Styles/FormAdd.module.css"
 
 //Component that shows the "Add Picture" area and handles all the adding
 function FormAdd(props) {
   const storageCtx = useContext(StorageContext)
+  const jsonCtx = useContext(JSONContext)
 
   return (
     <div className={style.largeAdd}>
@@ -50,7 +52,7 @@ function FormAdd(props) {
                     lowres_image: resizedImage, 
                     title: "", 
                     comment: "", 
-                    album: "",
+                    album: jsonCtx.AlbumsList[0].id,
                   }
                   //Store images and empty properties in Localstorage.
                   storageCtx.SetToLocalStorage(imageObject, "images")

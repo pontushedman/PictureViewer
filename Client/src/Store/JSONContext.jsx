@@ -15,6 +15,7 @@ export function JSONContextProvider(props) {
     const response = await fetch("http://localhost:3000/api/libraryjson")
     const albums = await response.json()
     setAlbumsList(albums.albums)
+
   }
 
   useEffect(() => {

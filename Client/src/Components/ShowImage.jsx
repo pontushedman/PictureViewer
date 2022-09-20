@@ -18,9 +18,25 @@ function getImageFromId(list, value) {
 function ShowImage(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
+  const updateField = (fields) => {
+    //Fetch
+    fetch('http://localhost:3000/api/picture', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fields),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }
 
   const image = getImageFromId(albums, props.id)
-  console.log(image)
 
   //src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes}
 
@@ -33,23 +49,33 @@ function ShowImage(props) {
         onChange={(e) => {
           let newImage = image.img
           newImage.title = e.target.value
-          console.log(newImage)
+        }}
+        onKeyPress={(e) => {
+          if(e.key === 'Enter')
+          {
+            updateField({id: image.img.id, title: e.target.value});
+            e.target.blur();
+          }
         }}
       />
       <div className={styles.commentImageFW}>
         <div className={styles.commentImageContainer}>
           <img className={styles.image} src={"http://localhost:3000/" + image.path + "/" + image.img.imgHiRes} />
           <div className={styles.commentContainer}>
-            <textarea 
+            <textarea defaultValue={image.img.comment}
               className={styles.comment}
               onChange={(e) => {
                 let newImage = image.img
                 newImage.comment = e.target.value
-                console.log(newImage)
               }}
-            >
-              {image.img.comment}
-            </textarea>
+              onKeyPress={(e) => {
+                if(e.key === 'Enter')
+                {
+                  updateField({id: image.img.id, comment: e.target.value});
+                  e.target.blur();
+                }
+              }}
+            />
           </div>
         </div>
       </div>

@@ -10,8 +10,14 @@ function CategoryTitle(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
+  function uniqueId() {
+    const dateString = Date.now().toString(36);
+    const randomness = Math.random().toString(36).substring(2);
+    return dateString + randomness;
+  };
+
   useEffect(() => {
-    console.log("CategoryTitle rendered")
+    //console.log("CategoryTitle rendered")
   })
 
   function getAlbumFromId(id) {
@@ -49,7 +55,7 @@ function CategoryTitle(props) {
 
   if (categoryCheck === false) {
     console.debug("Invalid category input")
-    return (<div />)
+    return (<div key={uniqueId()}/>)
   }
 
   const image = "./src/assets/" + props.image + ".png"
@@ -66,8 +72,8 @@ function CategoryTitle(props) {
       <div className={styles.CategoryTitle}>
         <img className={categoryImage} src={image} />
         <p className={styles.Title}>{props.title}</p>
-        <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.category} />
-        <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} />
+        <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.category} key={uniqueId()} />
+        <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} key={uniqueId()}/>
       </div>
     )
   }
@@ -118,12 +124,12 @@ function CategoryTitle(props) {
           albums.map(x =>
             x.pictures.map(y =>
               <div 
-                key={y.id} 
-                className={styles.Image}
+                key={uniqueId()} 
+                //className={styles.Image}
                 data-id={y.id}
                 onClick={(e => {openImage(e)})}
               >
-                <img key={y.id + 1}
+                <img key={uniqueId()}
                   className={styles.PictureImage}
                   data-id={y.id}
                   src={"http://localhost:3000/" + x.path + "/" + y.imgLoRes} />

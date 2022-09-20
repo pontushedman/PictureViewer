@@ -28,7 +28,6 @@ export function StorageContextProvider(props) {
   function setAlbum(album) {
       localStorage.setItem("album", JSON.stringify(album))
       setAlbumStorage(album)
-      console.log("apa")
   }
 
   function getAlbum() {
@@ -36,7 +35,7 @@ export function StorageContextProvider(props) {
     if (storageAlbum !== null) {
       return storageAlbum
     }
-    return {title: "", comment: "", image: ""}
+    return {album:"", title: "", comment: "", image: ""}
   }
 
   function updateAlbum(field, value) {

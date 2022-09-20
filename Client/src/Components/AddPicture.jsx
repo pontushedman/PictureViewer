@@ -65,13 +65,12 @@ function AddPicture() {
           <select 
             onChange={((e) => {storageCtx.UpdateLocalStorage(e.target.dataset.key, e.target.dataset.field, e.target.value)})}
             data-key={value.id}  
-            data-field="album" 
-            name={key + "_Album"} 
+            data-field="album"
+            name={key + "_Album"}
             className={style.choice}
-            value={value.album}
           >
             {JSONCtx.AlbumsList.map(album => {
-              return (<option>{album.title}</option>)
+              return (<option value={album.id}>{album.title}</option>)
             })}
           </select>
 
@@ -104,7 +103,22 @@ function AddPicture() {
             id="submit" 
             onClick={(e => 
               {
-                console.log(storageCtx.GetImagesFromStorage())
+                console.log(storageCtx.GetImagesFromStorage());
+                //Fetch
+                fetch('http://localhost:3000/api/picture', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(storageCtx.GetImagesFromStorage()),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log('Success:', data);
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
               })
             } 
             className={style.choosebtn}

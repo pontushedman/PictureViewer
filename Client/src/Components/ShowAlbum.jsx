@@ -8,7 +8,7 @@ function ShowAlbum(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
-  console.log("Showalbum rendered")
+  //console.log("Showalbum rendered")
 
   const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
 

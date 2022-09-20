@@ -120,8 +120,8 @@
 
 
 .PictureImage {
-  width: 5rem;
-  height: 3.5rem;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 0.8rem;
   transition: ease-in-out 0.05s;
   border: rgb(172, 172, 172) solid 1px;
@@ -130,11 +130,19 @@
   background-color: white;
 }
 
+.PictureImage:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: ease-in-out 0.05s;
+  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.5);
+  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
+}
+
 
 .Images {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   min-height: 10rem;
 }
 

@@ -19,6 +19,8 @@ app.get('/api/libraryjson', (req, res) => {
   res.sendFile(__dirname + libraryJsonPath);
 })
 
+// Album operations
+
 app.post('/api/album', (req, res) => {
   const form = new formidable.IncomingForm();
 
@@ -35,15 +37,13 @@ app.post('/api/album', (req, res) => {
       if(!extention)
         return res.status(415).send('File extension not supported');
 
-      const title = fields.title.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+      const title = sanitizeTitle(fields.title);
       const dir = `/app-data/library/pictures/${title}`;
       const albumHeaderDir = `/app-data/library/pictures/album-header/`;
 
       // recursively create multiple directories
-      fs.mkdirSync(dir, { recursive: true }, (err) => {
-        if (err) {
-          return res.status(500).send(`Couldn't create album`);
-        }
+      fs.mkdirSync(`${__dirname}/public/${dir}`, { recursive: true }, (err) => {
+        if (err) return res.status(500).send(`Couldn't create album`);
       });
 
       // Save image to new path
@@ -68,11 +68,8 @@ app.post('/api/album', (req, res) => {
         
         // Save Changes to library Json
         libraryJson.albums.push(albumObj);
-        console.log(albumObj);
-        console.log(libraryJson.albums);
         
-        
-        fs.writeFile(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+        fs.writeFileSync(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
           if (err)
             return res.status(501).send(`Couldn't create album`);
         });
@@ -81,111 +78,115 @@ app.post('/api/album', (req, res) => {
   });
 });
 
-/* --------------------------------------------------------------- */ 
+// Picture operations
 
-app.post('/api/upload/picture', (req, res) => {
+app.post('/api/picture', (req, res) => {
   const form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files){
       
-      if (err) {
-        res.status(500).send('Error uploading pictures');
-        return;
-      }
-      
-      //mimetype
-      let fileExtentionHigh = checkMimeType(files.myFileHigh.mimetype);
-      let fileExtentionLow = checkMimeType(files.myFileLow.mimetype);
-      
+      if (err)
+        return res.status(500).json({message: "Error uploading media"});
 
-      // Check mimetype before continuing
-      if(!fileExtentionHigh || !fileExtentionLow){
-        res.status(415).send('File extension not supported');
-        return;
-      }
-      
       // Load picture-library.json
-      libraryJson = JSON.parse(fs.readFileSync(libraryJsonPath));
-      let targetAlbum = undefined;
+      libraryJson = JSON.parse(fs.readFileSync(`${__dirname}${libraryJsonPath}`));
 
-      for (const album of libraryJson.albums) {
-
-        if (album.id === fields.albumId)
-        // Get a reference to the album in focus, to then later alter it when inserting new images
-          targetAlbum = album;
-    
-      }
-
-      if (!targetAlbum)
+      for(image of fields.images)
       {
-        res.status(500).send('Album not found!');
-        return;
+        try
+        {
+          for (const album of libraryJson.albums) {
+
+            if (album.id === image.album)
+            {
+              // We now have a reference to the designated album
+              
+              // Image processing
+              const extention = checkMimeType(/(image\/[a-z]+)/.exec(image.hires_image)[0]);
+              const bufferHiRes = Buffer.from(image.hires_image.replace(/(^data:image\/[a-z]+;base64,)/, ''), "base64");
+              const bufferLoRes = Buffer.from(image.lowres_image.replace(/(^data:image\/[a-z]+;base64,)/, ''), "base64");
+              
+              // Check mimetype before continuing
+              if(!extention)
+                return res.status(415).send(JSON.stringify({message: "File extension not supported"}));
+              
+              const title = sanitizeTitle(image.title);
+              const hiResPath = `${album.path}/${title}-highres.${extention}`;
+              const loResPath = `${album.path}/${title}-lowres.${extention}`;
+              
+              // highres
+              fs.writeFileSync(`${__dirname}/public/${hiResPath}`, bufferHiRes, function(err){
+                if (err) return res.status(501).send(JSON.stringify({message: "Error uploading media"}));
+              });
+
+              // lowres
+              fs.writeFileSync(`${__dirname}/public/${loResPath}`, bufferLoRes, function(err){
+                if (err) return res.status(501).send(JSON.stringify({message: "Error uploading media"}));
+              });
+              // push new picture object to target album
+              album.pictures.push({
+                id: uniqueId(),
+                title: pimpMyTitle(title),
+                comment: image.comment,
+                imgLoRes: `${title}-lowres.${extention}`,
+                imgHiRes: `${title}-highres.${extention}`,
+                rating: 0
+              });
+            }
+          }
+        }
+        catch(ex)
+        {
+          return res.status(500).send(JSON.stringify({message: "Error uploading media"}));
+        }
       }
 
-
-      const title = fields.pictureTitle.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
-      const albumDir = targetAlbum.path;    
-
-      // Process uploaded image
-      let oldPathHigh = files.myFileHigh.filepath;
-      let newPathHigh = albumDir + `${title}-highres.${fileExtentionHigh}`;
-
-      let oldPathLow = files.myFileLow.filepath;
-      let newPathLow = albumDir + `${title}-lowres.${fileExtentionLow}`;
-
-      // Todo : check file size (for limiting)
-
-      const dataHigh = fs.readFileSync(oldPathHigh);
-      const dataLow = fs.readFileSync(oldPathLow);
-      
-      // highres
-      fs.writeFileSync(newPathHigh, dataHigh, function(err){
-        res.status(501).send('Couldnt create album');
-        return;
+      fs.writeFileSync(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+        if (err)
+          return res.status(501).send(JSON.stringify({message: "Error updating album"}));
       });
 
-      // lowres
-      fs.writeFileSync(newPathLow, dataLow, function(err){
-        res.status(501).send('Couldnt create album');
-        return;
-      });
-
-      pictureObj = {
-        id: uniqueId(),
-        title: title,
-        comment: fields.comment,
-        imgLoRes: newPathLow,
-        imgHiRes: newPathHigh,
-        rating: 0
-      };
-      
-      // Save Changes to library Json
-      targetAlbum.pictures.push(pictureObj);
-      
-      
-      fs.writeFile(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
-        // Todo: remove album header picture and directory in case of an error
-        
-        res.sendStatus(501);
-        return;
-      });
-        
-
-    res.send(200); 
+    res.json({message: "Successfully uploaded media"}); 
   });
 });
 
-app.listen(port, () =>
-  console.log(`http://localhost:${port} is listening.`)
-);
+app.put('/api/picture', (req, res) => {
+  const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
 
-function loadPictureLibraryJSON(path){
-  return fs.readFileSync(path);
-}
+      if (err) return res.status(500).json({message: "Error updating media"});
+      if (fields.id === undefined) return res.status(500).json({message: "No media id"});
 
-function CreatePictureLibrary(path, name, desc, headerImage){
-  return fs.readFileSync(path);
-}
+      // Get a reference to the designated picture object
+      let target = undefined;
+      libraryJson = JSON.parse(fs.readFileSync(`${__dirname}${libraryJsonPath}`));
+
+      for(album of libraryJson.albums)
+        for(image of album.pictures)
+          if (image.id === fields.id) target = image;
+
+      //update title 
+      if (typeof fields.title === 'string' && fields.title)
+        target.title = pimpMyTitle(sanitizeTitle(fields.title));
+
+      //update comment 
+      if (typeof fields.comment === 'string' && fields.comment)
+        target.comment = fields.comment;
+
+      //update rating
+      if (typeof fields.rating === 'string' && fields.rating)
+        target.rating = fields.rating;
+
+        fs.writeFileSync(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+          if (err)
+            return res.status(501).send(JSON.stringify({message: "Error updating media"}));
+        });
+
+      res.status(200).send(JSON.stringify({message: 'Successfully updated media'}));
+    });
+});
+
+app.listen(port, () => console.log(`http://localhost:${port} is listening.`));
 
 function checkMimeType(mimeType)
 {
@@ -200,8 +201,16 @@ function checkMimeType(mimeType)
     return false;
 }
 
+function sanitizeTitle(input)
+{
+  if (typeof input !== 'string')
+        return 'undefined';
+  return input.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+}
+
 function pimpMyTitle(string) {
-  return (string.charAt(0).toUpperCase() + string.slice(1)).replace('-', ' ');
+  let tmp = string.replace(/-/g, ' ');
+  return tmp.charAt(0).toUpperCase() + tmp.slice(1);
 }
 
 function uniqueId() {

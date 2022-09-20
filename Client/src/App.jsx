@@ -19,7 +19,6 @@ import { StorageContextProvider } from "./Store/StorageContext";
 
 function App() {
   const [openModal, setOpenModal] = useState({ show: false, mode: null, id: null })
-  console.log("App rendered")
 
   return (
     <JSONContextProvider>
