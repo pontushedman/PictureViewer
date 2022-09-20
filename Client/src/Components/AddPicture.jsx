@@ -17,6 +17,10 @@ function AddPicture() {
   function ChosenPictures() {
     console.log("Localstorage length" + localStorage.length)
     let pictureContainer = []
+    
+    if (!localStorage.getItem("images"))
+      return <></>
+      
     let images = JSON.parse(localStorage.getItem("images"))
     if (localStorage.length === 0) {
       return <></>

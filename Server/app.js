@@ -4,92 +4,77 @@ const formidable = require('formidable');
 const cors = require('cors');
 const path = require('path');
 const { response } = require('express');
+const { Console } = require('console');
 
+const libraryJsonPath = `/public/app-data/library/picture-library.json`;
 const app = express();
 const port = 3000;
 
 app.use(express.static(__dirname + '/public'));
-// Paths
-const libraryJsonPath = '/public/app-data/library/picture-library.json';
 
 app.use(cors());
-
-app.get('album/')
-
-app.get('/albums/' + /.+/ + '.jpg', (req, ses) => {
-    res.sendFile(path);
-})
 
 app.get('/api/libraryjson', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.sendFile(__dirname + libraryJsonPath);
 })
 
-app.post('/api/upload/album', (req, res) => {
+app.post('/api/album', (req, res) => {
   const form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files){
       
-      if (err) {
+      if (err)
         return;
-      }
       
-      //mimetype
-      let fileExtention = checkMimeType(files.myFile.mimetype);
+      // Image processing
+      const extention = checkMimeType(/(image\/[a-z]+)/.exec(fields.image)[0]);
+      const buffer = Buffer.from(fields.image.replace(/(^data:image\/[a-z]+;base64,)/, ''), "base64");
       
       // Check mimetype before continuing
-      if(!fileExtention){
-        res.status(415).send('File extension not supported');
-        return;
-      }
-      
-      const title = fields.albumTitle.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
-      const dir = `app-data/library/pictures/${title}`;
-      const albumHeaderDir = `app-data/library/pictures/album-header/`;
-      
+      if(!extention)
+        return res.status(415).send('File extension not supported');
+
+      const title = fields.title.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+      const dir = `/app-data/library/pictures/${title}`;
+      const albumHeaderDir = `/app-data/library/pictures/album-header/`;
+
       // recursively create multiple directories
       fs.mkdirSync(dir, { recursive: true }, (err) => {
         if (err) {
-          throw err;
+          return res.status(500).send(`Couldn't create album`);
         }
       });
 
-      // Process uploaded image
-      let oldPath = files.myFile.filepath;
-      let newPath = albumHeaderDir + `${title}-header.${fileExtention}`;
-
-      // Todo : check file size (for limiting)
-
-      const data = fs.readFileSync(oldPath);
-
-      // Todo: remove tmp file after finish
+      // Save image to new path
+      let path = albumHeaderDir + `${title}-header.${extention}`;
       
-      fs.writeFileSync(newPath, data, function(err){
-        res.status(501).send(`Couldn't create album`);
-        return;
+      fs.writeFileSync(`${__dirname}/public${path}`, buffer, function(err){
+        return res.status(501).send(`Couldn't create album`);
       })
         
         // Load and alter picture-library.json
-        libraryJson = JSON.parse(fs.readFileSync(libraryJsonPath));
+        libraryJson = JSON.parse(fs.readFileSync(__dirname + libraryJsonPath));
 
         albumObj = {
           id: uniqueId(),
-          title: capitalizeFirstLetter(title),
-          comment: fields.albumDescription,
+          title: pimpMyTitle(title),
+          comment: fields.comment,
           path: dir,
-          headerImage: newPath,
-          pictures: [],
+          headerImage: path,
+          rating: "0",
+          pictures: []
         };
         
         // Save Changes to library Json
         libraryJson.albums.push(albumObj);
+        console.log(albumObj);
         console.log(libraryJson.albums);
         
-        fs.writeFile(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
-          // Todo: remove album header picture and directory in case of an error
-          
-          res.sendStatus(501);
-          return;
+        
+        fs.writeFile(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+          if (err)
+            return res.status(501).send(`Couldn't create album`);
         });
         
     res.status(200).send('Successfully created an album');
@@ -215,8 +200,8 @@ function checkMimeType(mimeType)
     return false;
 }
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function pimpMyTitle(string) {
+  return (string.charAt(0).toUpperCase() + string.slice(1)).replace('-', ' ');
 }
 
 function uniqueId() {
