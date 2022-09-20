@@ -26,16 +26,34 @@ function ShowImage(props) {
 
   return (
     <div className={styles.showImageContainer}>
-      <p className={styles.imageTitle}>{image.img.title}</p>
+      <input 
+        type="text" 
+        placeholder={image.img.title} 
+        className={styles.imageTitle}
+        onChange={(e) => {
+          let newImage = image.img
+          newImage.title = e.target.value
+          console.log(newImage)
+        }}
+      />
       <div className={styles.commentImageFW}>
         <div className={styles.commentImageContainer}>
           <img className={styles.image} src={"http://localhost:3000/" + image.path + "/" + image.img.imgHiRes} />
           <div className={styles.commentContainer}>
-            <p className={styles.comment}>{image.img.comment}</p>
+            <textarea 
+              className={styles.comment}
+              onChange={(e) => {
+                let newImage = image.img
+                newImage.comment = e.target.value
+                console.log(newImage)
+              }}
+            >
+              {image.img.comment}
+            </textarea>
           </div>
         </div>
       </div>
-      <Actions rating ={image.img.rating}/>
+      <Actions image={image.img} />
     </div>
 
 

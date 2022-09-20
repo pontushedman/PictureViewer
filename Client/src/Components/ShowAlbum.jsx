@@ -95,7 +95,7 @@ function ShowAlbum(props) {
           })
         }
       </div>
-      <Actions/>
+      <Actions image={album} />
     </div>
   )
 }
