@@ -4,6 +4,7 @@ import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
 import { Link } from 'react-router-dom'
 import JSONContext from '../Store/JSONContext'
+import Favorites from './Favorites'
 
 
 function CategoryTitle(props) {
@@ -147,7 +148,7 @@ function CategoryTitle(props) {
     } else if (category === "images") {
       return <Images />
     } else if (category === "favorites") {
-      return <div />
+      return <Favorites rating = "5"/>
     }
   })
 
