@@ -14,7 +14,7 @@ function Favorites(props) {
   );
 
  
-  console.log(idAlbumS)
+  console.log()
 
  
 
