@@ -11,7 +11,7 @@ function CategoryTitle(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
-  function uniqueId() {
+  const uniqueId = () => {
     const dateString = Date.now().toString(36);
     const randomness = Math.random().toString(36).substring(2);
     return dateString + randomness;
