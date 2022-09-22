@@ -15,26 +15,80 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  position: relative;
+  height: 6rem;
 }
 
 .title {
   font-weight: bold;
   font-size: 2rem;
-  margin-left: 2rem;
+  border-radius: 1rem 1rem 0rem 0rem;
+  width: 100%;
+  padding-left: 2rem;
+  height: 6rem;
+  border: none;
+  outline: none;
+  transition: ease-in-out 0.2s;
+
+}
+
+.title::placeholder {
+  color: #2B2B2B;
+}
+
+.title:hover {
+  cursor: pointer;
+  outline: none;
+  transition: ease-in-out 0.2s;
+  background-color: rgb(155, 155, 155)
+}
+
+.title:focus {
+  outline: none;
+  color: rgba(238, 235, 235, 0.63);
+  background-color: rgb(29, 29, 29);
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
 }
 
 .comment {
-  margin-left: 1rem;
+  position: absolute;
   font-weight: bold;
   font-size: 0.8rem;
   color: rgb(122, 122, 122);
-  margin-top: 1rem;
+  bottom: 0;
+  left: 0;
+  margin-left: 1.8rem;
+  margin-bottom: 0.1rem;
+  width: 93%;
+  transition: ease-in-out 0.2s;
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  background-color: transparent;
+  border-radius: 0.3rem;
+}
+
+.comment:hover {
+  cursor: pointer;
+  background-color: #afafaf;
+}
+
+.comment:focus {
+  background-color: #2B2B2B;
+  color: white;
+}
+
+.comment::placeholder {
+  color: #2B2B2B;
 }
 
 .formAdd {
   margin-left: auto;
   margin-right: 1rem;
+  right: 0;
+
+  position: absolute;
 }
 
 .slideshow {
@@ -128,6 +182,21 @@
 
 }
 
+.albumImageContainer {
+  position: relative;
+}
+
+.check {
+  position: absolute;
+  width: 5rem;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background-image: url("./src/assets/plus.png");
+  filter: invert(54%) sepia(73%) saturate(4223%) hue-rotate(187deg) brightness(103%) contrast(91%);
+
+}
+
 .albumImage {
   width: 4rem;
   height: 4rem;
@@ -139,6 +208,7 @@
   border: rgb(29, 29, 29) solid 1px;
   transition: ease-in-out 0.15s;
 }
+
 
 .albumImage:hover {
   transform: scale(1.03);

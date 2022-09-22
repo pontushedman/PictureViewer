@@ -143,10 +143,11 @@ function SetRating() {
         <img src="src/assets/download.svg" />
         <p>Download</p>
       </div>
-      {/* <div className={styles.albumEdit + " " + styles.albumAction}>
-        <img src="src/assets/pencil.svg" />
-        <p>Edit</p>
-      </div> */}
+
+      <div>
+        <p>Start slideshow</p>
+      </div>
+
       <div className={styles.rating}>
         <SetRating/>
       </div>

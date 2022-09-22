@@ -3,42 +3,52 @@ import { useContext, useState} from "react"
 import JSONContext from "../Store/JSONContext"
 import FormAdd from "./FormAdd"
 import Actions from "./Actions"
+import { useEffect } from "react"
+import { useTransition } from "react"
 
 function ShowAlbum(props) {
+
+  console.log("showalbum rendered")
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
   //console.log("Showalbum rendered")
 
   const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
+  const [slideImages, setSlideImages] = useState([])
+  let [currentIndex, setCurrentIndex] = useState(0)
+  const [toggleSlideShow, setToggleSlideShow] = useState(false)
 
   const album = getAlbumFromId(albums, props.id)
 
   function switchImageInc() {
-    const plus = chosenImage.index + 1
-    if (plus > album.pictures.length - 1) {
-      setChosenImage({ index: chosenImage.index, image: album.pictures[chosenImage.index] })
-    } else {
-      setChosenImage({ index: plus, image: album.pictures[plus] })
-    }
+    let plus = currentIndex + 1
+    plus > slideImages.length-1 ? plus = 0 : null
+    setCurrentIndex(plus)
   }
 
   function switchImageDec() {
-    let minus = chosenImage.index - 1
-    minus < 0 ? minus = 0 :
-      setChosenImage({ index: minus, image: album.pictures[minus] })
+    let minus = currentIndex - 1
+    minus < 0 ? minus = slideImages.length-1 : null
+    setCurrentIndex(minus)
   }
 
-  function switchImageFromId(e) {
+  function addToSlide(e) {
     console.log(e.target)
     const imageId = e.target.dataset.id
     for (let index = 0; index < album.pictures.length; index++) {
       const img = album.pictures[index];
       if (img.id === imageId) {
-        setChosenImage({index: index, image:img});
+
+        console.log("indexinnan" + currentIndex)
+        console.log("index" + currentIndex)
+        setSlideImages([...slideImages,  img])
       } 
     }
+
+    console.log(slideImages)
   }
+
 
   function getAlbumFromId(list, value) {
     let albumx = {}
@@ -48,6 +58,19 @@ function ShowAlbum(props) {
       }
     })
     return albumx
+  }
+
+  let initialBackground = {}
+
+  console.log("LEEEENG" + slideImages.length)
+
+  if(slideImages.length != 0) {
+    console.log(slideImages[0])
+    console.log("currentindDDDDD" + currentIndex)
+
+    initialBackground = { backgroundImage: "url(http://localhost:3000/" + album.path + "/" + slideImages[currentIndex].imgHiRes.replace(/ /g, '%20') + ")" }
+  } else {
+    initialBackground = {}
   }
 
   return (
@@ -70,7 +93,7 @@ function ShowAlbum(props) {
           <div className={styles.imageContainer}>
             <div
               className={styles.image}
-              style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + chosenImage.image.imgHiRes.replace(/ /g, '%20') + ")" }}
+              style={initialBackground}
             >
               <div className={styles.imageCommentContainer}>
                 <p className={styles.imageComment}>{chosenImage.image.comment}</p>
@@ -85,17 +108,43 @@ function ShowAlbum(props) {
       <div className={styles.albumImages}>
         {
           album.pictures.map(image => {
+            console.log("kuuk")
+            const check = slideImages.map(slideImage => {
+              if (image.id === slideImage.id) {
+                return (<div 
+                  style={{ 
+                    backgroundImage: "url(./src/assets/checkbox.svg)",
+                    width: "1rem",
+                    height: "1rem",
+                    position: "absolute",
+                    zIndex: "20",
+                    top: "0",
+                    left: "0",
+                    marginLeft: "-0.1rem",
+                    marginTop: "-0.1rem",
+                    backgroundPosition: "center",
+                    WebkitBackgroundSize: "cover",
+                    filter: "invert(54%) sepia(73%) saturate(4223%) hue-rotate(187deg) brightness(103%) contrast(91%)"
+                   }}/>)
+                  
+              } else {
+                return <div/>
+              }
+            })
             return (
-              <div className={styles.albumImage}
-                style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
-                data-id={image.id}
-                onClick={((e) => {switchImageFromId(e)})}
-              />
+              <div className={styles.albumImageContainer}>
+                {check}
+                <div className={styles.albumImage}
+                  style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
+                  data-id={image.id}
+                  onClick={((e) => {addToSlide(e)})}
+                />
+              </div>
             )
           })
         }
       </div>
-      <Actions image={album} />
+      <Actions image={album} mode="album" slideToggle={setToggleSlideShow}/>
     </div>
   )
 }
