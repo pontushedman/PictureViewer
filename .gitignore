@@ -15,7 +15,8 @@ public
 Client/dist
 Server/public
 Server/public/*
-
+picture-library.json
+picture-library
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
