@@ -105,3 +105,25 @@
   cursor: pointer;
   transition: ease-in-out 0.15s;
 }
+
+@media (orientation: portrait) {
+  .image{ 
+    width: 30rem;  
+  }
+
+  .showImageContainer {
+    width: 40rem;
+    
+  }
+  .commentContainer {
+    width: 40rem;
+    
+  }
+  .comment{
+    width: 38rem;
+  }
+  
+  .imageTitle{
+    width: 30rem;
+  }
+}

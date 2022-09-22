@@ -49,3 +49,7 @@
   transition: ease-in-out 0.04s;
   cursor: pointer;
 }
+
+@media (orientation: portrait) {
+  
+}
