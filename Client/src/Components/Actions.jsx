@@ -108,6 +108,7 @@ const [rating, setRating] = useState(props.obj.rating)
   return (
 
     <div className={styles.actions}>
+      <div className={styles.left}>
       <div 
         className={styles.albumDelete + " " + styles.albumAction }
         onClick={(e => 
@@ -168,7 +169,7 @@ const [rating, setRating] = useState(props.obj.rating)
           <p>Download</p>
         </div>
       </div>
-
+      
       {ss()}
 
       <div className={styles.rating}>
