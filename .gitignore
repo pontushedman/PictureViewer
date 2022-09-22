@@ -14,6 +14,7 @@ dist-ssr
 public
 Client/dist
 Server/public
+Server/public/*
 
 # Editor directories and files
 .vscode/*

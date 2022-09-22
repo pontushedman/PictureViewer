@@ -1,5 +1,5 @@
 * {
-  font-family: 'Inter', 'Arimo', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", 'Inter', 'Arimo', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   margin: 0;
   padding: 0;
 }
@@ -9,13 +9,14 @@ Not supports in Firefox and IE */
 
 /* total width */
 body::-webkit-scrollbar {
-  background-color: #fff;
+  background-color: transparent;
   width: 16px;
+  position: absolute;
 }
 
 /* background of the scrollbar except button or resizer */
 body::-webkit-scrollbar-track {
-  background-color: #fff;
+  background-color: transparent;
 }
 
 /* scrollbar itself */

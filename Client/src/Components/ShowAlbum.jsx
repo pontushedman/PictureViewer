@@ -53,8 +53,8 @@ function ShowAlbum(props) {
   return (
     <div className={styles.showAlbumContainer}>
       <div className={styles.top}>
-        <p className={styles.title}>{album.title}</p>
-        <p className={styles.comment}>{album.comment}</p>
+        <input placeholder={album.title} className={styles.title}/>
+        <input placeholder={album.comment} className={styles.comment}/>
         <div className={styles.formAdd}>
            <FormAdd/>
         </div>
