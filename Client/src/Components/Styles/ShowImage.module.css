@@ -134,12 +134,13 @@
 /*For phone*/
 @media (max-width: 390px){
   .image{ 
-    width: 15rem;
-    height: 20rem;
+    width: 20rem;
+    height: 40rem;
   }
 
   .showImageContainer {
-    width: 20rem;
+    width: 85.5vw;
+    height: 85vh;
     
   }
   .commentContainer {
@@ -151,7 +152,11 @@
   }
   
   .imageTitle{
-    width: 10rem;
+    width: 18rem;
     font-size:small;
+    padding: 1rem;
+  }
+  .commentImageContainer{
+    height: 70vh;
   }
 }

@@ -74,7 +74,9 @@ function CategoryTitle(props) {
         <img className={categoryImage} src={image} />
         <p className={styles.Title}>{props.title}</p>
         <AddCategory showModal={props.showModal} noAdd={props.noAdd} category={props.category} key={uniqueId()} />
-        <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} key={uniqueId()}/>
+        <div className={styles.hide}>
+          <ContentAmount suffix={category} count={ContentCount()} className={styles.Count} key={uniqueId()}/>
+        </div>
       </div>
     )
   }
