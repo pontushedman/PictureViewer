@@ -4,14 +4,14 @@ import styles from "./Styles/Actions.module.css";
 
 
 function Actions(props) {
-const [rating, setRating] = useState(props.image.rating)
+const [rating, setRating] = useState(props.obj.rating)
 
 const checkMimeType = (mimeType) => 
 {
     if (typeof mimeType !== 'string')
         return false;
 
-    let pattern = /image\/(png|jpeg|webp|gif)/;
+    let pattern = /(image|application)\/(png|jpeg|webp|gif|zip)/;
 
     if (mimeType.match(pattern)){
       return mimeType.split('/').pop();
@@ -28,22 +28,23 @@ const sanitizeTitle = (input) =>
 function SetRating() {
     const maxLength = 5;
     const stars = [];
-    const updateRating = (imgObj) => {
-      //Fetch
-      fetch('http://localhost:3000/api/picture', {
+    const updateRating = (actionObj) => {
+      //Fetch - We use the appropriate link to the request depending on mode (image / album)
+      fetch(
+          props.mode === 'image' ? 'http://localhost:3000/api/picture' : 
+          props.mode === 'album' ? 'http://localhost:3000/api/album' : '', 
+          {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({id: imgObj.id, rating: imgObj.rating}),
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify({id: actionObj.id, rating: actionObj.rating}),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.message);
-        })
-        .catch((error) => {
-          console.error(error.message);
-        });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
     }
 
     for (let index = 1; index <= maxLength; index++) {
@@ -52,16 +53,16 @@ function SetRating() {
           <img 
             onClick={(e => 
               {
-                let newImg = props.image
-                newImg.rating = e.target.dataset.rating
+                let targetObj = props.obj
+                targetObj.rating = e.target.dataset.rating
                 setRating(e.target.dataset.rating)
-                updateRating(newImg);
+                updateRating(targetObj);
               }
             )} 
             className={styles.star} 
             src="./src/assets/star_filled.svg" 
             data-rating={index}
-            data-id={props.image.id}
+            data-id={props.obj.id}
           />
       )
       
@@ -70,15 +71,15 @@ function SetRating() {
           <img 
             onClick={(e => 
               {
-                let newImg = props.image
-                newImg.rating = e.target.dataset.rating
+                let targetObj = props.obj
+                targetObj.rating = e.target.dataset.rating
                 setRating(e.target.dataset.rating)
-                updateRating(newImg);
+                updateRating(targetObj);
               }
             )} 
             className={styles.star} src="./src/assets/star.svg" 
             data-rating={index} 
-            data-id={props.image.id}
+            data-id={props.obj.id}
           />
         )
       
@@ -92,22 +93,23 @@ function SetRating() {
         className={styles.albumDelete + " " + styles.albumAction }
         onClick={(e => 
               {
-                let target = props.image
-                //Fetch
-                fetch('http://localhost:3000/api/picture', {
+                let target = props.obj
+                //Fetch Todo: save all urls as constans accessed globally to not hardcode stuff in
+                fetch(
+                  props.mode === 'image' ? 'http://localhost:3000/api/picture' : 
+                  props.mode === 'album' ? 'http://localhost:3000/api/album' : '', 
+                {
                   method: 'DELETE',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
+                  headers: { 'Content-Type': 'application/json',},
                   body: JSON.stringify({id: target.id}),
                 })
-                  .then((response) => response.json())
-                  .then((data) => {
-                    console.log(data.message);
-                  })
-                  .catch((error) => {
-                    console.error(error.message);
-                  });
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data.message);
+                })
+                .catch((error) => {
+                  console.error(error.message);
+                });
               }
             )}>
 
@@ -117,26 +119,29 @@ function SetRating() {
 
       <div
         className={styles.albumDownload + " " + styles.albumAction}
-        onClick={(e => 
+        onClick={(async e => 
           {
-            let target = props.image
+            const checkJson = (input) => {};
+            let target = props.obj
             //Fetch
-            fetch(`http://localhost:3000/api/picture/${target.id}`, {
-              method: 'GET',
-            })
-            .then((response) => response.blob())
-            .then((data) => {
-              // Download the file
-              const title = sanitizeTitle(target.title);
-              const extention = checkMimeType(data.type);
-              let a = document.createElement("a");
-              a.href = window.URL.createObjectURL(data);
-              a.download = `${title}.${extention}`;
-              a.click();
-            })
-            .catch((error) => {
-              console.error(error.message);
-            });
+            const response = await fetch(
+              props.mode === 'image' ? `http://localhost:3000/api/picture/${target.id}` : 
+              props.mode === 'album' ? `http://localhost:3000/api/album/${target.id}` : '',  {method: 'GET',});
+            
+            // response can either be of type json or blob
+            if (response.headers.get('content-type').includes('application/json')) response.json().then((data) => { console.log(data.message)  });
+
+            else
+              response.blob().then((data) => {
+                // Download the image / zip
+                const title = sanitizeTitle(target.title);
+                const extention = checkMimeType(data.type);
+                let a = document.createElement("a");
+                a.href = window.URL.createObjectURL(data);
+                a.download = `${title}.${extention}`;
+                a.click();
+              });
+              
           }
         )}>
 

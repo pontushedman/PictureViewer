@@ -12,6 +12,24 @@ function ShowAlbum(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
+  const updateField = (fields) => {
+    //Fetch
+    fetch('http://localhost:3000/api/album', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fields),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }
+
   //console.log("Showalbum rendered")
 
   const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
@@ -76,8 +94,28 @@ function ShowAlbum(props) {
   return (
     <div className={styles.showAlbumContainer}>
       <div className={styles.top}>
-        <input placeholder={album.title} className={styles.title}/>
-        <input placeholder={album.comment} className={styles.comment}/>
+        <input 
+          placeholder={album.title}
+          className={styles.title}
+          onKeyPress={(e) => {
+            if(e.key === 'Enter')
+            {
+              updateField({id: album.id, title: e.target.value});
+              e.target.blur();
+            }
+          }}
+        />
+        <input 
+          placeholder={album.comment}
+          className={styles.comment}
+          onKeyPress={(e) => {
+            if(e.key === 'Enter')
+            {
+              updateField({id: album.id, comment: e.target.value});
+              e.target.blur();
+            }
+          }}
+        />
         <div className={styles.formAdd}>
            <FormAdd/>
         </div>
@@ -144,7 +182,7 @@ function ShowAlbum(props) {
           })
         }
       </div>
-      <Actions image={album} mode="album" slideToggle={setToggleSlideShow}/>
+      <Actions obj={album} mode="album" slideToggle={setToggleSlideShow}/>
     </div>
   )
 }
