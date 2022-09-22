@@ -50,6 +50,9 @@
   cursor: pointer;
 }
 
-@media (orientation: portrait) {
-  
+@media (max-width: 390px) {
+  .modalContainer{
+    width: 20rem;
+    min-width: 20rem;
+  }
 }
