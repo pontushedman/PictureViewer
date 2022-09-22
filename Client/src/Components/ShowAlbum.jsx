@@ -1,10 +1,8 @@
 import styles from "./Styles/ShowAlbum.module.css"
-import { useContext, useState} from "react"
+import { useContext, useState, useEffect} from "react"
 import JSONContext from "../Store/JSONContext"
 import FormAdd from "./FormAdd"
 import Actions from "./Actions"
-import { useEffect } from "react"
-import { useTransition } from "react"
 
 function ShowAlbum(props) {
 
@@ -21,6 +19,22 @@ function ShowAlbum(props) {
 
   const album = getAlbumFromId(albums, props.id)
 
+  const delay = 2500;
+
+  let togg
+
+  if (toggleSlideShow) {
+    togg = setTimeout(() => {
+      switchImageInc() 
+    }, delay)
+  } else {
+    clearInterval(togg)
+  }
+
+  function startSlide () {
+    //inter(switchImageInc(), 5000);
+  }
+
   function switchImageInc() {
     let plus = currentIndex + 1
     plus > slideImages.length-1 ? plus = 0 : null
@@ -34,19 +48,13 @@ function ShowAlbum(props) {
   }
 
   function addToSlide(e) {
-    console.log(e.target)
     const imageId = e.target.dataset.id
     for (let index = 0; index < album.pictures.length; index++) {
       const img = album.pictures[index];
       if (img.id === imageId) {
-
-        console.log("indexinnan" + currentIndex)
-        console.log("index" + currentIndex)
         setSlideImages([...slideImages,  img])
       } 
     }
-
-    console.log(slideImages)
   }
 
 
@@ -61,16 +69,13 @@ function ShowAlbum(props) {
   }
 
   let initialBackground = {}
-
-  console.log("LEEEENG" + slideImages.length)
+  let initialTitle = ""
+  let initialComment = ""
 
   if(slideImages.length != 0) {
-    console.log(slideImages[0])
-    console.log("currentindDDDDD" + currentIndex)
-
+    initialTitle = slideImages[currentIndex].title
+    initialComment = slideImages[currentIndex].comment
     initialBackground = { backgroundImage: "url(http://localhost:3000/" + album.path + "/" + slideImages[currentIndex].imgHiRes.replace(/ /g, '%20') + ")" }
-  } else {
-    initialBackground = {}
   }
 
   return (
@@ -83,7 +88,7 @@ function ShowAlbum(props) {
         </div>
       </div>
       <div className={styles.imageTitle}>
-        <p>{chosenImage.image.title}</p>
+        <p>{initialTitle}</p>
       </div>
       <div className={styles.slideshow}>
         <div className={styles.left}>
@@ -96,7 +101,7 @@ function ShowAlbum(props) {
               style={initialBackground}
             >
               <div className={styles.imageCommentContainer}>
-                <p className={styles.imageComment}>{chosenImage.image.comment}</p>
+                <p className={styles.imageComment}>{initialComment}</p>
               </div>
             </div>
           </div>
@@ -144,7 +149,7 @@ function ShowAlbum(props) {
           })
         }
       </div>
-      <Actions image={album} mode="album" slideToggle={setToggleSlideShow}/>
+      <Actions image={album} mode="album" showSlide={true} slideStatus={toggleSlideShow} toggleSlideShow={setToggleSlideShow}/>
     </div>
   )
 }
