@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./Styles/Actions.module.css";
 
@@ -6,26 +7,24 @@ import styles from "./Styles/Actions.module.css";
 function Actions(props) {
 const [rating, setRating] = useState(props.obj.rating)
 
-const checkMimeType = (mimeType) => 
-{
+  const checkMimeType = (mimeType) => {
     if (typeof mimeType !== 'string')
-        return false;
+      return false;
 
     let pattern = /(image|application)\/(png|jpeg|webp|gif|zip)/;
 
-    if (mimeType.match(pattern)){
+    if (mimeType.match(pattern)) {
       return mimeType.split('/').pop();
-    } 
+    }
     return false;
-}
-const sanitizeTitle = (input) =>
-{
-  if (typeof input !== 'string')
-        return 'undefined';
-  return input.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
-}
-  
-function SetRating() {
+  }
+  const sanitizeTitle = (input) => {
+    if (typeof input !== 'string')
+      return 'undefined';
+    return input.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+  }
+
+  function SetRating() {
     const maxLength = 5;
     const stars = [];
     const updateRating = (actionObj) => {
@@ -64,9 +63,9 @@ function SetRating() {
             data-rating={index}
             data-id={props.obj.id}
           />
-      )
-      
-      if (index > rating) 
+        )
+
+      if (index > rating)
         stars.push(
           <img 
             onClick={(e => 
@@ -82,12 +81,32 @@ function SetRating() {
             data-id={props.obj.id}
           />
         )
-      
+
     }
     return stars;
   }
+  
+
+  const ss = (() => {
+    return props.showSlide ? 
+      <div 
+        className={styles.showSlide}
+        onClick={() => {
+            if (!props.slideStatus) {
+              props.toggleSlideShow(true)
+            } else {
+              props.toggleSlideShow(false)
+            }
+        }}
+      >
+        {props.slideStatus ?  <p>Stop slide</p> : <p>Start slide</p>}
+      </div> 
+      : 
+      <div />
+  })
 
   return (
+
     <div className={styles.actions}>
       <div 
         className={styles.albumDelete + " " + styles.albumAction }
@@ -113,9 +132,9 @@ function SetRating() {
               }
             )}>
 
-        <img src="src/assets/trash.svg" />
-        <p>Delete</p>
-      </div>
+          <img src="src/assets/trash.svg" />
+          <p>Delete</p>
+        </div>
 
       <div
         className={styles.albumDownload + " " + styles.albumAction}
@@ -143,18 +162,19 @@ function SetRating() {
               });
               
           }
-        )}>
+          )}>
 
-        <img src="src/assets/download.svg" />
-        <p>Download</p>
+          <img src="src/assets/download.svg" />
+          <p>Download</p>
+        </div>
       </div>
 
-      <div>
-        <p>Start slideshow</p>
-      </div>
+      {ss()}
 
       <div className={styles.rating}>
-        <SetRating/>
+        <div className={styles.ratingInner}>
+          <SetRating />
+        </div>
       </div>
     </div>
   );

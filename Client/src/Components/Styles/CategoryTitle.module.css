@@ -174,6 +174,9 @@
 .Image+.Image {
   margin-left: 1rem;
 }
+.hide{
+  margin-left: auto;
+}
 
 @media (orientation: portrait) {
   .Albums {
@@ -192,6 +195,22 @@
     align-items: center;
     overflow: scroll;
     
+  }
+
+}
+
+@media (max-width: 390px){
+  .hide{
+    display: none;
+    
+  }
+
+  .ViewAll{
+    margin-bottom: 2rem;
+  }
+
+  .Title{
+    padding-right: 3rem;
   }
 
 }
