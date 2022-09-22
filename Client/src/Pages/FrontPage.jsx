@@ -1,8 +1,9 @@
 import CategoryTitle from "../Components/CategoryTitle";
+import styles from './Styles/FrontPage.module.css'
 
 function FrontPage(props) {
   return (
-    <div className="mainContainer">
+    <div className={styles.mainContainer}>
       <CategoryTitle
         noAdd={true}
         small={false}
