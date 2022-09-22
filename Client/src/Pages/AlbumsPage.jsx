@@ -14,6 +14,7 @@ function AlbumsPage(props) {
   console.log("Albumspage rendered")
   return (
     (
+      <div className={styles.albumContainer}>
       <div className={styles.AlbumsPage}>
         <div className={styles.top}>
           <img className={styles.titleImage} src="./src/assets/albums.png" />
@@ -39,6 +40,7 @@ function AlbumsPage(props) {
             <p key={x.id + 4} className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
           </div>)}
         </div>
+      </div>
       </div>
     )
   )

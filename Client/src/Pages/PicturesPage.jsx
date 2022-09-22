@@ -25,6 +25,7 @@ function PicturesPage(props) {
   }
 
   return (
+    <div className={styles.picturePageContainer}>
     <div className={styles.PicturesPage}>
       <div className={styles.top}>
         <div className={styles.left}>
@@ -54,6 +55,7 @@ function PicturesPage(props) {
           ))
         )}
       </div>
+    </div>
     </div>
   );
 }

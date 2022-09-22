@@ -1,3 +1,7 @@
+.picturePageContainer{
+  height: 80vh;
+}
+
 .top {
   display: flex;
   flex-direction: row;
