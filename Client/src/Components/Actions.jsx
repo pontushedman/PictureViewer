@@ -24,10 +24,11 @@ const [rating, setRating] = useState(props.obj.rating)
     return input.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
   }
 
-  function SetRating() {
+  function SetRatingX() {
     const maxLength = 5;
     const stars = [];
     const updateRating = (actionObj) => {
+      console.log(actionObj.id + " - " + actionObj.rating)
       //Fetch - We use the appropriate link to the request depending on mode (image / album)
       fetch(
           props.mode === 'image' ? 'http://localhost:3000/api/picture' : 
@@ -173,7 +174,7 @@ const [rating, setRating] = useState(props.obj.rating)
 
         <div className={styles.rating}>
           <div className={styles.ratingInner}>
-            <SetRating />
+            <SetRatingX />
           </div>
         </div>
       </div>
