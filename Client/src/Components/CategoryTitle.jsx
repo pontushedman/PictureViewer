@@ -25,12 +25,19 @@ function CategoryTitle(props) {
     const imageId = e.target.dataset.id
     const obj = { show: true, mode: "image", id: imageId }
         props.showModal(obj)
+        window.scrollTo(0, 0)
+        document.body.style.overflowY = "hidden"
+        
+
+     
   }
 
   function openAlbum(e) {
     const albumId = e.target.dataset.id
     const obj = { show: true, mode: "album", id: albumId }
     props.showModal(obj)
+    window.scrollTo(0, 0)
+    document.body.style.overflowY = "hidden"
   }
 
   function openRatedAlbum(e) {
@@ -38,6 +45,8 @@ function CategoryTitle(props) {
     console.log('parse this shit - ' + rating);
     const obj = { show: true, mode: "ratedAlbum", id: parseInt(rating) };
     props.showModal(obj)
+    window.scrollTo(0, 0)
+    document.body.style.overflowY = "hidden"
   }
 
   const albumCount = albums.length

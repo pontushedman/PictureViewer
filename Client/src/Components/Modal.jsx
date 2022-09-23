@@ -10,6 +10,7 @@ function Modal(props) {
   function closeModal(e) {
     const b = e.target.getAttribute("id")
     b === "back" ? props.showModal(false) : null
+    document.body.style.overflowY = "visible" 
   }
 
   return (
