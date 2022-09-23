@@ -11,7 +11,7 @@ function AlbumsPage(props) {
     const obj = { show: true, mode: "album", id: albumId }
     props.showModal(obj)
   }
-  console.log("Albumspage rendered")
+
   return (
     (
       <div className={styles.albumContainer}>

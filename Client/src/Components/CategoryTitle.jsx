@@ -162,24 +162,29 @@ function CategoryTitle(props) {
       return "Loading";
     }
 
-    const starPrinter = (rating) => {
+    function StarPrinter (props) {
       let  final = [];
-      for(let i = 0; i < rating; i++)
+      for(let i = 0; i < props.rating; i++)
       {
-        final.push(<img src="./src/assets/star_filled.svg"/>);
+        final.push(<img 
+          key={uniqueId()} 
+          src="./src/assets/star_filled.svg"
+          onClick={(e => {openRatedAlbum(e)})} 
+          data-rating={props.rating}
+          />);
       }
       return final;
     }
 
     return (
       <div className={styles.RatedAlbums}>
-        {ratedAlbums.map(x =>
+        {ratedAlbums.map((x, index) =>
           <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbum} data-rating={x.rating}>
               <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbumRating} data-rating={x.rating}>
-                <div onClick={(e => {openRatedAlbum(e)})} data-rating={x.rating}>
-                  {starPrinter(x.rating)}
+                <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} data-rating={x.rating}>
+                  <StarPrinter rating={x.rating}/>
                 </div>
-                <p  key={uniqueId()} onClick={(e => {openRatedAlbum(e)})} className={styles.AlbumImageCount} data-rating={x.rating}>{x.pictures.length} Pictures</p>
+                <p onClick={(e => {openRatedAlbum(e)})} className={styles.AlbumImageCount}key={uniqueId()} data-rating={x.rating}>{x.pictures.length} Pictures</p>
               </div>
           </div>)
           
