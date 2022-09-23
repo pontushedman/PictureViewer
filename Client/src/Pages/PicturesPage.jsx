@@ -1,5 +1,5 @@
 import CategoryTitle from "../Components/CategoryTitle";
-import styles from "./Styles/PicturesPage.module.css";
+import styles from './Styles/FrontPage.module.css';
 
 function PicturesPage(props) {
   return (
@@ -14,7 +14,7 @@ function PicturesPage(props) {
         expand={false}
       />
     </div>
-  )
+  );
 }
 
 export default PicturesPage;
