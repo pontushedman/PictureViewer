@@ -6,7 +6,8 @@ import styles from './Styles/Header.module.css'
 function Header() {
   return (
     <div className={styles.Header}>
-      <Link className={styles.Logo} to="/"><p>pix</p></Link>
+      <Link className={styles.Logo} to="/"><img className={styles.svgLogo} src="./src/assets/Pix_Logo_3.svg"/></Link>
+
     </div>
   )
 }
