@@ -27,6 +27,7 @@ function FrontPage(props) {
         title="Favorites"
         image="favorites"
         showModal={props.showModal}
+        expand={false}
       />
     </div>
   )

@@ -27,9 +27,6 @@ function CategoryTitle(props) {
         props.showModal(obj)
         window.scrollTo(0, 0)
         document.body.style.overflowY = "hidden"
-        
-
-     
   }
 
   function openAlbum(e) {
@@ -42,7 +39,6 @@ function CategoryTitle(props) {
 
   function openRatedAlbum(e) {
     const rating = e.target.dataset.rating
-    console.log('parse this shit - ' + rating);
     const obj = { show: true, mode: "ratedAlbum", id: parseInt(rating) };
     props.showModal(obj)
     window.scrollTo(0, 0)
@@ -90,11 +86,14 @@ function CategoryTitle(props) {
   }
 
   function Bottom() {
-    return (
-      <div className={styles.ViewAll}>
-        <Link className={styles.categoryLink} to={"./" + props.title}> View all {props.title}</Link>
-      </div>
-    )
+    if (props.expand === false)
+    return;
+    else
+      return (
+        <div className={styles.ViewAll}>
+          <Link className={styles.categoryLink} to={"./" + props.title}> View all {props.title}</Link>
+        </div>
+      )
   }
 
   function Albums() {
@@ -114,7 +113,7 @@ function CategoryTitle(props) {
             >
             
             <img 
-              key={x.id + 2}
+              key={uniqueId()}
               onClick={(e => {
                 openAlbum(e)
               })}
@@ -123,8 +122,8 @@ function CategoryTitle(props) {
               data-id={x.id}
               src={"http://localhost:3000/" + x.headerImage}
             />
-            <p key={x.id + 3} className={styles.AlbumTitle} onClick={(e => {openAlbum(e)})} data-id={x.id}>{x.title}</p>
-            <p key={x.id + 4} className={styles.AlbumImageCount}onClick={(e => {openAlbum(e)})}data-id={x.id}>{x.pictures.length} Pictures</p>
+            <p key={uniqueId()} className={styles.AlbumTitle} onClick={(e => {openAlbum(e)})} data-id={x.id}>{x.title}</p>
+            <p key={uniqueId()} className={styles.AlbumImageCount}onClick={(e => {openAlbum(e)})}data-id={x.id}>{x.pictures.length} Pictures</p>
           </div>)}
       </div>
     )
@@ -162,7 +161,7 @@ function CategoryTitle(props) {
       return "Loading";
     }
 
-    function StarPrinter (props) {
+    const StarPrinter = (props) => {
       let  final = [];
       for(let i = 0; i < props.rating; i++)
       {
@@ -177,16 +176,18 @@ function CategoryTitle(props) {
     }
 
     return (
-      <div className={styles.RatedAlbums}>
-        {ratedAlbums.map((x, index) =>
-          <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbum} data-rating={x.rating}>
+      <div className={styles.Albums}>
+        {ratedAlbums.map((x) =>
+          <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.Album} data-rating={x.rating}>
               <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbumRating} data-rating={x.rating}>
-                <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} data-rating={x.rating}>
+                <img key={uniqueId()} onClick={(e => {openRatedAlbum(e)})} className={styles.RatedHeaderImage} data-rating={x.rating} src={"http://localhost:3000/" + x.pictures[Math.floor(Math.random() * x.pictures.length)].imgLoRes}/>
+                <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} data-rating={x.rating} className={styles.AlbumTitle}>
                   <StarPrinter rating={x.rating}/>
                 </div>
                 <p onClick={(e => {openRatedAlbum(e)})} className={styles.AlbumImageCount}key={uniqueId()} data-rating={x.rating}>{x.pictures.length} Pictures</p>
               </div>
-          </div>)
+          </div>
+        )
           
           }
       </div>

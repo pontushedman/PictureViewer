@@ -8,14 +8,12 @@ function ShowRatedAlbum(props) {
 
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.RatedAlbumList;
+  const album = getAlbumFromRating(albums, props.rating);
 
-  const [slideImages, setSlideImages] = useState([])
+  const [slideImages, setSlideImages] = useState([...album.pictures])
   let [currentIndex, setCurrentIndex] = useState(0)
   const [toggleSlideShow, setToggleSlideShow] = useState(false)
 
-  const album = getAlbumFromRating(albums, props.rating)
-
-  console.log(albums);
 
   const delay = 2500;
   let togg
@@ -120,6 +118,7 @@ function ShowRatedAlbum(props) {
             const check = slideImages.map(slideImage => {
               if (image.id === slideImage.id) {
                 return (<div 
+                  key={uniqueId()}
                   style={{ 
                     backgroundImage: "url(./src/assets/checkbox.svg)",
                     width: "1rem",
@@ -155,6 +154,12 @@ function ShowRatedAlbum(props) {
       <Actions obj={album} mode="rated" showSlide={true} slideStatus={toggleSlideShow} toggleSlideShow={setToggleSlideShow}/>
     </div>
   )
+}
+
+function uniqueId() {
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substring(2);
+  return dateString + randomness;
 }
 
 export default ShowRatedAlbum

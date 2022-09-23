@@ -7,7 +7,8 @@ import Actions from "./Actions"
 function ShowAlbum(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
-
+  const album = getAlbumFromId(albums, props.id)
+  
   const updateField = (fields) => {
     //Fetch
     fetch('http://localhost:3000/api/album', {
@@ -29,11 +30,9 @@ function ShowAlbum(props) {
   //console.log("Showalbum rendered")
 
   //const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
-  const [slideImages, setSlideImages] = useState([])
+  const [slideImages, setSlideImages] = useState([...album.pictures])
   let [currentIndex, setCurrentIndex] = useState(0)
   const [toggleSlideShow, setToggleSlideShow] = useState(false)
-
-  const album = getAlbumFromId(albums, props.id)
 
   const delay = 2500;
 
