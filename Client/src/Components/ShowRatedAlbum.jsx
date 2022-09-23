@@ -4,41 +4,20 @@ import JSONContext from "../Store/JSONContext"
 import FormAdd from "./FormAdd"
 import Actions from "./Actions"
 
-function ShowAlbum(props) {
+function ShowRatedAlbum(props) {
 
-  console.log("showalbum rendered")
   const JSONCtx = useContext(JSONContext)
-  const albums = JSONCtx.AlbumsList
+  const albums = JSONCtx.RatedAlbumList;
 
-  const updateField = (fields) => {
-    //Fetch
-    fetch('http://localhost:3000/api/album', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(fields),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.message);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  }
-
-  //console.log("Showalbum rendered")
-
-  //const [chosenImage, setChosenImage] = useState({ index: 0, image: getAlbumFromId(albums, props.id).pictures[0] })
   const [slideImages, setSlideImages] = useState([])
   let [currentIndex, setCurrentIndex] = useState(0)
   const [toggleSlideShow, setToggleSlideShow] = useState(false)
 
-  const album = getAlbumFromId(albums, props.id)
+  const album = getAlbumFromRating(albums, props.rating)
+
+  console.log(albums);
 
   const delay = 2500;
-
   let togg
 
   if (toggleSlideShow) {
@@ -47,10 +26,6 @@ function ShowAlbum(props) {
     }, delay)
   } else {
     clearInterval(togg)
-  }
-
-  function startSlide () {
-    //inter(switchImageInc(), 5000);
   }
 
   function switchImageInc() {
@@ -87,14 +62,16 @@ function ShowAlbum(props) {
   }
 
 
-  function getAlbumFromId(list, value) {
+  function getAlbumFromRating(list, value) {
     let albumx = {}
-    list.map(album => {
-      if (album.id === value) {
-        albumx = album
-      }
-    })
-    return albumx
+    list.map((element) => {
+      //console.log(`${element.rating} === ${value}`);
+      if (element.rating === value)  albumx = element;
+     })
+
+     //console.log('after map');
+     //console.log(albumx);
+    return albumx;
   }
 
   let initialBackground = {}
@@ -104,37 +81,15 @@ function ShowAlbum(props) {
   if(slideImages.length != 0) {
     initialTitle = slideImages[currentIndex].title
     initialComment = slideImages[currentIndex].comment
-    initialBackground = { backgroundImage: "url(http://localhost:3000/" + album.path + "/" + slideImages[currentIndex].imgHiRes.replace(/ /g, '%20') + ")" }
+    initialBackground = { backgroundImage: "url(http://localhost:3000/" + slideImages[currentIndex].imgHiRes.replace(/ /g, '%20') + ")" }
   }
 
   return (
     <div className={styles.showAlbumContainer}>
       <div className={styles.top}>
+        <input  placeholder={album.title} className={styles.title} />
         <input 
-          placeholder={album.title}
-          className={styles.title}
-          onKeyPress={(e) => {
-            if(e.key === 'Enter')
-            {
-              updateField({id: album.id, title: e.target.value});
-              e.target.blur();
-            }
-          }}
-        />
-        <input 
-          placeholder={album.comment}
-          className={styles.comment}
-          onKeyPress={(e) => {
-            if(e.key === 'Enter')
-            {
-              updateField({id: album.id, comment: e.target.value});
-              e.target.blur();
-            }
-          }}
-        />
-        <div className={styles.formAdd}>
-           <FormAdd/>
-        </div>
+          placeholder={'Rated album'} className={styles.comment} />
       </div>
       <div className={styles.imageTitle}>
         <p>{initialTitle}</p>
@@ -188,7 +143,7 @@ function ShowAlbum(props) {
               <div className={styles.albumImageContainer}>
                 {check}
                 <div className={styles.albumImage}
-                  style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
+                  style={{ backgroundImage: "url(http://localhost:3000/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
                   data-id={image.id}
                   onClick={((e) => {addToSlide(e)})}
                 />
@@ -197,9 +152,9 @@ function ShowAlbum(props) {
           })
         }
       </div>
-      <Actions obj={album} mode="album" showSlide={true} slideStatus={toggleSlideShow} toggleSlideShow={setToggleSlideShow}/>
+      <Actions obj={album} mode="rated" showSlide={true} slideStatus={toggleSlideShow} toggleSlideShow={setToggleSlideShow}/>
     </div>
   )
 }
 
-export default ShowAlbum
+export default ShowRatedAlbum

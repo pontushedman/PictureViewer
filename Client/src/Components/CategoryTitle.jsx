@@ -4,12 +4,12 @@ import styles from './Styles/CategoryTitle.module.css'
 import ContentAmount from './ContentAmount'
 import { Link } from 'react-router-dom'
 import JSONContext from '../Store/JSONContext'
-import Favorites from './Favorites'
 
 
 function CategoryTitle(props) {
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
+  const ratedAlbums = JSONCtx.RatedAlbumList;
 
   const uniqueId = () => {
     const dateString = Date.now().toString(36);
@@ -21,14 +21,6 @@ function CategoryTitle(props) {
     //console.log("CategoryTitle rendered")
   })
 
-  function getAlbumFromId(id) {
-    let album
-    albums.map(a => {
-      a.id === id ? album = a : null
-    })
-    return album
-  }
-
   function openImage(e) {
     const imageId = e.target.dataset.id
     const obj = { show: true, mode: "image", id: imageId }
@@ -38,6 +30,13 @@ function CategoryTitle(props) {
   function openAlbum(e) {
     const albumId = e.target.dataset.id
     const obj = { show: true, mode: "album", id: albumId }
+    props.showModal(obj)
+  }
+
+  function openRatedAlbum(e) {
+    const rating = e.target.dataset.rating
+    console.log('parse this shit - ' + rating);
+    const obj = { show: true, mode: "ratedAlbum", id: parseInt(rating) };
     props.showModal(obj)
   }
 
@@ -144,13 +143,51 @@ function CategoryTitle(props) {
     )
   }
 
+  function RatedAlbums() {
+    if (albums === undefined) {
+      return "Loading";
+    }
+
+    const starPrinter = (rating) => {
+      let  final = [];
+      for(let i = 0; i < rating; i++)
+      {
+        final.push(<img src="./src/assets/star_filled.svg"/>);
+      }
+      return final;
+    }
+
+    return (
+      <div className={styles.RatedAlbums}>
+        {ratedAlbums.map(x =>
+          <div 
+            onClick={(e => {
+              openRatedAlbum(e)
+            })}
+            key={uniqueId()} 
+            className={styles.RatedAlbum}
+            data-rating={x.rating}
+            >
+              <div className={styles.RatedAlbumRating}>
+                <div>
+                  {starPrinter(x.rating)}
+                </div>
+                <p key={x.id + 4} className={styles.AlbumImageCount} data-rating={x.rating}>{x.pictures.length} Pictures</p>
+              </div>
+          </div>)
+          
+          }
+      </div>
+    )
+  }
+
   let cat = (() => {
     if (category === "albums") {
       return <Albums />
     } else if (category === "images") {
       return <Images />
     } else if (category === "favorites") {
-      return <Favorites rating = "5"/>
+      return <RatedAlbums />
     }
   })
 
@@ -161,6 +198,12 @@ function CategoryTitle(props) {
       <Bottom />
     </div>
   )
+}
+
+function uniqueId() {
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substring(2);
+  return dateString + randomness;
 }
 
 export default CategoryTitle

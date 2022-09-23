@@ -3,6 +3,7 @@ import AddPicture from "./AddPicture";
 import style from "./Styles/Modal.module.css";
 import ShowImage from "./ShowImage";
 import ShowAlbum from "./ShowAlbum";
+import ShowRatedAlbum from "./ShowRatedAlbum";
 import AddAlbum from "./AddAlbum";
 
 function Modal(props) {
@@ -22,6 +23,7 @@ function Modal(props) {
         {props.mode === "addalbum" ? <AddAlbum /> : null}
         {props.mode === "image" ? <ShowImage id={props.id} /> : null}
         {props.mode === "album" ? <ShowAlbum id={props.id} /> : null}
+        {props.mode === "ratedAlbum" ? <ShowRatedAlbum rating={props.id} /> : null}
 
         <div className={style.fotter}>
           <button onClick={() => props.showModal(false)}> Cancel </button>

@@ -104,79 +104,84 @@ const [rating, setRating] = useState(props.obj.rating)
       : 
       <div />
   })
-
-  return (
-
-    <div className={styles.actions}>
-      <div className={styles.left}>
-      <div 
-        className={styles.albumDelete + " " + styles.albumAction }
-        onClick={(e => 
-              {
-                let target = props.obj
-                //Fetch Todo: save all urls as constans accessed globally to not hardcode stuff in
-                fetch(
-                  props.mode === 'image' ? 'http://localhost:3000/api/picture' : 
-                  props.mode === 'album' ? 'http://localhost:3000/api/album' : '', 
+  if (props.mode !== "rated") // disable control for rated albums
+    return (
+      <div className={styles.actions}>
+        <div className={styles.left}>
+        <div 
+          className={styles.albumDelete + " " + styles.albumAction }
+          onClick={(e => 
                 {
-                  method: 'DELETE',
-                  headers: { 'Content-Type': 'application/json',},
-                  body: JSON.stringify({id: target.id}),
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log(data.message);
-                })
-                .catch((error) => {
-                  console.error(error.message);
+                  let target = props.obj
+                  //Fetch Todo: save all urls as constans accessed globally to not hardcode stuff in
+                  fetch(
+                    props.mode === 'image' ? 'http://localhost:3000/api/picture' : 
+                    props.mode === 'album' ? 'http://localhost:3000/api/album' : '', 
+                  {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json',},
+                    body: JSON.stringify({id: target.id}),
+                  })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log(data.message);
+                  })
+                  .catch((error) => {
+                    console.error(error.message);
+                  });
+                }
+              )}>
+
+            <img src="src/assets/trash.svg" />
+            <p>Delete</p>
+          </div>
+
+        <div
+          className={styles.albumDownload + " " + styles.albumAction}
+          onClick={(async e => 
+            {
+              const checkJson = (input) => {};
+              let target = props.obj
+              //Fetch
+              const response = await fetch(
+                props.mode === 'image' ? `http://localhost:3000/api/picture/${target.id}` : 
+                props.mode === 'album' ? `http://localhost:3000/api/album/${target.id}` : '',  {method: 'GET',});
+              
+              // response can either be of type json or blob
+              if (response.headers.get('content-type').includes('application/json')) response.json().then((data) => { console.log(data.message)  });
+
+              else
+                response.blob().then((data) => {
+                  // Download the image / zip
+                  const title = sanitizeTitle(target.title);
+                  const extention = checkMimeType(data.type);
+                  let a = document.createElement("a");
+                  a.href = window.URL.createObjectURL(data);
+                  a.download = `${title}.${extention}`;
+                  a.click();
                 });
-              }
+                
+            }
             )}>
 
-          <img src="src/assets/trash.svg" />
-          <p>Delete</p>
+            <img src="src/assets/download.svg" />
+            <p>Download</p>
+          </div>
         </div>
+        
+        {ss()}
 
-      <div
-        className={styles.albumDownload + " " + styles.albumAction}
-        onClick={(async e => 
-          {
-            const checkJson = (input) => {};
-            let target = props.obj
-            //Fetch
-            const response = await fetch(
-              props.mode === 'image' ? `http://localhost:3000/api/picture/${target.id}` : 
-              props.mode === 'album' ? `http://localhost:3000/api/album/${target.id}` : '',  {method: 'GET',});
-            
-            // response can either be of type json or blob
-            if (response.headers.get('content-type').includes('application/json')) response.json().then((data) => { console.log(data.message)  });
-
-            else
-              response.blob().then((data) => {
-                // Download the image / zip
-                const title = sanitizeTitle(target.title);
-                const extention = checkMimeType(data.type);
-                let a = document.createElement("a");
-                a.href = window.URL.createObjectURL(data);
-                a.download = `${title}.${extention}`;
-                a.click();
-              });
-              
-          }
-          )}>
-
-          <img src="src/assets/download.svg" />
-          <p>Download</p>
+        <div className={styles.rating}>
+          <div className={styles.ratingInner}>
+            <SetRating />
+          </div>
         </div>
       </div>
-      
-      {ss()}
-
-      <div className={styles.rating}>
-        <div className={styles.ratingInner}>
-          <SetRating />
-        </div>
-      </div>
+    );
+  else
+  return (
+    <div className={styles.actions}>
+        {ss()}
     </div>
   );
 }
