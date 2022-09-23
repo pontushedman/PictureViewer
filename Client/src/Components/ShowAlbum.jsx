@@ -129,9 +129,6 @@ function ShowAlbum(props) {
             }
           }}
         />
-        <div className={styles.formAdd}>
-           <FormAdd/>
-        </div>
       </div>
       <div className={styles.imageTitle}>
         <p>{initialTitle}</p>

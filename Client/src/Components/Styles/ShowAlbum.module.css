@@ -29,7 +29,6 @@
   border: none;
   outline: none;
   transition: ease-in-out 0.2s;
-
 }
 
 .title::placeholder {
@@ -59,7 +58,7 @@
   bottom: 0;
   left: 0;
   margin-left: 1.8rem;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
   width: 93%;
   transition: ease-in-out 0.2s;
   border: none;
@@ -184,6 +183,7 @@
 
 .albumImageContainer {
   position: relative;
+  margin-inline: 0.5rem
 }
 
 .check {
