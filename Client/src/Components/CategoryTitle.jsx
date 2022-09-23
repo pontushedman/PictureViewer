@@ -104,14 +104,19 @@ function CategoryTitle(props) {
             data-id={x.id}
             >
             
-            <img key={x.id + 2}
+            <img 
+              key={x.id + 2}
+              onClick={(e => {
+                openAlbum(e)
+              })}
+
               className={styles.AlbumHeaderImage}
               data-id={x.id}
               src={"http://localhost:3000/" + x.headerImage}
             />
-            <p key={x.id + 3} className={styles.AlbumTitle}>{x.title}</p>
-            <p key={x.id + 4} className={styles.AlbumImageCount}>{x.pictures.length} Pictures</p>
-          </div>)}
+            <p key={x.id + 3} className={styles.AlbumTitle} onClick={(e => {openAlbum(e)})} data-id={x.id}>{x.title}</p>
+            <p key={x.id + 4} className={styles.AlbumImageCount}onClick={(e => {openAlbum(e)})}data-id={x.id}>{x.pictures.length} Pictures</p>
+          </div>)}s
       </div>
     )
   }
@@ -160,19 +165,12 @@ function CategoryTitle(props) {
     return (
       <div className={styles.RatedAlbums}>
         {ratedAlbums.map(x =>
-          <div 
-            onClick={(e => {
-              openRatedAlbum(e)
-            })}
-            key={uniqueId()} 
-            className={styles.RatedAlbum}
-            data-rating={x.rating}
-            >
-              <div className={styles.RatedAlbumRating}>
-                <div>
+          <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbum} data-rating={x.rating}>
+              <div onClick={(e => {openRatedAlbum(e)})} key={uniqueId()} className={styles.RatedAlbumRating} data-rating={x.rating}>
+                <div onClick={(e => {openRatedAlbum(e)})} data-rating={x.rating}>
                   {starPrinter(x.rating)}
                 </div>
-                <p key={x.id + 4} className={styles.AlbumImageCount} data-rating={x.rating}>{x.pictures.length} Pictures</p>
+                <p  key={uniqueId()} onClick={(e => {openRatedAlbum(e)})} className={styles.AlbumImageCount} data-rating={x.rating}>{x.pictures.length} Pictures</p>
               </div>
           </div>)
           
