@@ -5,8 +5,6 @@ import FormAdd from "./FormAdd"
 import Actions from "./Actions"
 
 function ShowAlbum(props) {
-
-  console.log("showalbum rendered")
   const JSONCtx = useContext(JSONContext)
   const albums = JSONCtx.AlbumsList
 
@@ -165,6 +163,7 @@ function ShowAlbum(props) {
             const check = slideImages.map(slideImage => {
               if (image.id === slideImage.id) {
                 return (<div 
+                  key={uniqueId()}
                   style={{ 
                     backgroundImage: "url(./src/assets/checkbox.svg)",
                     width: "1rem",
@@ -181,13 +180,15 @@ function ShowAlbum(props) {
                    }}/>)
                   
               } else {
-                return <div/>
+                return <div key={uniqueId()}/>
               }
             })
             return (
-              <div className={styles.albumImageContainer}>
+              <div key={uniqueId()} className={styles.albumImageContainer}>
                 {check}
-                <div className={styles.albumImage}
+                <div 
+                  key={uniqueId()} 
+                  className={styles.albumImage}
                   style={{ backgroundImage: "url(http://localhost:3000/" + album.path + "/" + image.imgLoRes.replace(/ /g, '%20') + ")" }}
                   data-id={image.id}
                   onClick={((e) => {addToSlide(e)})}
@@ -201,5 +202,11 @@ function ShowAlbum(props) {
     </div>
   )
 }
+
+function uniqueId() {
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substring(2);
+  return dateString + randomness;
+};
 
 export default ShowAlbum

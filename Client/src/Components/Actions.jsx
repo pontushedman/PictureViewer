@@ -63,6 +63,7 @@ const [rating, setRating] = useState(props.obj.rating)
             src="./src/assets/star_filled.svg" 
             data-rating={index}
             data-id={props.obj.id}
+            key={uniqueId()}
           />
         )
 
@@ -80,6 +81,7 @@ const [rating, setRating] = useState(props.obj.rating)
             className={styles.star} src="./src/assets/star.svg" 
             data-rating={index} 
             data-id={props.obj.id}
+            key={uniqueId()}
           />
         )
 
@@ -186,5 +188,11 @@ const [rating, setRating] = useState(props.obj.rating)
     </div>
   );
 }
+
+function uniqueId() {
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substring(2);
+  return dateString + randomness;
+};
 
 export default Actions;
