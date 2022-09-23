@@ -184,6 +184,7 @@
 
 .albumImageContainer {
   position: relative;
+  margin-inline: 0.5rem
 }
 
 .check {
