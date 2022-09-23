@@ -23,25 +23,31 @@
 
 
 .Title {
-  margin-left: 0.5rem;
   font-size: 1.8rem;
 }
 
 .Albums {
+  width: 100%;
   margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .Album {
+  align-self: center;
   width: 12rem;
   height: 15rem;
   font-size: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   transition: ease-in-out 0.15s;
   text-decoration: none;
   background-color: rgb(250, 250, 250);
@@ -49,6 +55,7 @@
   border-radius: 1.3rem;
   -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
+
 }
 
 .Album:hover {
@@ -59,9 +66,6 @@
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
 }
 
-.Album+.Album {
-  margin-left: 1rem;
-}
 
 .AlbumHeaderImage {
   background-size: cover;
@@ -115,7 +119,7 @@
   border: rgb(172, 172, 172) solid 1px;
   object-fit: cover;
   object-position: center;
-  filter: blur(5px);
+  filter: blur(4px);
 }
 
 .RatedAlbumRating
@@ -199,6 +203,7 @@
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(7.3rem, 1fr));
+  grid-gap: 0.7rem;
   min-height: 10rem;
 }
 
@@ -234,14 +239,57 @@
 }
 
 @media (orientation: portrait) {
+
   .Albums {
-    
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*overflow: scroll;*/
-    max-height: 40vh;
-    
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+
+  .Album {
+    height: 10rem;
+    font-size: 0.5rem;
+    border-radius: 0.6rem;
+
+  }
+
+  .AlbumTitle {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  .AlbumHeaderImage {
+    width: 9rem;
+    height: 8rem;
+    padding: 0.2rem;
+    border-radius: 0.6rem;
+    border-color: aliceblue;
+  }
+
+  .RatedAlbum {
+    height: 10rem;
+    font-size: 0.5rem;
+    border-radius: 0.6rem;
+  }
+
+  .Album:hover {
+    cursor: pointer;
+    transform: scaleX(1.01);
+  }
+
+
+  .RatedHeaderImage {
+    width: 9rem;
+    height: 8rem;
+    padding: 0.2rem;
+    border-radius: 0.6rem;
+    border-color: aliceblue;
+  }
+  
+  
+  .AlbumImageCount {
+    display: none;
   }
 
   .Images {
@@ -249,21 +297,16 @@
     flex-direction: row;
     align-items: center;
     overflow: scroll;
-    
   }
 
 }
 
 @media (max-width: 390px){
+
   .Albums {
-    
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*overflow: scroll;*/
-    max-height: 40vh;
-    max-width: 100%;
-    
+    flex-direction: row;
+    overflow-x: scroll;
   }
 
   .hide{
