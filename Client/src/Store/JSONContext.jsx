@@ -5,7 +5,8 @@ const JSONContext = createContext({
   AlbumsList: null,
   totalImages: null,
   totalAlbums: null,
-  RatedAlbumList: null
+  RatedAlbumList: null,
+  ReloadContext: null,
 });
 
 export function JSONContextProvider(props) {
@@ -68,6 +69,7 @@ export function JSONContextProvider(props) {
     totalImages: albumsList.length,
     totalAlbums: albumsList.length,
     RatedAlbumList: ratedAlbumList,
+    ReloadContext: get,
   }
 
   return <JSONContext.Provider value={context}>

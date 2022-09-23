@@ -129,10 +129,7 @@
   align-items: center;
   justify-content: center;
   object-fit: contain;
-}
-
-.image:hover {
-  cursor: pointer;
+  transition: ease-in-out 0.3s;
 }
 
 .imageTitle {

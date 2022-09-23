@@ -5,7 +5,7 @@ import FormAdd from "./FormAdd";
 import StorageContext, { StorageContextProvider } from "../Store/StorageContext";
 
 //This component is being used to fill the modal when modalstate === addPicturess
-function AddPicture() {
+function AddPicture(props) {
   const JSONCtx = useContext(JSONContext);
   const storageCtx = useContext(StorageContext)
 
@@ -114,10 +114,14 @@ function AddPicture() {
                 })
                   .then((response) => response.json())
                   .then((data) => {
-                    console.log('Success:', data);
+                    console.log('Success:', data)
+                    props.showExtraModal({show:true, message: data.message})
+                    JSONCtx.ReloadContext()
                   })
                   .catch((error) => {
                     console.error('Error:', error);
+                    props.showExtraModal({show:true, message: error.message})
+                    JSONCtx.ReloadContext()
                   });
               })
             } 

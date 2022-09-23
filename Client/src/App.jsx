@@ -10,6 +10,7 @@ import {
 import "./App.css";
 import Header from "./Components/Header";
 import Modal from "./Components/Modal";
+import ExtraModal from "./Components/ExtraModal";
 import Footer from "./Components/Footer"
 import FrontPage from "./Pages/FrontPage";
 import AlbumsPage from "./Pages/AlbumsPage";
@@ -19,12 +20,16 @@ import { StorageContextProvider } from "./Store/StorageContext";
 
 function App() {
   const [openModal, setOpenModal] = useState({ show: false, mode: null, id: null })
+  const [openExtraModal, setOpenExtraModal] = useState({ show: false, message: ""})
+
 
   return (
     <JSONContextProvider>
       <StorageContextProvider>
         <div className="App">
-          {openModal.show ? <Modal show={openModal.show} mode={openModal.mode} id={openModal.id} showModal={setOpenModal} /> : <div />}
+          {openModal.show ? <Modal show={openModal.show} mode={openModal.mode} id={openModal.id} showExtraModal={setOpenExtraModal} showModal={setOpenModal} /> : <div />}
+          {openExtraModal.show ? <ExtraModal show={openExtraModal.show} message={openExtraModal.message} showExtraModal={setOpenExtraModal} showModal={setOpenModal}/> : <div />}
+
           <Header />
           <Routes>
             <Route path="/" element={<FrontPage showModal={setOpenModal} />} />

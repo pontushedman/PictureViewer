@@ -65,7 +65,7 @@
   width: 60rem;
   object-position: center;
   object-fit: contain;
-
+  transition: ease-in-out 0.3s;
 }
 
 .commentContainer {

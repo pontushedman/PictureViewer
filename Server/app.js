@@ -63,7 +63,7 @@ app.post('/api/album', (req, res) => {
     
     // Check mimetype before continuing
     if(!extention)
-      return res.status(415).send('File extension not supported');
+      return res.status(415).json({message: 'File extension not supported'});
 
     const title = sanitizeTitle(fields.title);
     const dir = `/app-data/library/pictures/${title}`;
@@ -71,14 +71,14 @@ app.post('/api/album', (req, res) => {
 
     // recursively create multiple directories
     fs.mkdirSync(`${__dirname}/public/${dir}`, { recursive: true }, (err) => {
-      if (err) return res.status(500).send(`Couldn't create album`);
+      return res.status(500).json({message: `Couldn't create album`});
     });
 
     // Save image to new path
     let path = albumHeaderDir + `${title}-header.${extention}`;
     
     fs.writeFileSync(`${__dirname}/public${path}`, buffer, function(err){
-      return res.status(501).send(`Couldn't create album`);
+      return res.status(501).json({message: `Couldn't create album`});
     })
       
       // Load and alter picture-library.json
@@ -99,10 +99,10 @@ app.post('/api/album', (req, res) => {
       
       fs.writeFileSync(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
         if (err)
-          return res.status(501).send(`Couldn't create album`);
+          return res.status(501).json({message: `Couldn't create album`});
       });
       
-  res.status(200).send('Successfully created an album');
+  res.status(200).json({message: 'Successfully created an album'});
 });
 });
 

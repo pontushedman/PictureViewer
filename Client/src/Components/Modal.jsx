@@ -20,14 +20,17 @@ function Modal(props) {
       onClick={(e => { closeModal(e) })}
     >
       <div className={style.modalContainer}>
-        {props.mode === "addimages" ? <AddPicture /> : null}
-        {props.mode === "addalbum" ? <AddAlbum /> : null}
+        {props.mode === "addimages" ? <AddPicture showExtraModal={props.showExtraModal}/> : null}
+        {props.mode === "addalbum" ? <AddAlbum showExtraModal={props.showExtraModal}/> : null}
         {props.mode === "image" ? <ShowImage id={props.id} /> : null}
         {props.mode === "album" ? <ShowAlbum id={props.id} /> : null}
         {props.mode === "ratedAlbum" ? <ShowRatedAlbum rating={props.id} /> : null}
 
         <div className={style.fotter}>
-          <button onClick={() => props.showModal(false)}> Cancel </button>
+          <button onClick={() => {
+            props.showModal(false)
+            }
+          }> Cancel </button>
         </div>
       </div>
     </div>

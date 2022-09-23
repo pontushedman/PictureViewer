@@ -2,9 +2,11 @@ import FormAdd from "./FormAdd"
 import styles from "./Styles/AddAlbum.module.css"
 import StorageContext, { StorageContextProvider } from "../Store/StorageContext"
 import { useContext, useEffect, useState } from "react"
+import JSONContext from "../Store/JSONContext"
 
-function AddAlbum() {
+function AddAlbum(props) {
   const storageCtx = useContext(StorageContext)
+  const JSONCtx = useContext(JSONContext)
 
   const album = storageCtx.GetAlbum()  
   const albumTitle = album.title
@@ -63,10 +65,16 @@ function AddAlbum() {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log('Success:', data);
+              console.log(data)
+              console.log('Success:', data.message);
+              props.showExtraModal({show:true, message: data.message})
+              JSONCtx.ReloadContext()
             })
             .catch((error) => {
-              console.error('Error:', error);
+              console.log(error)
+              props.showExtraModal({show:true, message: error.message})
+              JSONCtx.ReloadContext()
+              console.error('Error:', error.message);
             });
         })}>Create</button>
     </div>
