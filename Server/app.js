@@ -21,7 +21,7 @@ app.get('/api/libraryjson', (req, res) => {
 
 //#region Album HTTP methods
 
-app.get('/api/album/:id', async (req, res) => { // Download entire album 
+app.get('/api/album/:id', async (req, res) => { // Download entire album (zip file)
 
   if (req.params.id === undefined) return res.status(404).json({message: "No album id"});
 
@@ -155,12 +155,12 @@ app.delete('/api/album', (req, res) => {
       libraryJson.albums = libraryJson.albums.filter(x => { return x.id !== fields.id});
       console.log(libraryJson.albums.length);
 
-      /*
+      
       fs.writeFileSync(__dirname + libraryJsonPath, JSON.stringify(libraryJson), function(err) {
         if (err)
           return res.status(500).json({message: "Error deleting media"});
       });
-      */
+      
       res.status(200).json({message: "Successfully deleted album"});
       
     });

@@ -29,9 +29,9 @@
 
 .Albums {
   margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
+  grid-gap: 2rem;
 }
 
 
@@ -45,7 +45,7 @@
   transition: ease-in-out 0.15s;
   text-decoration: none;
   background-color: rgb(250, 250, 250);
-  padding: 0.5rem;
+  padding: 0.7rem;
   border-radius: 1.3rem;
   -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
@@ -57,10 +57,6 @@
   transition: ease-in-out 0.09s;
   -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.5);
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
-}
-
-.Album+.Album {
-  margin-left: 1rem;
 }
 
 .AlbumHeaderImage {
@@ -86,26 +82,7 @@
   font-size: 0.9rem;
 }
 
-/* Rated albums -----------------------------------------------------------------*/
-
-.RatedAlbum:hover {
-  cursor: pointer;
-  transform: scale(1.015);
-  transition: ease-in-out 0.09s;
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.5);
-  box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
-}
-
-.RatedAlbum+.RatedAlbum {
-  margin-left: 1rem;
-}
-
-.RatedAlbums {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+/*#region Rated albums -----------------------------------------------------------------*/
 
 .RatedHeaderImage {
   background-size: cover;
@@ -139,7 +116,7 @@
   padding-right: 5px;
 }
 
-/* Rated album over --------------------------------------------------------------*/
+/*#endregion Rated album over --------------------------------------------------------------*/
 
 .ViewAll {
   margin-top: 1.5rem;
@@ -226,44 +203,83 @@
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.5);
 }
 
-.Image+.Image {
-  margin-left: 1rem;
-}
 .hide{
   margin-left: auto;
 }
 
-@media (orientation: portrait) {
+/*Responsive design*/
+
+
+
+@media (max-width: 750px){
   .Albums {
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*overflow: scroll;*/
-    max-height: 40vh;
+    display: grid;
+    grid-template-columns: 18rem 18rem;
+    grid-gap: auto;
     
   }
 
   .Images {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow: scroll;
-    
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+    min-height: 10rem;
   }
 
-}
+  .Images div 
+  {
+    display: flex;
+    justify-content: center;
+  }
 
-@media (max-width: 390px){
-  .Albums {
-    
+  .PictureImage {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 0.8rem;
+    transition: ease-in-out 0.05s;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+    background-color: white;
+  }
+
+  .Album {
+    width: 100%;
+    height: 100%;
+    font-size: bold;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*overflow: scroll;*/
-    max-height: 40vh;
-    max-width: 100%;
-    
+    transition: ease-in-out 0.15s;
+    text-decoration: none;
+    background-color: rgb(250, 250, 250);
+    padding: 0.5rem;
+    border-radius: 1.3rem;
+    -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+    box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
+  }
+
+  .AlbumHeaderImage {
+    background-size: cover;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 1rem;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .RatedHeaderImage {
+    background-size: cover;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 1rem;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(5px);
   }
 
   .hide{
@@ -280,3 +296,92 @@
   }
 
 }
+
+@media (max-width: 675px){
+  .Albums {
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    
+  }
+
+  .Album {
+    width: 100%;
+    height: 100%;
+    font-size: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: ease-in-out 0.15s;
+    text-decoration: none;
+    background-color: rgb(250, 250, 250);
+    padding: 0.5rem;
+    border-radius: 1.3rem;
+    -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+    box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
+  }
+
+  .AlbumHeaderImage {
+    background-size: cover;
+    width: 25rem;
+    height: 25rem;
+    border-radius: 1rem;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .RatedHeaderImage {
+    background-size: cover;
+    width: 25rem;
+    height: 25rem;
+    border-radius: 1rem;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(5px);
+  }
+  
+
+  .Images {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    min-height: 10rem;
+  }
+
+  .Images div 
+  {
+    display: flex;
+    justify-content: center;
+  }
+
+  .PictureImage {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 0.8rem;
+    transition: ease-in-out 0.05s;
+    border: rgb(172, 172, 172) solid 1px;
+    object-fit: cover;
+    object-position: center;
+    background-color: white;
+  }
+
+  .hide{
+    display: none;
+    
+  }
+
+  .ViewAll{
+    margin-bottom: 2rem;
+  }
+
+  .Title{
+    padding-right: 3rem;
+  }
+
+}
+
+/*Responsive design over---------------------------------------------------*/
