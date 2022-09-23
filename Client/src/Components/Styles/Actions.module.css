@@ -127,7 +127,7 @@
 @media(max-width: 390px) {
   .albumAction p {
     font-weight: bold;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     margin-left: 0.5rem
    
   }
@@ -135,14 +135,28 @@
   .actions {
     margin-top: 1rem;
     height: 2rem;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-left: 0.5rem;
-    width: 2rem;
-  }  
+    align-self: flex-start;
+    width: 100%;
+  }
 
   .star {
     width: 0.7rem;
     height: 0.7rem;
     margin-left: 1rem;
+  }
+
+  .ratingInner {
+    width: 5rem;
+    display: flex;
+    flex-direction: row;
+
+    padding: 0.6rem;
+    background-color: white;
+    border-radius: 0.4rem;
+    -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
+    box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
   }
 }

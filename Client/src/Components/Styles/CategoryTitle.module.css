@@ -23,11 +23,11 @@
 
 
 .Title {
-  margin-left: 0.5rem;
   font-size: 1.8rem;
 }
 
 .Albums {
+  width: 100%;
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
@@ -36,12 +36,14 @@
 
 
 .Album {
+  align-self: center;
   width: 12rem;
   height: 15rem;
   font-size: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   transition: ease-in-out 0.15s;
   text-decoration: none;
   background-color: rgb(250, 250, 250);
@@ -49,6 +51,7 @@
   border-radius: 1.3rem;
   -webkit-box-shadow: 0px 3px 9px 1px rgba(213, 227, 255, 0.1);
   box-shadow: 0px 3px 9px 1px rgb(195, 200, 209, 0.1);
+
 }
 
 .Album:hover {
@@ -92,7 +95,7 @@
   border: rgb(172, 172, 172) solid 1px;
   object-fit: cover;
   object-position: center;
-  filter: blur(5px);
+  filter: blur(4px);
 }
 
 .RatedAlbumRating
@@ -176,6 +179,7 @@
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(7.3rem, 1fr));
+  grid-gap: 0.7rem;
   min-height: 10rem;
 }
 
@@ -295,7 +299,9 @@
     padding-right: 3rem;
   }
 
-}
+  .Title{
+    padding-right: 3rem;
+  }
 
 @media (max-width: 675px){
   .Albums {
