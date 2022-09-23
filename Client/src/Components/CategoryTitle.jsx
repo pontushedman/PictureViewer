@@ -116,7 +116,7 @@ function CategoryTitle(props) {
             />
             <p key={x.id + 3} className={styles.AlbumTitle} onClick={(e => {openAlbum(e)})} data-id={x.id}>{x.title}</p>
             <p key={x.id + 4} className={styles.AlbumImageCount}onClick={(e => {openAlbum(e)})}data-id={x.id}>{x.pictures.length} Pictures</p>
-          </div>)}s
+          </div>)}
       </div>
     )
   }

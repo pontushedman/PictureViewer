@@ -79,7 +79,7 @@ function ShowImage(props) {
           </div>
         </div>
       </div>
-      <Actions obj={image.img} />
+      <Actions mode="image" obj={image.img} />
     </div>
 
 
