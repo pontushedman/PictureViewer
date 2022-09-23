@@ -302,6 +302,7 @@
   .Title{
     padding-right: 3rem;
   }
+}
 
 @media (max-width: 675px){
   .Albums {
