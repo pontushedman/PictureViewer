@@ -115,6 +115,7 @@ function AddPicture(props) {
                   .then((response) => response.json())
                   .then((data) => {
                     console.log('Success:', data)
+                    storageCtx.ClearLocalStorage("images")
                     props.showExtraModal({show:true, message: data.message})
                     JSONCtx.ReloadContext()
                   })

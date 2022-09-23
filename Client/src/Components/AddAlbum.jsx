@@ -67,6 +67,7 @@ function AddAlbum(props) {
             .then((data) => {
               console.log(data)
               console.log('Success:', data.message);
+              storageCtx.ClearLocalStorage("album")
               props.showExtraModal({show:true, message: data.message})
               JSONCtx.ReloadContext()
             })

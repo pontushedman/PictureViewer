@@ -11,8 +11,14 @@ function AddCategory(props) {
         return cat
       })
 
+      function openAddModal() {
+        window.scrollTo(0, 0)
+        document.body.style.overflowY = "hidden"
+        props.showModal({ show: true, mode: mode(), image: {} })
+      }
+
       return (
-        <div className={styles.AddCategory} onClick={() => { props.showModal({ show: true, mode: mode(), image: {} }) }}>
+        <div className={styles.AddCategory} onClick={() => { openAddModal() }}>
           <img className={styles.Plus} src="./src/assets/plus.png" />
           <div className={styles.Text}>Add {props.category}</div>
         </div>

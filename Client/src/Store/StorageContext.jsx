@@ -13,7 +13,8 @@ const StorageContext = createContext({
   GetAlbum: null,
   SetAlbum: null,
   UpdateAlbum: null,
-  GetImagesFromStorage: null
+  GetImagesFromStorage: null,
+  ClearLocalStorage: null
 })
 
 export function StorageContextProvider(props) {
@@ -102,6 +103,10 @@ export function StorageContextProvider(props) {
 
   }
 
+  function clearLocalStorage(type) {
+      localStorage.removeItem(type)
+  }
+
   const context = {
     ImageStorage: imageStorage,
     albumStorage: albumStorage,
@@ -114,7 +119,8 @@ export function StorageContextProvider(props) {
     GetAlbum: getAlbum,
     SetAlbum: setAlbum,
     UpdateAlbum: updateAlbum,
-    GetImagesFromStorage: getImagesFromStorage
+    GetImagesFromStorage: getImagesFromStorage,
+    ClearLocalStorage: clearLocalStorage
   }
 
   return <StorageContext.Provider value={context}>{props.children}</StorageContext.Provider>
