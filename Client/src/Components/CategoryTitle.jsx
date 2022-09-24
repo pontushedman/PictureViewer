@@ -8,7 +8,11 @@ import JSONContext from '../Store/JSONContext'
 
 function CategoryTitle(props) {
   const JSONCtx = useContext(JSONContext)
-  const albums = JSONCtx.AlbumsList
+  
+  console.log(JSONCtx.AlbumsList);
+
+  // props.cap is used to limit the amount of albums / pictures rendered at the front page
+  const albums = (props.cap !== undefined && typeof props.cap === 'number') ? JSONCtx.AlbumsList.slice(0, props.cap) : JSONCtx.AlbumsList;
   const ratedAlbums = JSONCtx.RatedAlbumList;
 
   const uniqueId = () => {

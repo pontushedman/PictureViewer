@@ -11,6 +11,7 @@ function FrontPage(props) {
         title="Albums"
         image="albums"
         showModal={props.showModal}
+        cap={10}
       />
       <CategoryTitle
         noAdd={true}
@@ -19,6 +20,7 @@ function FrontPage(props) {
         title="Images"
         image="images"
         showModal={props.showModal}
+        cap={28}
       />
       <CategoryTitle
         noAdd={false}
